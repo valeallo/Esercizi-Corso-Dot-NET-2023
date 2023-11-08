@@ -7,59 +7,67 @@ namespace Rdc_calculator
         {
             static void Main(string[] args)
             {
-            Citizen Chiara = new Citizen(
-                        Name: "Chiara",
-                        HasCompletedMilitaryService: false,
-                        Age: 23,
-                        IsUniversityStudent: true,
-                        HighSchoolFinalScore: 95.5,
-                        UniversityAverageGrade: 29.0,
-                        NumberOfChildren: 1,
-                        MunicipalityGDP: 80_000_000, 
-                        HasDebts: false
-                    );
-            Citizen Eugenio = new Citizen(
-                      Name: "Eugenio",
-                      HasCompletedMilitaryService: false,
-                      Age: 50,
-                      IsUniversityStudent: true,
-                      HighSchoolFinalScore: 60,
-                      UniversityAverageGrade: 0,
-                      NumberOfChildren: 0,
-                      MunicipalityGDP: 1_000_000_000,
-                      HasDebts: true
-                    );
+            //Person Chiara = new Person(
+            //            Name: "Chiara",
+            //            Surname: "Rossi",
+            //            HasCompletedMilitaryService: false,
+            //            Age: 23,
+            //            IsUniversityStudent: true,
+            //            HighSchoolFinalScore: 95.5,
+            //            UniversityAverageGrade: 29.0,
+            //            NumberOfChildren: 1,
+            //            MunicipalityGDP: 80_000_000, 
+            //            HasDebts: false
+            //        );
+            //Person Eugenio = new Person(
+            //          Name: "Eugenio",
+            //          Surname: "Motta",
+            //          HasCompletedMilitaryService: false,
+            //          Age: 50,
+            //          IsUniversityStudent: true,
+            //          HighSchoolFinalScore: 60,
+            //          UniversityAverageGrade: 0,
+            //          NumberOfChildren: 0,
+            //          MunicipalityGDP: 1_000_000_000,
+            //          HasDebts: true
+            //        );
             //Intesa.Balance = 1000; // Error: Setter is private
-            Console.WriteLine($"{Chiara._name} qualifies for Rdc :  {Chiara.IsQualifiedForRdc}");
-            Console.WriteLine($"{Eugenio._name} qualifies for Rdc :  {Eugenio.IsQualifiedForRdc}");
+            //Console.WriteLine($"{Chiara.FullName} qualifies for Rdc :  {Chiara.IsQualifiedForRdc}");
+            //Console.WriteLine($"{Eugenio.FullName} qualifies for Rdc :  {Eugenio.IsQualifiedForRdc}");
         }
         }
-        public class Citizen
+        internal class Person
         {
-            public string _name;
-            private bool _hasCompletedMilitaryService;
-            private int _age;
-            private bool _isUniversityStudent;
-            private double _highSchoolFinalScore;
-            private double _universityAverageGrade;
-            private int _numberOfChildren;
-            private double _municipalityGDP;
-            private bool _hasDebts;
+            protected string _name;
+            protected string _surname;
+            protected bool _hasCompletedMilitaryService;
+            protected int _age;
+            protected bool _isUniversityStudent;
+            protected double _universityAverageGrade;
 
 
-        public Citizen(string Name, bool HasCompletedMilitaryService, int Age, bool IsUniversityStudent, double HighSchoolFinalScore, double UniversityAverageGrade, int NumberOfChildren, int MunicipalityGDP, bool HasDebts)
+
+
+        public Person(string Name, string Surname, int Age)
             {
-                _name = Name;
-                _hasCompletedMilitaryService = HasCompletedMilitaryService;
+            //bool IsUniversityStudent, double UniversityAverageGrade, int MunicipalityGDP, bool HasCompletedMilitaryService,
+
+
+                 _name = Name;
+                _surname = Surname;
                 _age = Age;
-                _isUniversityStudent = IsUniversityStudent;
-                _highSchoolFinalScore = HighSchoolFinalScore;
-                _universityAverageGrade = UniversityAverageGrade;
-                _numberOfChildren = NumberOfChildren;
-                _municipalityGDP = MunicipalityGDP;
-                _hasDebts = HasDebts;
-            }
-            public bool IsQualifiedForRdc
+            //_hasCompletedMilitaryService = HasCompletedMilitaryService;
+            //_isUniversityStudent = IsUniversityStudent;
+            //_universityAverageGrade = UniversityAverageGrade;
+      
+
+        }
+
+            public string Name { get { return _name; } }
+            public string Surname { get { return _surname; } }
+            public string FullName { get { return _name + " " + _surname; } }
+
+        public bool IsQualifiedForRdc
             {
                 get
                 {
@@ -116,5 +124,28 @@ namespace Rdc_calculator
             return score >= 25;
         }
         }
+
+        internal class Citizen : Person
+    {
+        protected int _numberOfChildren;
+        protected bool _hasDebts;
+        protected double _municipalityGDP;
+        public Citizen(string Name, string Surname, int Age, int NumberOfChildren, bool HasDebts, double MunicipalityGDP) : base(Name, Surname, Age)
+        {
+            _numberOfChildren = NumberOfChildren;
+            _hasDebts = HasDebts;
+            _municipalityGDP = MunicipalityGDP;
+        }
+    }
+
+    internal class Student : Citizen
+    {
+        private double _highSchoolFinalScore;
+        public Student(string Name, string Surname, int Age, int NumberOfChildren, bool HasDebts, double MunicipalityGDP, double HighSchoolFinalScore) : base(Name, Surname, Age, NumberOfChildren, HasDebts, MunicipalityGDP)
+        {
+            _highSchoolFinalScore = HighSchoolFinalScore;
+        }
+    }
+
     
 }
