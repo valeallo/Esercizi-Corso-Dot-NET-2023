@@ -14,7 +14,6 @@ namespace Rdc_Calculator_Abs_Classes
                 Age: 23,
                 NumberOfChildren: 1,
                 HasDebts: false,
-                MunicipalityGDP: 80_000_000,
                 HasCompletedMilitaryService: false
             );
 
@@ -24,7 +23,6 @@ namespace Rdc_Calculator_Abs_Classes
                 Age: 50,
                 NumberOfChildren: 0,
                 HasDebts: true,
-                MunicipalityGDP: 1_000_000_000,
                 HasCompletedMilitaryService: true 
             );
 
@@ -36,7 +34,6 @@ namespace Rdc_Calculator_Abs_Classes
                 Age: 19,
                 NumberOfChildren: 0,
                 HasDebts: false,
-                MunicipalityGDP: 50_000_000,
                 HasCompletedMilitaryService: false,
                 HighSchoolFinalScore: 98
             );
@@ -49,7 +46,6 @@ namespace Rdc_Calculator_Abs_Classes
                 Age: 22,
                 NumberOfChildren: 0,
                 HasDebts: false,
-                MunicipalityGDP: 30_000_000,
                 HasCompletedMilitaryService: false, 
                 HighSchoolFinalScore: 88,
                 UniversityAverageGrade: 29.5
@@ -58,6 +54,12 @@ namespace Rdc_Calculator_Abs_Classes
             // Create a Commune instance to use the Rdc method
             Commune myCommune = new Commune(NameCommune: "Comune di Esempio", NameProvince: "Provincia di Esempio");
 
+            chiara.GetInfo();
+            luca.GetInfo();
+            mario.GetInfo();
+        
+       
+
             // Calculate Rdc score for each individual
             int chiaraRdcScore = myCommune.Rdc(chiara);
             int eugenioRdcScore = myCommune.Rdc(eugenio);
@@ -65,6 +67,7 @@ namespace Rdc_Calculator_Abs_Classes
             int lucaRdcScore = myCommune.Rdc(luca);
 
             // Print out the scores
+            Console.WriteLine($"\n---------------");
             Console.WriteLine($"{chiara.FullName} Rdc score: {chiaraRdcScore}");
             Console.WriteLine($"{eugenio.FullName} Rdc score: {eugenioRdcScore}");
             Console.WriteLine($"{mario.FullName} Rdc score: {marioRdcScore}");
@@ -73,19 +76,15 @@ namespace Rdc_Calculator_Abs_Classes
 
 
     }
-    internal class Person
+    abstract class Person
     {
         protected string _name;
         protected string _surname;
-        protected bool _hasCompletedMilitaryService;
         protected int _age;
         protected bool _isUniversityStudent;
 
         public Person(string Name, string Surname, int Age)
         {
-
-
-
             _name = Name;
             _surname = Surname;
             _age = Age;
@@ -97,6 +96,9 @@ namespace Rdc_Calculator_Abs_Classes
         public string FullName { get { return _name + " " + _surname; } }
 
 
+        public abstract void GetInfo();
+
+
 
     }
 
@@ -104,45 +106,58 @@ namespace Rdc_Calculator_Abs_Classes
     {
         protected int _numberOfChildren;
         protected bool _hasDebts;
-        protected double _municipalityGDP;
         protected bool _hasCompletedMilitaryService;
-        public Citizen(string Name, string Surname, int Age, int NumberOfChildren, bool HasDebts, double MunicipalityGDP, bool HasCompletedMilitaryService) : base(Name, Surname, Age)
+        public Citizen(string Name, string Surname, int Age, int NumberOfChildren, bool HasDebts, bool HasCompletedMilitaryService) : base(Name, Surname, Age)
         {
             _numberOfChildren = NumberOfChildren;
             _hasDebts = HasDebts;
-            _municipalityGDP = MunicipalityGDP;
             _hasCompletedMilitaryService = HasCompletedMilitaryService;
         }
         public int NumberOfChildren { get { return _numberOfChildren; } }
         public bool HasDebts { get { return _hasDebts; } }
-        public double MunicipalityGDP { get { return _municipalityGDP; } }
         public bool HasCompletedMilitaryService { get { return _hasCompletedMilitaryService; } }
+
+        public override void GetInfo()
+        {
+            Console.Write($"\n{FullName}, Age: {_age}");
+        }
 
     }
 
     internal class Student : Citizen
     {
         private double _highSchoolFinalScore;
-        public Student(string Name, string Surname, int Age, int NumberOfChildren, bool HasDebts, double MunicipalityGDP, bool HasCompletedMilitaryService, double HighSchoolFinalScore) : base(Name, Surname, Age, NumberOfChildren, HasDebts, MunicipalityGDP, HasCompletedMilitaryService)
+        public Student(string Name, string Surname, int Age, int NumberOfChildren, bool HasDebts, bool HasCompletedMilitaryService, double HighSchoolFinalScore) : base(Name, Surname, Age, NumberOfChildren, HasDebts, HasCompletedMilitaryService)
         {
             _highSchoolFinalScore = HighSchoolFinalScore;
         }
         public double HighSchoolFinalScore { get { return _highSchoolFinalScore; } }
+        public override void GetInfo()
+        {
+            base.GetInfo();
+            Console.Write($", HighSchool Final Score: {HighSchoolFinalScore}");
+        }
 
     }
     internal class UniversityStudent : Student
     {
         private double _universityAverageGrade;
-        public UniversityStudent(string Name, string Surname, int Age, int NumberOfChildren, bool HasDebts, double MunicipalityGDP, bool HasCompletedMilitaryService, double HighSchoolFinalScore, double UniversityAverageGrade) : base(Name, Surname, Age, NumberOfChildren, HasDebts, MunicipalityGDP, HasCompletedMilitaryService, HighSchoolFinalScore)
+        public UniversityStudent(string Name, string Surname, int Age, int NumberOfChildren, bool HasDebts,  bool HasCompletedMilitaryService, double HighSchoolFinalScore, double UniversityAverageGrade) : base(Name, Surname, Age, NumberOfChildren, HasDebts, HasCompletedMilitaryService, HighSchoolFinalScore)
         {
             _universityAverageGrade = UniversityAverageGrade;
         }
 
         public double UniversityAverageGrade { get { return _universityAverageGrade; } }
+
+        public override void GetInfo()
+        {
+            base.GetInfo();
+            Console.Write($", avarage grade: {UniversityAverageGrade}");
+        }
     }
 
 
-    internal class Province
+    abstract class Province
     {
         private string _nameProvince;
 
@@ -155,6 +170,7 @@ namespace Rdc_Calculator_Abs_Classes
     internal class Commune : Province
     {
         private string _nameCommune;
+        private int _municipalityGDP = 1000000;
 
         public Commune(string NameCommune, string NameProvince) : base(NameProvince)
         {
@@ -165,7 +181,7 @@ namespace Rdc_Calculator_Abs_Classes
         {
             int count = 0;
             int inc = 4;
-            if (citizen.MunicipalityGDP >= 100)
+            if (_municipalityGDP >= 100)
             {
                 count += inc;
             }
@@ -189,32 +205,20 @@ namespace Rdc_Calculator_Abs_Classes
 
             if (citizen is Student student)
             {
-                Console.WriteLine($"Debug: Checking high school final score for {student.FullName}");
 
                 if (student.HighSchoolFinalScore > 90)
                 {
-                    Console.WriteLine($"Debug: {student.FullName} has a high school final score greater than 90.");
                     count += inc;
-                }
-                else
-                {
-                    Console.WriteLine($"Debug: {student.FullName} does not have a high school final score greater than 90.");
                 }
             }
 
             if (citizen is UniversityStudent universityStudent)
             {
-                Console.WriteLine($"Debug: Checking university average grade for {universityStudent.FullName}");
-
                 if (universityStudent.UniversityAverageGrade > 28)
                 {
-                    Console.WriteLine($"Debug: {universityStudent.FullName} has a university average grade greater than 28.");
                     count += inc;
                 }
-                else
-                {
-                    Console.WriteLine($"Debug: {universityStudent.FullName} does not have a university average grade greater than 28.");
-                }
+              
             }
 
 
@@ -224,8 +228,6 @@ namespace Rdc_Calculator_Abs_Classes
         }
 
     }
-
-
 
 
 
