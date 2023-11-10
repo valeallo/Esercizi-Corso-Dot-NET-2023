@@ -157,17 +157,17 @@ namespace Rdc_Calculator_Abs_Classes
     }
 
 
-    abstract class Province
+    abstract class Ente
     {
-        private string _nameProvince;
+        private string _nameEnte;
 
-        public Province(string NameProvince)
+        public Ente(string NameEnte)
         {
-            _nameProvince = NameProvince;
+            _nameEnte = NameEnte;
         }
     }
 
-    internal class Commune : Province
+    internal class Commune : Ente
     {
         private string _nameCommune;
         private int _municipalityGDP = 1000000;
