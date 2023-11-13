@@ -35,7 +35,7 @@ namespace Eurozone_Calculator
     {
 
  
-        public EUState(string Name, float GovernmentBond, bool IsONUMember, bool HasDeathPenalty) : base(Name, GovernmentBond, IsONUMember, HasDeathPenalty)
+        public EUState(string Name, float GovernmentBond, bool IsONUMember) : base(Name, GovernmentBond, IsONUMember, false)
         {
             
         }
@@ -49,11 +49,7 @@ namespace Eurozone_Calculator
 
         public void IsStateRespectingHumanRights()
         {
-            if (HasDeathPenalty)
-            {
-                Console.WriteLine($"{Name} is not respecting human rights and has the death penalty.");
-            }
-            else if (IsONUMember)
+            if (IsONUMember)
             {
                 Console.WriteLine($"{Name} respects human rights and is an ONU member and a EU member.");
             }
@@ -70,7 +66,7 @@ namespace Eurozone_Calculator
     class EurozoneState : EUState, IEuropeanCentralBank
     {
 
-        public EurozoneState (string Name, float GovernmentBond, bool IsONUMember, bool HasDeathPenalty) : base(Name, GovernmentBond, IsONUMember, HasDeathPenalty){
+        public EurozoneState (string Name, float GovernmentBond, bool IsONUMember) : base(Name, GovernmentBond, IsONUMember){
 
         }
 
