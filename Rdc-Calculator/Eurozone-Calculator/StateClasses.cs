@@ -22,17 +22,30 @@ namespace Eurozone_Calculator
         public abstract void DisplayInformation();
     }
 
-    class EuropeanState : State, IEuropeanCentralBank
+    class EUState : State
     {
 
-        bool _isEurozone;
  
-        public EuropeanState(string name, float GovernmentBond, bool isEurozone) : base(name, GovernmentBond)
+        public EUState(string name, float GovernmentBond) : base(name, GovernmentBond)
         {
-            _isEurozone = isEurozone;
+            
         }
 
-        public bool IsEurozone { get { return _isEurozone; } }
+  
+        public override void DisplayInformation()
+        {
+            Console.WriteLine($"State: {Name}, EU member");
+        }
+    }
+
+
+    class EurozoneState : EUState, IEuropeanCentralBank
+    {
+
+        public EurozoneState (string name, float GovernmentBond) : base(name, GovernmentBond){
+
+        }
+
         public string DisplayGovernmentBondValue()
         {
             return $"{Name} Government Bond Value: {GovernmentBond}";
@@ -43,14 +56,11 @@ namespace Eurozone_Calculator
             float bund = 0.3f;
             return $"{Name} spread: {GovernmentBond - bund}";
         }
-        public override void DisplayInformation()
-        {
-            Console.WriteLine($"State: {Name}, Eurozone Member: {IsEurozone}");
-        }
+
     }
 
 
-    class NonEuropeanState : State, IEuropeanCentralBank
+    class NonEuropeanState : State
     {
 
       
@@ -61,16 +71,7 @@ namespace Eurozone_Calculator
         }
 
 
-        public string DisplayGovernmentBondValue()
-        {
-            return $"This state is not european";
-        }
-
-        public string CalculateSpread()
-        {
-            
-            return $"{Name} is not european";
-        }
+ 
         public override void DisplayInformation()
         {
             Console.WriteLine($"{Name}");

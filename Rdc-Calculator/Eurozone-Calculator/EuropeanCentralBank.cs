@@ -8,8 +8,13 @@ namespace Eurozone_Calculator
         string CalculateSpread();
         string DisplayGovernmentBondValue();
 
-
-
     }
+
+    interface IEuropeanHumanRightsCourt
+    {
+        string IsStateRespectingHumanRights();
+    }
+
+
 
 }
