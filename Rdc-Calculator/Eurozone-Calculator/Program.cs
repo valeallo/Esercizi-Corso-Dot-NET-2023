@@ -6,12 +6,12 @@ namespace Eurozone_Calculator
     {
         static void Main(string[] args)
         {
-            EUState germany = new EUState("Germany", 0.5f, true, false);
+            EUState germany = new EUState("Germany", 0.5f, true);
             germany.DisplayInformation();
             germany.IsStateRespectingHumanRights();
 
             // Create an instance of EurozoneState
-            EurozoneState france = new EurozoneState("France", 0.4f, true, false);
+            EurozoneState france = new EurozoneState("France", 0.4f, true);
             france.DisplayInformation();
             france.DisplayGovernmentBondValue();
             france.CalculateSpread();
