@@ -8,13 +8,12 @@ namespace Eurozone_Calculator
         {
             Console.WriteLine("Hello World!");
 
-            EuState germany = new EuState("Germany", 0.4f, true);
+            EUState germany = new EUState("Germany", 0.4f);
             germany.DisplayInformation();
 
-            EuState norway = new EuState("Norway", 0.2f, false);
-            norway.DisplayInformation();
+            EUState france = new EUState("France", 0.2f);
+            france.DisplayInformation();
 
-            germany.
         }
         
     }

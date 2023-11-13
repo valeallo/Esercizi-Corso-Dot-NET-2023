@@ -8,16 +8,23 @@ namespace Eurozone_Calculator
 	{
         string _name;
         float _governmentBond;
+        bool _isONUmember;
+        bool _hasDeathPenalty;
 
 
-        protected State(string Name, float GovernmentBond)
+        protected State(string Name, float GovernmentBond, bool IsONUmember, bool HasDeathPenalty)
         {
             Name = _name;
             GovernmentBond = _governmentBond;
+            _isONUmember = IsONUmember;
+            _hasDeathPenalty = HasDeathPenalty;
         }
 
         public string Name { get { return _name; } }
         public float GovernmentBond { get { return _governmentBond; } }
+
+        public bool IsONUMember { get { return _isONUmember; } }
+        public bool HasDeathPenalty { get { return _hasDeathPenalty; } }
 
         public abstract void DisplayInformation();
     }
@@ -26,7 +33,7 @@ namespace Eurozone_Calculator
     {
 
  
-        public EUState(string name, float GovernmentBond) : base(name, GovernmentBond)
+        public EUState(string name, float GovernmentBond, bool IsONUMember, bool HasDeathPenalty) : base(name, GovernmentBond, IsONUMember, HasDeathPenalty)
         {
             
         }
@@ -42,7 +49,7 @@ namespace Eurozone_Calculator
     class EurozoneState : EUState, IEuropeanCentralBank
     {
 
-        public EurozoneState (string name, float GovernmentBond) : base(name, GovernmentBond){
+        public EurozoneState (string name, float GovernmentBond, bool IsONUMember, bool HasDeathPenalty) : base(name, GovernmentBond, IsONUMember, HasDeathPenalty){
 
         }
 
@@ -65,13 +72,12 @@ namespace Eurozone_Calculator
 
       
 
-        public NonEuropeanState(string name, float GovernmentBond) : base(name, GovernmentBond)
+        public NonEuropeanState(string name, float GovernmentBond, bool IsONUMember, bool HasDeathPenalty) : base(name, GovernmentBond, IsONUMember, HasDeathPenalty)
         {
     
         }
 
 
- 
         public override void DisplayInformation()
         {
             Console.WriteLine($"{Name}");
