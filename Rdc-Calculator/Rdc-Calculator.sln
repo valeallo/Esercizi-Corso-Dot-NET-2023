@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rdc-Calculator-Abs-Classes", "Rdc-Calculator-Abs-Classes\Rdc-Calculator-Abs-Classes.csproj", "{44B5186F-B861-4967-BAE7-47BEF120E753}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rdc-Calculator-Abs-Classes", "Rdc-Calculator-Abs-Classes\Rdc-Calculator-Abs-Classes.csproj", "{44B5186F-B861-4967-BAE7-47BEF120E753}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eurozone-Calculator", "Eurozone-Calculator\Eurozone-Calculator.csproj", "{EF7F63CA-F033-4B50-BDE8-1891B65ADC7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{44B5186F-B861-4967-BAE7-47BEF120E753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44B5186F-B861-4967-BAE7-47BEF120E753}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44B5186F-B861-4967-BAE7-47BEF120E753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF7F63CA-F033-4B50-BDE8-1891B65ADC7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF7F63CA-F033-4B50-BDE8-1891B65ADC7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF7F63CA-F033-4B50-BDE8-1891B65ADC7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF7F63CA-F033-4B50-BDE8-1891B65ADC7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
