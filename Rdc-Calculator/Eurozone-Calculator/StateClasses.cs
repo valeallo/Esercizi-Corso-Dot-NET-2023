@@ -81,6 +81,10 @@ namespace Eurozone_Calculator
         {
             float bund = 0.3f;
 
+            if (Name == "Germany")
+            {
+                bund = GovernmentBond;
+            }
             return $"{Name} spread: {GovernmentBond - bund}";
         }
 
