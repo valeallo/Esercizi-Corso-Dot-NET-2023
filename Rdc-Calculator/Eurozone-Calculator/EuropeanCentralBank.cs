@@ -1,8 +1,15 @@
 ﻿using System;
 
-public class Class1
+namespace Eurozone_Calculator
 {
-	public Class1()
-	{
-	}
+    interface IEuropeanCentralBank
+    {
+
+        string CalculateSpread();
+        string DisplayGovernmentBondValue();
+
+
+
+    }
+
 }
