@@ -5,14 +5,14 @@ namespace Eurozone_Calculator
     interface IEuropeanCentralBank
     {
 
-        string CalculateSpread();
-        string DisplayGovernmentBondValue();
+        void CalculateSpread();
+        void DisplayGovernmentBondValue();
 
     }
 
     interface IEuropeanHumanRightsCourt
     {
-        string IsStateRespectingHumanRights();
+        void IsStateRespectingHumanRights();
     }
 
 

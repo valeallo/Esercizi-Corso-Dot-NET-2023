@@ -45,19 +45,19 @@ namespace Eurozone_Calculator
         }
 
 
-        public string IsStateRespectingHumanRights()
+        public void IsStateRespectingHumanRights()
         {
             if (HasDeathPenalty)
             {
-                return $"{Name} is not respecting human rights and has the death penalty.";
+                Console.WriteLine($"{Name} is not respecting human rights and has the death penalty.");
             }
             else if (IsONUMember)
             {
-                return $"{Name} respects human rights and is an ONU member and a EU member.";
+                Console.WriteLine($"{Name} respects human rights and is an ONU member and a EU member.");
             }
             else
             {
-                return $"{Name} respects human rights and is EU member.";
+                Console.WriteLine($"{Name} respects human rights and is EU member.");
             }
         }
 
@@ -72,12 +72,12 @@ namespace Eurozone_Calculator
 
         }
 
-        public string DisplayGovernmentBondValue()
+        public void DisplayGovernmentBondValue()
         {
-            return $"{Name} Government Bond Value: {GovernmentBond}";
+            Console.WriteLine($"{Name} Government Bond Value: {GovernmentBond}");
         }
 
-        public string CalculateSpread()
+        public void CalculateSpread()
         {
             float bund = 0.3f;
 
@@ -85,7 +85,7 @@ namespace Eurozone_Calculator
             {
                 bund = GovernmentBond;
             }
-            return $"{Name} spread: {GovernmentBond - bund}";
+            Console.WriteLine($"{Name} spread: {GovernmentBond - bund}");
         }
 
 
@@ -105,23 +105,23 @@ namespace Eurozone_Calculator
 
         public override void DisplayInformation()
         {
-            Console.WriteLine($"{Name} : Non eu member");
+            Console.WriteLine($"{Name} : Non EU member");
         }
 
 
-        public string IsStateRespectingHumanRights()
+        public void IsStateRespectingHumanRights()
         {
             if (HasDeathPenalty)
             {
-                return $"{Name} is not respecting human rights and has the death penalty.";
+                Console.WriteLine($"{Name} is not respecting human rights and has the death penalty.");
             }
             else if (IsONUMember)
             {
-                return $"{Name} respects human rights and is an ONU member";
+                Console.WriteLine($"{Name} respects human rights and is an ONU member");
             }
             else
             {
-                return $"{Name} respects human rights";
+                Console.WriteLine($"{Name} respects human rights");
             }
         }
     }
