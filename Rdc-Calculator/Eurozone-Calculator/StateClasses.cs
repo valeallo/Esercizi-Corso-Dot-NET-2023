@@ -29,7 +29,7 @@ namespace Eurozone_Calculator
         public abstract void DisplayInformation();
     }
 
-    class EUState : State
+    class EUState : State , IEuropeanHumanRightsCourt
     {
 
  
@@ -43,6 +43,25 @@ namespace Eurozone_Calculator
         {
             Console.WriteLine($"State: {Name}, EU member");
         }
+
+
+        public string IsStateRespectingHumanRights()
+        {
+            if (HasDeathPenalty)
+            {
+                return $"{Name} is not respecting human rights and has the death penalty.";
+            }
+            else if (IsONUMember)
+            {
+                return $"{Name} respects human rights and is an ONU member and a EU member.";
+            }
+            else
+            {
+                return $"{Name} respects human rights and is EU member.";
+            }
+        }
+
+
     }
 
 
@@ -64,10 +83,11 @@ namespace Eurozone_Calculator
             return $"{Name} spread: {GovernmentBond - bund}";
         }
 
+
     }
 
 
-    class NonEuropeanState : State
+    class NonEuropeanState : State, IEuropeanHumanRightsCourt
     {
 
       
@@ -81,6 +101,23 @@ namespace Eurozone_Calculator
         public override void DisplayInformation()
         {
             Console.WriteLine($"{Name}");
+        }
+
+
+        public string IsStateRespectingHumanRights()
+        {
+            if (HasDeathPenalty)
+            {
+                return $"{Name} is not respecting human rights and has the death penalty.";
+            }
+            else if (IsONUMember)
+            {
+                return $"{Name} respects human rights and is an ONU member";
+            }
+            else
+            {
+                return $"{Name} respects human rights";
+            }
         }
     }
 }
