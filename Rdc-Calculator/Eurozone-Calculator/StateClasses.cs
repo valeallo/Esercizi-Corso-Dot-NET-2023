@@ -4,6 +4,8 @@ using System.Xml.Linq;
 
 namespace Eurozone_Calculator
 {
+
+    // I chose not to create a EuropeanState/non EU class and an ONU class cause they dont have specific properties or interfaces right now so I used a variable instead, this could be implemented and can be requested
 	 abstract class State
 	{
         string _name;
