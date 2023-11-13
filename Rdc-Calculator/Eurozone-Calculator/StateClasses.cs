@@ -14,8 +14,8 @@ namespace Eurozone_Calculator
 
         protected State(string Name, float GovernmentBond, bool IsONUmember, bool HasDeathPenalty)
         {
-            Name = _name;
-            GovernmentBond = _governmentBond;
+            _name = Name;
+            _governmentBond = GovernmentBond;
             _isONUmember = IsONUmember;
             _hasDeathPenalty = HasDeathPenalty;
         }
@@ -33,7 +33,7 @@ namespace Eurozone_Calculator
     {
 
  
-        public EUState(string name, float GovernmentBond, bool IsONUMember, bool HasDeathPenalty) : base(name, GovernmentBond, IsONUMember, HasDeathPenalty)
+        public EUState(string Name, float GovernmentBond, bool IsONUMember, bool HasDeathPenalty) : base(Name, GovernmentBond, IsONUMember, HasDeathPenalty)
         {
             
         }
@@ -68,7 +68,7 @@ namespace Eurozone_Calculator
     class EurozoneState : EUState, IEuropeanCentralBank
     {
 
-        public EurozoneState (string name, float GovernmentBond, bool IsONUMember, bool HasDeathPenalty) : base(name, GovernmentBond, IsONUMember, HasDeathPenalty){
+        public EurozoneState (string Name, float GovernmentBond, bool IsONUMember, bool HasDeathPenalty) : base(Name, GovernmentBond, IsONUMember, HasDeathPenalty){
 
         }
 
@@ -80,6 +80,7 @@ namespace Eurozone_Calculator
         public string CalculateSpread()
         {
             float bund = 0.3f;
+
             return $"{Name} spread: {GovernmentBond - bund}";
         }
 
@@ -92,7 +93,7 @@ namespace Eurozone_Calculator
 
       
 
-        public NonEuropeanState(string name, float GovernmentBond, bool IsONUMember, bool HasDeathPenalty) : base(name, GovernmentBond, IsONUMember, HasDeathPenalty)
+        public NonEuropeanState(string Name, float GovernmentBond, bool IsONUMember, bool HasDeathPenalty) : base(Name, GovernmentBond, IsONUMember, HasDeathPenalty)
         {
     
         }
@@ -100,7 +101,7 @@ namespace Eurozone_Calculator
 
         public override void DisplayInformation()
         {
-            Console.WriteLine($"{Name}");
+            Console.WriteLine($"{Name} : Non eu member");
         }
 
 
