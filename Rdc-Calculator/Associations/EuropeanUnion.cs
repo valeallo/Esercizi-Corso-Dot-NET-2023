@@ -13,15 +13,12 @@ namespace Associations
 
         public EuropeanUnion() 
         {
-            new EUState("France", this);
-            new EUState("Germany", this);
-            new EUState("Greece", this);
-            new EUState("Ireland", this);
-            new EUState("Italy", this);
-            new EUState("Netherlands", this);
-            new EUState("Portugal", this);
+            new EurozoneState("France", this);
+            new EurozoneState("Germany", this);
+            new EurozoneState("Greece", this);
+            new EurozoneState("Italy", this);
+            new EUState("Poland", this);
             new EUState("Romania", this);
-            new EUState("Spain", this);
             new EUState("Sweden", this);
 
         }
