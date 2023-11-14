@@ -8,5 +8,15 @@ namespace Associations
 {
     internal class BCE
     {
+     
+
+        public BCE() 
+        {
+        }
+
+        public void MakePolicyDecision(EuropeanUnion eu)
+        {
+           
+        }
     }
 }

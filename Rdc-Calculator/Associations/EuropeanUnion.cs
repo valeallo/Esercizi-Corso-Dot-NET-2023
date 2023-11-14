@@ -36,5 +36,11 @@ namespace Associations
             _EUState = null;
         }
 
+
+        public void ConsultCentralBank(BCE centralBank)
+        {
+ 
+        }
+
     }
 }
