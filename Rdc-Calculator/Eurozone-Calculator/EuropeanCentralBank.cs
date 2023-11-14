@@ -9,12 +9,4 @@ namespace Eurozone_Calculator
         void DisplayGovernmentBondValue();
 
     }
-
-    interface IEuropeanHumanRightsCourt
-    {
-        void IsStateRespectingHumanRights();
-    }
-
-
-
 }
