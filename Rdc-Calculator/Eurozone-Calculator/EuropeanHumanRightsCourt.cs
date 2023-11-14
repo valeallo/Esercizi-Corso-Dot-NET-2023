@@ -3,8 +3,8 @@
 
 namespace Eurozone_Calculator
 {
-    interface IEuropeanHumanRightsCourt
+    class EuropeanHumanRightsCourt
     {
-        void IsStateRespectingHumanRights();
+
     }
 }

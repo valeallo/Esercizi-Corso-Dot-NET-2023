@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Eurozone_Calculator.interfaces;
+using System;
 
 namespace Eurozone_Calculator
 {
 
 
-    class EurozoneState : EUState, IEuropeanCentralBank
+    class EurozoneState : EUState, IEuropeanStockMarket
     {
         public EurozoneState(string Name, float GovernmentBond, bool IsONUMember) : base(Name, GovernmentBond, IsONUMember)
         {

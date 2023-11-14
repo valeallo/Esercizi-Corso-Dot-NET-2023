@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Eurozone_Calculator.interfaces;
+using System;
 
 namespace Eurozone_Calculator
 {
-    interface IEuropeanCentralBank
+    class EuropeanCentralBank
     {
 
-        void CalculateSpread();
-        void DisplayGovernmentBondValue();
 
     }
 }

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Eurozone_Calculator.interfaces;
+using System;
 using System.Xml.Linq;
 
 
+namespace Eurozone_Calculator
 {
     class EUState : State, IEuropeanHumanRightsCourt
     {
