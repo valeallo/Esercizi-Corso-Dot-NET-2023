@@ -11,10 +11,12 @@ namespace Associations
     {
         Province _province;
         Citizen _citizen;
+        City _city;
 
-        public Commune (Province province)
+        public Commune (Province province, City city)
         {
             _province = province;
+            _city = city;
         }
 
         public void ChangeProvince (Province province)
