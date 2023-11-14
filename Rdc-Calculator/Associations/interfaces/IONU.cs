@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Associations.interfaces
 {
-    interface IONU
+    interface IONU : IPoliticalOrganization
     {
     }
 }

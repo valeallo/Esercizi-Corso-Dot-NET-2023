@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Associations.interfaces
 {
-    internal interface IEuropeanUnion
+    internal interface IEuropeanUnion : IPoliticalOrganization
     {
     }
 }
