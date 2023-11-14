@@ -8,5 +8,9 @@ namespace Associations
 {
     internal class EurozoneState : EUState
     {
+        public EurozoneState(string Name, EuropeanUnion europeanUnion) : base(Name, europeanUnion)
+        {
+
+        }
     }
 }
