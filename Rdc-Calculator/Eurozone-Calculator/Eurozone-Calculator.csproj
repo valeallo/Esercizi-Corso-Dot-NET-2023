@@ -6,4 +6,8 @@
     <RootNamespace>Eurozone_Calculator</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="interfaces\" />
+  </ItemGroup>
+
 </Project>
