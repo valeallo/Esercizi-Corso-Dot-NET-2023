@@ -12,7 +12,7 @@ namespace Associations
         EuropeanUnion _europeanUnion;
         string _name;
 
-        public EUState (string Name, EuropeanUnion EuropeanUnion)
+        public EUState (string Name, EuropeanUnion EuropeanUnion) 
         {
             _europeanUnion = EuropeanUnion;
         }

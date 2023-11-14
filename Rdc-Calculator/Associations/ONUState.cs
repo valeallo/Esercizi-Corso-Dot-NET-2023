@@ -9,5 +9,11 @@ namespace Associations
 {
     internal class ONUState : State, IONU
     {
+       public ONUState  ()
+        {
+        
+        
+        }
+
     }
 }
