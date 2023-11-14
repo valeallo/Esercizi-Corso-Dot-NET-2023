@@ -8,5 +8,12 @@ namespace Associations
 {
     internal class Country : GeographicalArea
     {
+        State _state;
+
+        public Country() 
+        {
+            new State(this);
+        }
+
     }
 }

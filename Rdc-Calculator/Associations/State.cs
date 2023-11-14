@@ -10,7 +10,11 @@ namespace Associations
     internal class State : IAdministrativeEntity
     {
         Region _region;
-        public State() { }
+        Country _country;
+        public State(Country country)
+        {
+            _country = country;
+        }
         public void AddRegion (Region region)
         {
             _region = region;
