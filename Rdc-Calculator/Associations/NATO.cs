@@ -9,5 +9,11 @@ namespace Associations
 {
     internal class NATO : IPoliticalOrganization
     {
+        public NATO() 
+        {
+            new NATOState("Turkey", this);
+        
+        
+        }
     }
 }

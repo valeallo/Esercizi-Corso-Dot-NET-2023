@@ -10,9 +10,8 @@ namespace Associations
     internal class EUState : State, IEuropeanUnion, IONU
     {
         EuropeanUnion _europeanUnion;
-        string _name;
 
-        public EUState (string Name, EuropeanUnion EuropeanUnion) 
+        public EUState (string Name, EuropeanUnion EuropeanUnion) : base (Name)
         {
             _europeanUnion = EuropeanUnion;
         }

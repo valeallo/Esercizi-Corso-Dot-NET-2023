@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Associations
 {
-    internal class ONU
+    internal class NATOState : State
     {
-        public ONU() 
+        NATO _nato;
+
+        public NATOState(string Name, NATO Nato) : base(Name)
         {
-            new ONUState("India", this);
-        
+            _nato = Nato;
         }
     }
 }

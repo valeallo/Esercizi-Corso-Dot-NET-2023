@@ -9,9 +9,11 @@ namespace Associations
 {
     internal class ONUState : State, IONU
     {
-       public ONUState  ()
+        ONU _onu;
+       public ONUState  (string Name, ONU Onu) : base (Name)
         {
         
+            _onu = Onu;
         
         }
 

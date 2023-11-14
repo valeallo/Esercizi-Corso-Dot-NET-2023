@@ -11,9 +11,11 @@ namespace Associations
     {
         Region _region;
         Country _country;
-        public State ()
+        string _name;
+        public State (string Name)
         {
             //_country = country;
+            _name = Name;
         }
         public void AddRegion (Region region)
         {
