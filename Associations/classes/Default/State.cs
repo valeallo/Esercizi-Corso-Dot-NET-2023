@@ -30,7 +30,6 @@ namespace Associations.classes.Default
 
 
 
-
         public void HealthCareNationalSystem()
         {
             Console.WriteLine("state healthcare");

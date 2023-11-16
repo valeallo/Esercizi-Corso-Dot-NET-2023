@@ -11,23 +11,24 @@ namespace Associations.classes.UE
 {
     internal class EURegion : GeographicalArea, IEUPublicAdministration
     {
-        State _state;
+        EUState _state;
         EUProvince _province;
-        public EURegion(State state)
+        public EURegion(EUState state)
         {
 
             _state = state;
         }
 
-        public void ChangeState(EUParliament EUParliament, State state)
+        public void ChangeState(EUParliament EUParliament, EUState state)
         {
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)
             {
-                _state.RemoveRegion(this);
+                _state.RemoveRegion(EUParliament, this);
                 _state = state;
                 Console.WriteLine("state is changed");
             }
+            Console.WriteLine("not approved by eu");
         }
 
         public void AddProvince(EUParliament EUParliament, EUProvince province)
@@ -38,6 +39,7 @@ namespace Associations.classes.UE
                 _province = province;
                 Console.WriteLine("province is added");
             }
+            Console.WriteLine("not approved by eu");
         }
 
 
@@ -61,6 +63,7 @@ namespace Associations.classes.UE
                 Console.WriteLine("province is removed");
                 return true;
             }
+            Console.WriteLine("not approved by eu");
             return false;
         }
 

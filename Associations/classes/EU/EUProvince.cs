@@ -24,6 +24,21 @@ namespace Associations.classes.UE
             Console.WriteLine("using region welfare services");
         }
 
+
+
+        //add city approved
+        public void AddCity(EUParliament EUParliament, EUMunicipality Municipality)
+        {
+            bool isApproved = EUParliament.ApproveChanges();
+            if (isApproved)
+            {
+                _municipality = Municipality;
+                Console.WriteLine("province is added");
+            }
+            Console.WriteLine("not approved by eu");
+        }
+
+
         public void BorderRedefinition(EUParliament eUParliament) {  }
   
 
@@ -36,8 +51,8 @@ namespace Associations.classes.UE
             _region = region;
                 Console.WriteLine("region is changed");
             }
+            Console.WriteLine("not approved by eu");
         }
-
 
         //border redefinition remove city
         public bool BorderRedefinition(EUParliament EUParliament,EUMunicipality Municipality)
@@ -49,6 +64,7 @@ namespace Associations.classes.UE
                 Console.WriteLine("city is removed");
                 return true;
             }
+            Console.WriteLine("not approved by eu");
             return false;
         }
 

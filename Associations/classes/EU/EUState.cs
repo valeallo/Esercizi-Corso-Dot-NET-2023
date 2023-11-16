@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace Associations.classes.UE
 {
-    internal class EUState : State, IEuropeanUnion, IONU
+    internal class EUState : State, IEuropeanUnion, IEUPublicAdministration
     {
         EuropeanUnion _europeanUnion;
+        EURegion _europeanRegion;
 
         public EUState(string Name, EuropeanUnion EuropeanUnion) : base(Name)
         {
@@ -28,6 +29,44 @@ namespace Associations.classes.UE
         {
             Console.WriteLine("Human rights tribunal actions");
 
+        }
+
+        public void AddRegion(EUParliament EUParliament, EURegion region)
+        {
+            bool isApproved = EUParliament.ApproveChanges();
+            if (isApproved)
+            { 
+               _europeanRegion = region;
+                Console.WriteLine("region is added to state");
+            
+            }
+
+            Console.WriteLine("not approved by eu");
+
+        }
+
+
+        public void RemoveRegion(EUParliament EUParliament, EURegion region)
+        {
+            bool isApproved = EUParliament.ApproveChanges();
+            if (isApproved)
+            {
+                _europeanRegion = null;
+                Console.WriteLine("region is removed");
+
+            }
+
+            Console.WriteLine("not approved by eu");
+
+        }
+
+        public void BorderRedefinition(EUParliament eUParliament) { }
+
+
+
+        public void WelfareServices()
+        {
+            Console.WriteLine("using region welfare services");
         }
     }
 }
