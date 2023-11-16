@@ -18,9 +18,9 @@ namespace Associations.classes.UE
             _province = province;
         }
 
-        public void ChangeProvince(EUProvince province)
+        public void ChangeProvince(EUProvince province, EUParliament EUParliament)
         {
-            _province.RemoveMunicipality(this);
+            _province.BorderRedefinition(EUParliament, this);
             _province = province;
         }
 

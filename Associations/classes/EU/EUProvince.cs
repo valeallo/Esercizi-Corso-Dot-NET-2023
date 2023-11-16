@@ -38,7 +38,9 @@ namespace Associations.classes.UE
             }
         }
 
-        public void BorderREdefinition(EUParliament EUParliament,EUMunicipality Municipality)
+
+        //border redefinition remove city
+        public void BorderRedefinition(EUParliament EUParliament,EUMunicipality Municipality)
         {
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)
