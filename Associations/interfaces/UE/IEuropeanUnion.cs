@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Associations
+namespace Associations.interfaces.UE
 {
-    internal class GeographicalArea
+    internal interface IEuropeanUnion : IPoliticalOrganization
     {
     }
 }

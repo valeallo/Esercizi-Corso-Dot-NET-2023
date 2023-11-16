@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Associations
+namespace Associations.classes.ONU
 {
     internal class ONU
     {
-        public ONU() 
+        public ONU()
         {
             new ONUState("India", this);
-        
+
         }
     }
 }

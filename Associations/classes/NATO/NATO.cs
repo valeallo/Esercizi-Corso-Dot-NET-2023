@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Associations
+namespace Associations.classes.NATO
 {
-    internal class EurozoneState : EUState, IBCE
+    internal class NATO : IPoliticalOrganization
     {
-        public EurozoneState(string Name, EuropeanUnion europeanUnion) : base(Name, europeanUnion)
+        public NATO()
         {
+            new NATOState("Turkey", this);
+
 
         }
     }

@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Associations.classes.UE;
 
-namespace Associations
+namespace Associations.classes.Default
 {
-    internal class Country : GeographicalArea
+    internal class City : GeographicalArea
     {
-        State _state;
 
-        public Country() 
+        public City()
         {
-           // new State(this);
+         
         }
-
     }
 }

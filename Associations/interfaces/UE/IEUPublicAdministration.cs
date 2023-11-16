@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Associations.interfaces
+namespace Associations.interfaces.UE
 {
-    internal interface IEuropeanUnion : IPoliticalOrganization
+    internal interface IEUPublicAdministration : IEUAdministrativeEntity
     {
     }
 }
