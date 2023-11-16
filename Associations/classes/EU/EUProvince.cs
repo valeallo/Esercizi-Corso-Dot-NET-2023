@@ -18,20 +18,34 @@ namespace Associations.classes.UE
             _region = region;
         }
 
-        public void ChangeRegion(EURegion region)
+
+        public void WelfareServices()
         {
+            Console.WriteLine("using region welfare services");
+        }
+
+        public void BorderRedefinition(EUParliament eUParliament) {  }
+  
+
+        //overloading border redefinition chane region
+        public void BorderRedefinition(EUParliament EUParliament, EURegion region)
+        {
+            bool isApproved = EUParliament.ApproveChanges();
+            if (isApproved) { 
             _region.RemoveProvince(this);
             _region = region;
+                Console.WriteLine("region is changed");
+            }
         }
 
-        public void AddMunicipality(EUMunicipality Municipality)
+        public void BorderREdefinition(EUParliament EUParliament,EUMunicipality Municipality)
         {
-            _municipality = Municipality;
-        }
-
-        public void RemoveMunicipality(EUMunicipality commune)
-        {
-            _municipality = null;
+            bool isApproved = EUParliament.ApproveChanges();
+            if (isApproved)
+            {
+                _municipality = Municipality;
+                Console.WriteLine("city is removed");
+            }
         }
 
         public void HealthCareNationalSystem()
