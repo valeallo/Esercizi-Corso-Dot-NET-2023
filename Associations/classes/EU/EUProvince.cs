@@ -27,12 +27,12 @@ namespace Associations.classes.UE
         public void BorderRedefinition(EUParliament eUParliament) {  }
   
 
-        //overloading border redefinition chane region
+        //overloading border redefinition change region
         public void BorderRedefinition(EUParliament EUParliament, EURegion region)
         {
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved) { 
-            _region.RemoveProvince(this);
+            _region.BorderRedefinition(EUParliament, this);
             _region = region;
                 Console.WriteLine("region is changed");
             }
@@ -45,7 +45,7 @@ namespace Associations.classes.UE
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)
             {
-                _municipality = Municipality;
+                _municipality = null;
                 Console.WriteLine("city is removed");
                 return true;
             }
