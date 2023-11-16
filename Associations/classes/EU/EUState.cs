@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Associations.classes.UE
 {
-    internal class EUState : State, IEuropeanUnion, IEUPublicAdministration
+    internal class EUState : State, IEuropeanUnion, IEUAdministrativeEntity
     {
         EuropeanUnion _europeanUnion;
         EURegion _europeanRegion;

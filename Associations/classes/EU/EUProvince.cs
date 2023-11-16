@@ -1,5 +1,6 @@
 ﻿using Associations.classes.Default;
 using Associations.interfaces;
+using Associations.interfaces.EU;
 using Associations.interfaces.UE;
 using System;
 using System.Collections.Generic;
