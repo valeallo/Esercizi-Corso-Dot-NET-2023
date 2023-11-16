@@ -8,5 +8,9 @@ namespace Associations.interfaces.UE
 {
     internal interface IEuropeanUnion : IPoliticalOrganization
     {
+
+
+        void EuropeanConstitutionalRegulation();
+        void HumanRightsTribunal();
     }
 }

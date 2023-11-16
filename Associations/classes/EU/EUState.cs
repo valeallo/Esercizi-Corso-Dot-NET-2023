@@ -17,5 +17,17 @@ namespace Associations.classes.UE
         {
             _europeanUnion = EuropeanUnion;
         }
+
+
+        public void EuropeanConstitutionalRegulation() 
+        {
+            Console.WriteLine("European constitution actions");
+        
+        }
+        public void HumanRightsTribunal() 
+        {
+            Console.WriteLine("Human rights tribunal actions");
+
+        }
     }
 }

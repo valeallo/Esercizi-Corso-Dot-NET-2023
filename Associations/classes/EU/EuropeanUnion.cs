@@ -1,4 +1,5 @@
-﻿using Associations.interfaces;
+﻿using Associations.classes.UE.Eurozone;
+using Associations.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
