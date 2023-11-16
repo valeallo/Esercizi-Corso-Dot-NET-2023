@@ -1,5 +1,6 @@
 ﻿using Associations.classes.Default;
 using Associations.interfaces;
+using Associations.interfaces.UE;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Associations.classes.UE
 {
-    internal class EUProvince : GeographicalArea, IAdministrativeEntity
+    internal class EUProvince : GeographicalArea, IEUPublicAdministration
     {
         EURegion _region;
         EUMunicipality _municipality;
@@ -32,6 +33,23 @@ namespace Associations.classes.UE
         {
             _municipality = null;
         }
+
+        public void HealthCareNationalSystem()
+        {
+            Console.WriteLine("province healthcare");
+
+        }
+        public void LawSystem()
+        {
+            Console.WriteLine("province state");
+
+        }
+        public void EducationalSystem()
+        {
+            Console.WriteLine("province state");
+
+        }
+
 
     }
 }

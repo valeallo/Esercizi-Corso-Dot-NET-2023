@@ -8,5 +8,10 @@ namespace Associations.interfaces
 {
     internal interface IAdministrativeEntity
     {
+
+        void HealthCareNationalSystem();
+        void LawSystem();
+        void EducationalSystem();
+
     }
 }

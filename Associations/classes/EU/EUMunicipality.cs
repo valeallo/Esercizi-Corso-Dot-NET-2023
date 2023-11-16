@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Associations.classes.UE
 {
-    internal class EUMunicipality : City, IAdministrativeEntity
+    internal class EUMunicipality : City
     {
         EUProvince _province;
         Citizen _citizen;

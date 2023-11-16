@@ -8,5 +8,6 @@ namespace Associations.interfaces.UE
 {
     internal interface IEUAdministrativeEntity : IAdministrativeEntity
     {
+
     }
 }

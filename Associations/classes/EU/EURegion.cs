@@ -33,5 +33,22 @@ namespace Associations.classes.UE
         {
             _province = null;
         }
+
+
+        public void HealthCareNationalSystem()
+        {
+            Console.WriteLine("region ue healthcare");
+
+        }
+        public void LawSystem()
+        {
+            Console.WriteLine("lawsystem region eu");
+
+        }
+        public void EducationalSystem()
+        {
+            Console.WriteLine("edusystem region eu");
+
+        }
     }
 }

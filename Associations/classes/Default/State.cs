@@ -1,4 +1,5 @@
-﻿using Associations.classes.UE;
+﻿using Associations.classes.EU;
+using Associations.classes.UE;
 using Associations.interfaces;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,25 @@ namespace Associations.classes.Default
         public void RemoveRegion(EURegion region)
         {
             _region = null;
+        }
+
+
+
+
+        public void HealthCareNationalSystem()
+        {
+            Console.WriteLine("state healthcare");
+
+        }
+        public void LawSystem()
+        {
+            Console.WriteLine("lawsystem state");
+
+        }
+        public void EducationalSystem()
+        {
+            Console.WriteLine("edusystem state");
+
         }
     }
 }
