@@ -40,14 +40,16 @@ namespace Associations.classes.UE
 
 
         //border redefinition remove city
-        public void BorderRedefinition(EUParliament EUParliament,EUMunicipality Municipality)
+        public bool BorderRedefinition(EUParliament EUParliament,EUMunicipality Municipality)
         {
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)
             {
                 _municipality = Municipality;
                 Console.WriteLine("city is removed");
+                return true;
             }
+            return false;
         }
 
         public void HealthCareNationalSystem()

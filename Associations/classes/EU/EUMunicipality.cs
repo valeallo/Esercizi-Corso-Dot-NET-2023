@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace Associations.classes.UE
 {
     internal class EUMunicipality : City
-    {
+    { 
+        //administrative city class  == Comune in italian
         EUProvince _province;
         Citizen _citizen;
 
@@ -20,8 +21,10 @@ namespace Associations.classes.UE
 
         public void ChangeProvince(EUProvince province, EUParliament EUParliament)
         {
-            _province.BorderRedefinition(EUParliament, this);
+           bool isApproved = _province.BorderRedefinition(EUParliament, this);
+            if(isApproved) {
             _province = province;
+            }
         }
 
         public void AddCitizen(Citizen citizen)
