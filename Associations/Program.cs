@@ -1,4 +1,6 @@
-﻿using Associations.classes.UE;
+﻿using Associations.classes.Default;
+using Associations.classes.EU;
+using Associations.classes.UE;
 using System;
 
 namespace Associations
@@ -7,46 +9,54 @@ namespace Associations
     {
         static void Main(string[] args)
         {
-            // Create an instance of EuropeanUnion
-            EuropeanUnion europeanUnion = new EuropeanUnion(); // Assuming you have a constructor for EuropeanUnion
-
-            // Create two states
+            // Testing EUState, EURegion, and EUParliament functionalities
+            EuropeanUnion europeanUnion = new EuropeanUnion(); 
             EUState currentState = new EUState("Current State", europeanUnion);
             EUState newState = new EUState("New State", europeanUnion);
-
-            // Create an instance of EUParliament
             EUParliament euParliament = new EUParliament();
-
-            // Create a region
             EURegion euRegion = new EURegion(currentState);
+            EUProvince newProvince = new EUProvince(euRegion); 
 
-            // Simulate changing the state of a region
-            Console.WriteLine("Attempting to change the state of a region...");
+            // State and Region Operations
+            Console.WriteLine("State and Region Operations:");
             euRegion.ChangeState(euParliament, newState);
-
-            // Simulate adding a province to a region
-            EUProvince newProvince = new EUProvince(euRegion); // Assuming you have a constructor for EUProvince
-            Console.WriteLine("Attempting to add a province to a region...");
             euRegion.AddProvince(euParliament, newProvince);
-
-            // Simulate removing a province from a region through border redefinition
-            Console.WriteLine("Attempting border redefinition to remove a province...");
             bool borderRedefinitionResult = euRegion.BorderRedefinition(euParliament, newProvince);
-            Console.WriteLine($"Border redefinition was {(borderRedefinitionResult ? "successful" : "unsuccessful")}.");
+            Console.WriteLine($"Border redefinition: {(borderRedefinitionResult ? "successful" : "unsuccessful")}");
 
-            // Testing the state's methods
-            Console.WriteLine("\nTesting EUState's methods:");
+            // Testing EUState methods
             currentState.EuropeanConstitutionalRegulation();
             currentState.HumanRightsTribunal();
             currentState.AddRegion(euParliament, euRegion);
             currentState.RemoveRegion(euParliament, euRegion);
             currentState.WelfareServices();
 
-            // Testing the region's other methods
-            Console.WriteLine("\nTesting EURegion's other methods:");
+            // Testing EURegion methods
             euRegion.HealthCareNationalSystem();
             euRegion.LawSystem();
             euRegion.EducationalSystem();
+
+    
+            City city = new City(); 
+            EUMunicipality municipality = new EUMunicipality(city, newProvince);
+            EUID citizenID = new EUID("John Doe", "123456"); 
+            EUCitizen citizen = new EUCitizen("Nome", "cognome", municipality, citizenID); 
+
+            // Citizen Public Service Operations
+            Console.WriteLine("\nCitizen Public Service Operations:");
+            municipality.LawSystem(citizenID);
+            municipality.HealthCareNationalSystem(citizenID);
+            municipality.LawSystem();
+            municipality.HealthCareNationalSystem();
+
+            // Municipality Operations
+            municipality.AddCitizen(citizen);
+            municipality.RemoveCitizen(citizen);
+            municipality.ChangeProvince(newProvince, euParliament);
+
+
+
+
         }
     }
 }
