@@ -40,8 +40,10 @@ namespace Associations.classes.UE
                 Console.WriteLine("region is added to state");
             
             }
-
-            Console.WriteLine("not approved by eu");
+            else
+            {
+                Console.WriteLine("not approved by eu");
+            }
 
         }
 
@@ -54,9 +56,12 @@ namespace Associations.classes.UE
                 _europeanRegion = null;
                 Console.WriteLine("region is removed");
 
+            } else
+            {
+                Console.WriteLine("not approved by eu");
+
             }
 
-            Console.WriteLine("not approved by eu");
 
         }
 

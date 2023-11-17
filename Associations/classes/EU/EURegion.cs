@@ -29,7 +29,10 @@ namespace Associations.classes.UE
                 _state = state;
                 Console.WriteLine("state is changed");
             }
-            Console.WriteLine("not approved by eu");
+            else
+            {
+                Console.WriteLine("not approved by eu");
+            }
         }
 
         public void AddProvince(EUParliament EUParliament, EUProvince province)
@@ -40,7 +43,10 @@ namespace Associations.classes.UE
                 _province = province;
                 Console.WriteLine("province is added");
             }
-            Console.WriteLine("not approved by eu");
+            else
+            {
+                Console.WriteLine("not approved by eu");
+            }
         }
 
 
@@ -64,8 +70,9 @@ namespace Associations.classes.UE
                 Console.WriteLine("province is removed");
                 return true;
             }
-            Console.WriteLine("not approved by eu");
-            return false;
+                Console.WriteLine("not approved by eu");
+                return false;
+            
         }
 
 

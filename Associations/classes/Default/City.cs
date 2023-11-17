@@ -12,7 +12,7 @@ namespace Associations.classes.Default
 
         public City()
         {
-         
+
         }
     }
 }

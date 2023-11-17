@@ -36,7 +36,10 @@ namespace Associations.classes.UE
                 _municipality = Municipality;
                 Console.WriteLine("province is added");
             }
-            Console.WriteLine("not approved by eu");
+            else
+            {
+                Console.WriteLine("not approved by eu");
+            }
         }
 
 
@@ -52,7 +55,10 @@ namespace Associations.classes.UE
             _region = region;
                 Console.WriteLine("region is changed");
             }
+            else 
+            { 
             Console.WriteLine("not approved by eu");
+            }
         }
 
         //border redefinition remove city

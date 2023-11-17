@@ -5,12 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Associations.classes.UE;
 
-namespace Associations.classes.Default
+namespace Associations.classes.EU
 {
-    internal class Citizen
+    internal class EUCitizen
     {
         EUMunicipality _municipality;
-        public Citizen(EUMunicipality municipality)
+        EUID id;
+        string _name;
+        string _surname;
+        public EUCitizen(string Name, string Surname, EUMunicipality municipality, EUID id)
         {
             _municipality = municipality;
         }

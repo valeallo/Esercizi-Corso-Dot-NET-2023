@@ -17,8 +17,10 @@ namespace Associations.classes.UE
         public bool ApproveChanges()
         {
             Random random = new Random();
-            return random.Next(2) == 1;
+            bool result = random.Next(2) == 1;
+            return result; 
         }
-
     }
+
+    
 }
