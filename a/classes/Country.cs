@@ -1,6 +1,6 @@
-﻿using Associations.classes.Default;
+﻿using Arrays.classes.Default;
 
-namespace Associations.classes
+namespace Arrays.classes
 {
     internal class Country : GeographicalArea
     {

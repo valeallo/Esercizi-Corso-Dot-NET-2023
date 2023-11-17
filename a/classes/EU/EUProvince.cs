@@ -1,8 +1,14 @@
-﻿using Associations.classes.Default;
-using Associations.interfaces.EU;
+﻿using Arrays.classes.Default;
+using Arrays.interfaces;
+using Arrays.interfaces.EU;
+using Arrays.interfaces.UE;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Associations.classes.UE
+namespace Arrays.classes.UE
 {
     internal class EUProvince : GeographicalArea, IEUPublicAdministration
     {
@@ -37,27 +43,26 @@ namespace Associations.classes.UE
         }
 
 
-        public void BorderRedefinition(EUParliament eUParliament) { }
-
+        public void BorderRedefinition(EUParliament eUParliament) {  }
+  
 
         //overloading border redefinition change region
         public void BorderRedefinition(EUParliament EUParliament, EURegion region)
         {
             bool isApproved = EUParliament.ApproveChanges();
-            if (isApproved)
-            {
-                _region.BorderRedefinition(EUParliament, this);
-                _region = region;
+            if (isApproved) { 
+            _region.BorderRedefinition(EUParliament, this);
+            _region = region;
                 Console.WriteLine("region is changed");
             }
-            else
-            {
-                Console.WriteLine("not approved by eu");
+            else 
+            { 
+            Console.WriteLine("not approved by eu");
             }
         }
 
         //border redefinition remove city
-        public bool BorderRedefinition(EUParliament EUParliament, EUMunicipality Municipality)
+        public bool BorderRedefinition(EUParliament EUParliament,EUMunicipality Municipality)
         {
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)

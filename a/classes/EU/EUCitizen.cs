@@ -1,6 +1,6 @@
-﻿using Associations.classes.UE;
+﻿using Arrays.classes.UE;
 
-namespace Associations.classes.EU
+namespace Arrays.classes.EU
 {
     internal class EUCitizen
     {

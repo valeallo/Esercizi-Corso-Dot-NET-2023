@@ -1,7 +1,11 @@
-﻿using Associations.classes.EU;
+﻿using Arrays.classes.EU;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Associations.interfaces.EU
+namespace Arrays.interfaces.EU
 {
     abstract class EUCitizenPublicService : IAdministrativeEntity
     {

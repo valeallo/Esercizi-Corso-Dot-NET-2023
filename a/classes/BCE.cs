@@ -1,6 +1,6 @@
-﻿using Associations.classes.UE;
+﻿using Arrays.classes.UE;
 
-namespace Associations.classes
+namespace Arrays.classes
 {
     internal class BCE
     {

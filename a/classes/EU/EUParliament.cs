@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Associations.classes.UE
+namespace Arrays.classes.UE
 {
     internal class EUParliament
     {

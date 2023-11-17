@@ -1,8 +1,4 @@
-﻿using Associations.classes.UE;
-using Associations.interfaces;
-using System;
-
-namespace Associations.classes.Default
+﻿namespace Arrays.classes.Default
 {
     internal class State : IAdministrativeEntity
     {
@@ -11,7 +7,6 @@ namespace Associations.classes.Default
         string _name;
         public State(string Name)
         {
-            //_country = country;
             _name = Name;
         }
         public void AddRegion(EURegion region)

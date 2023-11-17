@@ -1,9 +1,6 @@
-﻿using Associations.classes.Default;
-using Associations.classes.EU;
-using Associations.classes.UE;
-using System;
+﻿using System;
 
-namespace Associations
+namespace Arrays
 {
     internal class Program
     {
@@ -53,9 +50,6 @@ namespace Associations
             municipality.AddCitizen(citizen);
             municipality.RemoveCitizen(citizen);
             municipality.ChangeProvince(newProvince, euParliament);
-
-
-
 
         }
     }
