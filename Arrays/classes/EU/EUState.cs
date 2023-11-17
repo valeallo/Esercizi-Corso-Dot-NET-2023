@@ -13,11 +13,14 @@ namespace Arrays.classes.UE
     {
         EuropeanUnion _europeanUnion;
         EURegion _europeanRegion;
+  
 
         public EUState(string Name, EuropeanUnion EuropeanUnion) : base(Name)
         {
             _europeanUnion = EuropeanUnion;
         }
+
+
 
 
         public void EuropeanConstitutionalRegulation() 
