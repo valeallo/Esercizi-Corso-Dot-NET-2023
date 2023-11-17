@@ -14,6 +14,7 @@ namespace Arrays.classes.UE
     {
         EUState _state;
         EUProvince _province;
+
         public EURegion(EUState state)
         {
 

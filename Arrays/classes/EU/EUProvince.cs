@@ -1,16 +1,18 @@
 ﻿using Arrays.classes.Default;
 using Arrays.interfaces.EU;
 using System;
+using System.Linq;
 
 namespace Arrays.classes.UE
 {
     internal class EUProvince : GeographicalArea, IEUPublicAdministration
     {
         EURegion _region;
-        EUMunicipality _municipality;
-        public EUProvince(EURegion region)
+        private EUMunicipality[] _municipalities;
+        public EUProvince(EURegion region, int municipalityCapacity)
         {
             _region = region;
+            _municipalities = new EUMunicipality[municipalityCapacity];
         }
 
 
@@ -27,7 +29,15 @@ namespace Arrays.classes.UE
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)
             {
-                _municipality = Municipality;
+                int index = Array.FindIndex(_municipalities, m => m == null);
+                if (index != -1)
+                {
+                    _municipalities[index] = Municipality;
+                }
+                else
+                {
+                    Console.WriteLine("No available space to add a new municipality");
+                }
                 Console.WriteLine("province is added");
             }
             else
@@ -57,12 +67,12 @@ namespace Arrays.classes.UE
         }
 
         //border redefinition remove city
-        public bool BorderRedefinition(EUParliament EUParliament, EUMunicipality Municipality)
+        public bool BorderRedefinition(EUParliament EUParliament, EUMunicipality MunicipalityToRemove)
         {
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)
             {
-                _municipality = null;
+                _municipalities = _municipalities.Where(m => m != MunicipalityToRemove).ToArray();
                 Console.WriteLine("city is removed");
                 return true;
             }

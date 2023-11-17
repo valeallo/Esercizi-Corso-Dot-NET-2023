@@ -16,11 +16,15 @@ namespace Arrays.classes.UE
         EUProvince _province;
         EUCitizen _citizen;
         City _city;
+        private EUCitizen[] _citizens;
 
-        public EUMunicipality(City city, EUProvince province)
+
+        public EUMunicipality(City city, EUProvince province, int citizenCapacity)
         {
             _city = city;
             _province = province;
+
+            _citizens = new EUCitizen[citizenCapacity];
         }
 
         public void ChangeProvince(EUProvince province, EUParliament EUParliament)
@@ -32,13 +36,30 @@ namespace Arrays.classes.UE
             }
         }
 
-        public void AddCitizen(EUCitizen citizen)
+        
+        public void AddCitizen(EUCitizen citizen, int index)
         {
-            _citizen = citizen;
+            if (index >= 0 && index < _citizens.Length)
+            {
+                _citizens[index] = citizen;
+            }
+            else
+            {
+                Console.WriteLine("Index out of range");
+            }
         }
-        public void RemoveCitizen(EUCitizen citizen)
+
+
+        public void RemoveCitizen(int index)
         {
-            _citizen = null;
+            if (index >= 0 && index < _citizens.Length)
+            {
+                _citizens[index] = null;
+            }
+            else
+            {
+                Console.WriteLine("Index out of range");
+            }
         }
 
 
