@@ -10,12 +10,12 @@ namespace Associations
         static void Main(string[] args)
         {
             // Testing EUState, EURegion, and EUParliament functionalities
-            EuropeanUnion europeanUnion = new EuropeanUnion(); 
+            EuropeanUnion europeanUnion = new EuropeanUnion();
             EUState currentState = new EUState("Current State", europeanUnion);
             EUState newState = new EUState("New State", europeanUnion);
             EUParliament euParliament = new EUParliament();
             EURegion euRegion = new EURegion(currentState);
-            EUProvince newProvince = new EUProvince(euRegion); 
+            EUProvince newProvince = new EUProvince(euRegion);
 
             // State and Region Operations
             Console.WriteLine("State and Region Operations:");
@@ -36,11 +36,11 @@ namespace Associations
             euRegion.LawSystem();
             euRegion.EducationalSystem();
 
-    
-            City city = new City(); 
+
+            City city = new City();
             EUMunicipality municipality = new EUMunicipality(city, newProvince);
-            EUID citizenID = new EUID("John Doe", "123456"); 
-            EUCitizen citizen = new EUCitizen("Nome", "cognome", municipality, citizenID); 
+            EUID citizenID = new EUID("John Doe", "123456");
+            EUCitizen citizen = new EUCitizen("Nome", "cognome", municipality, citizenID);
 
             // Citizen Public Service Operations
             Console.WriteLine("\nCitizen Public Service Operations:");

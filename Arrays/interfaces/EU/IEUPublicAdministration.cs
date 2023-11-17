@@ -1,6 +1,6 @@
-﻿using Associations.interfaces.UE;
+﻿using Arrays.interfaces.UE;
 
-namespace Associations.interfaces.EU
+namespace Arrays.interfaces.EU
 {
     internal interface IEUPublicAdministration : IEUAdministrativeEntity
     {

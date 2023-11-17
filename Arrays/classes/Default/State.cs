@@ -1,17 +1,16 @@
-﻿using Associations.classes.UE;
-using Associations.interfaces;
+﻿using Arrays.classes.UE;
+using Arrays.interfaces;
 using System;
 
-namespace Associations.classes.Default
+namespace Arrays.classes.Default
 {
     internal class State : IAdministrativeEntity
     {
         EURegion _region;
-        Country _country;
         string _name;
         public State(string Name)
         {
-            //_country = country;
+          
             _name = Name;
         }
         public void AddRegion(EURegion region)
@@ -24,7 +23,7 @@ namespace Associations.classes.Default
         }
 
 
-
+        public string Name { get { return _name; } }
         public void HealthCareNationalSystem()
         {
             Console.WriteLine("state healthcare");

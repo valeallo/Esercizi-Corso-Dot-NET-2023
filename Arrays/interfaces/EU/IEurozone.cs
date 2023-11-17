@@ -1,4 +1,4 @@
-﻿namespace Associations.interfaces.EU
+﻿namespace Arrays.interfaces.EU
 {
     internal interface IEurozone
     {

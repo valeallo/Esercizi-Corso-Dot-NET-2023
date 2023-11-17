@@ -1,4 +1,4 @@
-﻿namespace Associations.classes.Default
+﻿namespace Arrays.classes.Default
 {
     internal class GeographicalArea
     {

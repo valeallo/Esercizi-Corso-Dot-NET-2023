@@ -1,7 +1,7 @@
-﻿using Associations.classes.EU;
+﻿using Arrays.classes.EU;
 using System;
 
-namespace Associations.interfaces.EU
+namespace Arrays.interfaces.EU
 {
     abstract class EUCitizenPublicService : IAdministrativeEntity
     {
