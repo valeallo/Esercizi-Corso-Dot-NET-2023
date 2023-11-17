@@ -1,17 +1,18 @@
-﻿using Associations.interfaces;
+﻿using Associations.classes.UE.Eurozone;
+using Associations.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Associations
+namespace Associations.classes.UE
 {
     internal class EuropeanUnion
     {
         EUState _EUState;
 
-        public EuropeanUnion() 
+        public EuropeanUnion()
         {
             new EurozoneState("France", this);
             new EurozoneState("Germany", this);
@@ -23,12 +24,12 @@ namespace Associations
 
         }
 
-        public void AddState (EUState state)
+        public void AddState(EUState state)
         {
             _EUState = state;
         }
 
-        public void RemoveState (EUState state)
+        public void RemoveState(EUState state)
         {
             _EUState = null;
         }
@@ -36,7 +37,7 @@ namespace Associations
 
         public void ConsultCentralBank(BCE centralBank)
         {
- 
+
         }
 
     }

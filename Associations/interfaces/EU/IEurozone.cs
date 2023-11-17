@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Associations
+namespace Associations.interfaces.EU
 {
-    internal class GeographicalArea
+    internal interface IEurozone
     {
+        void EuroRegulation();
+        
     }
 }

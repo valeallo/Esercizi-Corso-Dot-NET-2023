@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Associations.classes.UE;
 
-namespace Associations
+namespace Associations.classes.Default
 {
     internal class City : GeographicalArea
     {
-        Province _province;
 
-        public City(Province province) 
+        public City()
         {
-            _province = province;
-            new Commune(_province, this);
-        
+
         }
     }
 }
