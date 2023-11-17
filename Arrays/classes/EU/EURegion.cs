@@ -12,14 +12,15 @@ namespace Arrays.classes.UE
 {
     internal class EURegion : IEUPublicAdministration
     {
-        EUState _state;
-        EUProvince _province;
+        private EUState _state;
+        private EUProvince[] _provinces;
 
-        public EURegion(EUState state)
+        public EURegion(EUState state, int provinceCapacity)
         {
-
             _state = state;
+            _provinces = new EUProvince[provinceCapacity]; 
         }
+
 
         public void ChangeState(EUParliament EUParliament, EUState state)
         {
@@ -41,12 +42,45 @@ namespace Arrays.classes.UE
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)
             {
-                _province = province;
-                Console.WriteLine("province is added");
+                int index = Array.FindIndex(_provinces, p => p == null);
+                if (index != -1)
+                {
+                    _provinces[index] = province;
+                    Console.WriteLine("Province is added");
+                }
+                else
+                {
+                    Console.WriteLine("No available space to add a new province");
+                }
             }
             else
             {
-                Console.WriteLine("not approved by eu");
+                Console.WriteLine("Not approved by EU");
+            }
+        }
+
+
+
+        public void RemoveProvince(EUParliament EUParliament, EUProvince provinceToRemove)
+        {
+            bool isApproved = EUParliament.ApproveChanges();
+            if (isApproved)
+            {
+
+                int index = Array.FindIndex(_provinces, p => p == provinceToRemove);
+            if (index != -1)
+            {
+                _provinces[index] = null;
+                Console.WriteLine("Province is removed");
+            }
+            else
+            {
+                Console.WriteLine("Province not found");
+            }
+            }
+            else
+            {
+                Console.WriteLine("Not approved by EU");
             }
         }
 
@@ -60,21 +94,6 @@ namespace Arrays.classes.UE
         public void BorderRedefinition(EUParliament eUParliament) { }
 
 
-
-        //border redefinition remove province
-        public bool BorderRedefinition(EUParliament EUParliament, EUProvince Province)
-        {
-            bool isApproved = EUParliament.ApproveChanges();
-            if (isApproved)
-            {
-                _province = null;
-                Console.WriteLine("province is removed");
-                return true;
-            }
-                Console.WriteLine("not approved by eu");
-                return false;
-            
-        }
 
 
         public void HealthCareNationalSystem()

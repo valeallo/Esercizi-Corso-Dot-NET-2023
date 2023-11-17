@@ -50,15 +50,17 @@ namespace Arrays.classes.UE
         }
 
 
-        public void RemoveCitizen(int index)
+        public void RemoveCitizen(EUID id)
         {
-            if (index >= 0 && index < _citizens.Length)
+            int index = Array.FindIndex(_citizens, c => c != null && c.ID.Equals(id));
+            if (index != -1)
             {
                 _citizens[index] = null;
+                Console.WriteLine($"Citizen with ID {id.IDNumber} removed.");
             }
             else
             {
-                Console.WriteLine("Index out of range");
+                Console.WriteLine("Citizen not found.");
             }
         }
 

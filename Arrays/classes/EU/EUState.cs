@@ -12,12 +12,12 @@ namespace Arrays.classes.UE
     internal class EUState : State, IEuropeanUnion, IEUAdministrativeEntity
     {
         EuropeanUnion _europeanUnion;
-        EURegion _europeanRegion;
-  
+        private EURegion[] _europeanRegions;
 
-        public EUState(string Name, EuropeanUnion EuropeanUnion) : base(Name)
+
+        public EUState(string Name, EuropeanUnion EuropeanUnion, int NumberOfRegions) : base(Name)
         {
-            _europeanUnion = EuropeanUnion;
+            _europeanRegions =new EURegion[NumberOfRegions];
         }
 
 
@@ -38,8 +38,17 @@ namespace Arrays.classes.UE
         {
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)
-            { 
-               _europeanRegion = region;
+            {
+                int index = Array.FindIndex(_europeanRegions, m => m == null);
+                if (index != -1)
+                {
+                    _europeanRegions[index] = region;
+                    Console.WriteLine("province is added");
+                }
+                else
+                {
+                    Console.WriteLine("No available space to add a new municipality");
+                }
                 Console.WriteLine("region is added to state");
             
             }
@@ -56,8 +65,28 @@ namespace Arrays.classes.UE
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)
             {
-                _europeanRegion = null;
-                Console.WriteLine("region is removed");
+             
+                int indexToRemove = Array.IndexOf(_europeanRegions, region);
+
+                if (indexToRemove != -1) 
+                {
+                 
+                    EURegion[] newRegions = new EURegion[_europeanRegions.Length - 1]; 
+                    for (int i = 0, j = 0; i < _europeanRegions.Length; i++)
+                    {
+                        if (i != indexToRemove)
+                        {
+                            newRegions[j++] = _europeanRegions[i];
+                        }
+                    }
+
+                    _europeanRegions = newRegions;
+                    Console.WriteLine("Region removed");
+                }
+                else
+                {
+                    Console.WriteLine("Region not found");
+                }
 
             } else
             {

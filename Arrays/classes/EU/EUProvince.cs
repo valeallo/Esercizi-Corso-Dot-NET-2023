@@ -33,12 +33,13 @@ namespace Arrays.classes.UE
                 if (index != -1)
                 {
                     _municipalities[index] = Municipality;
+                    Console.WriteLine("province is added");
                 }
                 else
                 {
                     Console.WriteLine("No available space to add a new municipality");
                 }
-                Console.WriteLine("province is added");
+          
             }
             else
             {
@@ -56,7 +57,7 @@ namespace Arrays.classes.UE
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)
             {
-                _region.BorderRedefinition(EUParliament, this);
+                _region.RemoveProvince(EUParliament, this);
                 _region = region;
                 Console.WriteLine("region is changed");
             }

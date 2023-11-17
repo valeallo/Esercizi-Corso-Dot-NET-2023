@@ -1,4 +1,5 @@
 ﻿using Arrays.classes.UE;
+using System.Data.Common;
 
 namespace Arrays.classes.EU
 {
@@ -13,10 +14,13 @@ namespace Arrays.classes.EU
             _municipality = municipality;
         }
 
+        public EUID ID { get { return id; } }
+
+
 
         public void ChangeCommune(EUMunicipality municipality)
         {
-            _municipality.RemoveCitizen(this);
+            _municipality.RemoveCitizen(id);
             _municipality = municipality;
         }
     }
