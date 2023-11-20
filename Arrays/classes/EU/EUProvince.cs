@@ -9,11 +9,15 @@ namespace Arrays.classes.UE
     {
         EURegion _region;
         private EUMunicipality[] _municipalities;
-        public EUProvince(EURegion region, int municipalityCapacity)
+        public EUProvince(EURegion region)
         {
             _region = region;
+            int municipalityCapacity = 2 * _region.NumberOfProvinces;
             _municipalities = new EUMunicipality[municipalityCapacity];
         }
+
+  
+        public int NumberOfCities { get { return _municipalities.Length; } }
 
 
         public void WelfareServices()

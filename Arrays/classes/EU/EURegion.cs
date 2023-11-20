@@ -21,6 +21,8 @@ namespace Arrays.classes.UE
             _provinces = new EUProvince[provinceCapacity]; 
         }
 
+        public int NumberOfProvinces {  get { return _provinces.Length; } }
+
 
         public void ChangeState(EUParliament EUParliament, EUState state)
         {
@@ -37,7 +39,7 @@ namespace Arrays.classes.UE
             }
         }
 
-        public void AddProvince(EUParliament EUParliament, EUProvince province)
+        public bool AddProvince(EUParliament EUParliament, EUProvince province)
         {
             bool isApproved = EUParliament.ApproveChanges();
             if (isApproved)
@@ -47,15 +49,21 @@ namespace Arrays.classes.UE
                 {
                     _provinces[index] = province;
                     Console.WriteLine("Province is added");
+                    return false;
+               
                 }
                 else
                 {
                     Console.WriteLine("No available space to add a new province");
+                    return true;
+         
                 }
             }
             else
             {
                 Console.WriteLine("Not approved by EU");
+                return false;
+   
             }
         }
 

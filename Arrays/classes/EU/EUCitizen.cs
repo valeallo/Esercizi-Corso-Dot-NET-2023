@@ -16,11 +16,14 @@ namespace Arrays.classes.EU
 
         public EUID ID { get { return id; } }
 
+        public string Name { get { return _name; } }
+        public string Surname {  get { return _surname; } }
 
+        public string FullName {  get { return _name + " " + _surname; } }
 
         public void ChangeCommune(EUMunicipality municipality)
         {
-            _municipality.RemoveCitizen(id);
+            _municipality.RemoveCitizen(this);
             _municipality = municipality;
         }
     }
