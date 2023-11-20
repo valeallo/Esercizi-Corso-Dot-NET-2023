@@ -10,114 +10,117 @@ using System.Threading.Tasks;
 
 namespace Arrays.classes.UE
 {
-    internal class EURegion : IEUPublicAdministration
+     internal partial class EUState
     {
-        private EUState _state;
-        private EUProvince[] _provinces;
-
-        public EURegion(EUState state, int provinceCapacity)
+        private sealed partial class EURegion : IEUPublicAdministration
         {
-            _state = state;
-            _provinces = new EUProvince[provinceCapacity]; 
-        }
+            private EUState _state;
+            private EUProvince[] _provinces;
 
-        public int NumberOfProvinces {  get { return _provinces.Length; } }
-
-
-        public void ChangeState(EUParliament EUParliament, EUState state)
-        {
-            bool isApproved = EUParliament.ApproveChanges();
-            if (isApproved)
+            public EURegion(EUState state, int provinceCapacity)
             {
-                _state.RemoveRegion(EUParliament, this);
                 _state = state;
-                Console.WriteLine("state is changed");
+                _provinces = new EUProvince[provinceCapacity];
             }
-            else
-            {
-                Console.WriteLine("not approved by eu");
-            }
-        }
 
-        public bool AddProvince(EUParliament EUParliament, EUProvince province)
-        {
-            bool isApproved = EUParliament.ApproveChanges();
-            if (isApproved)
+            public int NumberOfProvinces { get { return _provinces.Length; } }
+
+
+            public void ChangeState(EUParliament EUParliament, EUState state)
             {
-                int index = Array.FindIndex(_provinces, p => p == null);
-                if (index != -1)
+                bool isApproved = EUParliament.ApproveChanges();
+                if (isApproved)
                 {
-                    _provinces[index] = province;
-                    Console.WriteLine("Province is added");
-                    return false;
-               
+                    _state.RemoveRegion(EUParliament, this);
+                    _state = state;
+                    Console.WriteLine("state is changed");
                 }
                 else
                 {
-                    Console.WriteLine("No available space to add a new province");
-                    return true;
-         
+                    Console.WriteLine("not approved by eu");
                 }
             }
-            else
+
+            public bool AddProvince(EUParliament EUParliament, EUProvince province)
             {
-                Console.WriteLine("Not approved by EU");
-                return false;
-   
+                bool isApproved = EUParliament.ApproveChanges();
+                if (isApproved)
+                {
+                    int index = Array.FindIndex(_provinces, p => p == null);
+                    if (index != -1)
+                    {
+                        _provinces[index] = province;
+                        Console.WriteLine("Province is added");
+                        return false;
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("No available space to add a new province");
+                        return true;
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Not approved by EU");
+                    return false;
+
+                }
             }
-        }
 
 
 
-        public void RemoveProvince(EUParliament EUParliament, EUProvince provinceToRemove)
-        {
-            bool isApproved = EUParliament.ApproveChanges();
-            if (isApproved)
+            public void RemoveProvince(EUParliament EUParliament, EUProvince provinceToRemove)
             {
+                bool isApproved = EUParliament.ApproveChanges();
+                if (isApproved)
+                {
 
-                int index = Array.FindIndex(_provinces, p => p == provinceToRemove);
-            if (index != -1)
+                    int index = Array.FindIndex(_provinces, p => p == provinceToRemove);
+                    if (index != -1)
+                    {
+                        _provinces[index] = null;
+                        Console.WriteLine("Province is removed");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Province not found");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Not approved by EU");
+                }
+            }
+
+
+
+            public void WelfareServices()
             {
-                _provinces[index] = null;
-                Console.WriteLine("Province is removed");
+                Console.WriteLine("using region welfare services");
             }
-            else
+
+            public void BorderRedefinition(EUParliament eUParliament) { }
+
+
+
+
+            public void HealthCareNationalSystem()
             {
-                Console.WriteLine("Province not found");
+                Console.WriteLine("region ue healthcare");
+
             }
-            }
-            else
+            public void LawSystem()
             {
-                Console.WriteLine("Not approved by EU");
+                Console.WriteLine("lawsystem region eu");
+
             }
-        }
+            public void EducationalSystem()
+            {
+                Console.WriteLine("edusystem region eu");
 
-
-
-        public void WelfareServices()
-        {
-            Console.WriteLine("using region welfare services");
-        }
-
-        public void BorderRedefinition(EUParliament eUParliament) { }
-
-
-
-
-        public void HealthCareNationalSystem()
-        {
-            Console.WriteLine("region ue healthcare");
-
-        }
-        public void LawSystem()
-        {
-            Console.WriteLine("lawsystem region eu");
-
-        }
-        public void EducationalSystem()
-        {
-            Console.WriteLine("edusystem region eu");
-
+            }
         }
     }
 }
