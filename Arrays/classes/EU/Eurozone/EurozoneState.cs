@@ -10,7 +10,7 @@ namespace Arrays.classes.UE.Eurozone
 {
     internal class EurozoneState : EUState, IEurozone
     {
-        public EurozoneState(string Name, EuropeanUnion europeanUnion) : base(Name, europeanUnion)
+        public EurozoneState(string Name, EuropeanUnion europeanUnion, int numberofRegions) : base(Name, europeanUnion, numberofRegions)
         {
 
         }

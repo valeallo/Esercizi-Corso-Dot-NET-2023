@@ -28,12 +28,12 @@ namespace Arrays.classes.UE
   
             foreach (string country in eurozoneCountries)
             {
-                _states.Add(new EurozoneState(country, this));
+                _states.Add(new EurozoneState(country, this, 30));
             }
 
             foreach (string country in nonEurozoneCountries)
             {
-                _states.Add(new EUState(country, this));
+                _states.Add(new EUState(country, this, 30));
             }
 
         }

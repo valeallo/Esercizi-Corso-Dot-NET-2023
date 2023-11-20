@@ -14,7 +14,6 @@ namespace Arrays.classes.UE
     {
 
         EUProvince _province;
-        EUCitizen _citizen;
         City _city;
         private EUCitizen[] _citizens;
 
@@ -27,18 +26,20 @@ namespace Arrays.classes.UE
             _citizens = new EUCitizen[citizenCapacity];
         }
 
-        public void ChangeProvince(EUProvince province, EUParliament EUParliament)
+        public void ChangeProvince(EUProvince newProvince, EUParliament EUParliament)
         {
             bool isApproved = _province.BorderRedefinition(EUParliament, this);
             if (isApproved)
             {
-                _province = province;
+                _province.BorderRedefinition(EUParliament, this);
+                _province = newProvince;
             }
         }
 
         
-        public void AddCitizen(EUCitizen citizen, int index)
+        public void AddCitizen(EUCitizen citizen)
         {
+            int index = Array.FindIndex(_citizens, m => m == null);
             if (index >= 0 && index < _citizens.Length)
             {
                 _citizens[index] = citizen;
@@ -50,13 +51,16 @@ namespace Arrays.classes.UE
         }
 
 
-        public void RemoveCitizen(EUID id)
+        public void RemoveCitizen(EUCitizen citizenToRemove)
         {
-            int index = Array.FindIndex(_citizens, c => c != null && c.ID.Equals(id));
-            if (index != -1)
+
+            int index = Array.FindIndex(_citizens, p => p == citizenToRemove);
+
+
+            if (index >= 0)
             {
                 _citizens[index] = null;
-                Console.WriteLine($"Citizen with ID {id.IDNumber} removed.");
+                Console.WriteLine($"Citizen {citizenToRemove.Name} removed.");
             }
             else
             {
