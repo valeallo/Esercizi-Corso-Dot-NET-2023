@@ -21,6 +21,8 @@ namespace Arrays.classes.UE
             _provinces = new EUProvince[provinceCapacity]; 
         }
 
+        public int NumberOfProvinces {  get { return _provinces.Length; } }
+
 
         public void ChangeState(EUParliament EUParliament, EUState state)
         {
