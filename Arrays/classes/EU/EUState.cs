@@ -15,8 +15,9 @@ namespace Arrays.classes.UE
         private EURegion[] _europeanRegions;
 
 
-        public EUState(string Name, EuropeanUnion EuropeanUnion, int NumberOfRegions) : base(Name)
+        public EUState(string Name, EuropeanUnion EuropeanUnion) : base(Name)
         {
+           int NumberOfRegions = 30;
             _europeanRegions =new EURegion[NumberOfRegions];
         }
 

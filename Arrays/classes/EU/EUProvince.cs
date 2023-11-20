@@ -16,6 +16,9 @@ namespace Arrays.classes.UE
             _municipalities = new EUMunicipality[municipalityCapacity];
         }
 
+  
+        public int NumberOfCities { get { return _municipalities.Length; } }
+
 
         public void WelfareServices()
         {

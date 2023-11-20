@@ -18,11 +18,11 @@ namespace Arrays.classes.UE
         private EUCitizen[] _citizens;
 
 
-        public EUMunicipality(City city, EUProvince province, int citizenCapacity)
+        public EUMunicipality(City city, EUProvince province)
         {
             _city = city;
             _province = province;
-
+            int citizenCapacity = province.NumberOfCities * 1000;
             _citizens = new EUCitizen[citizenCapacity];
         }
 

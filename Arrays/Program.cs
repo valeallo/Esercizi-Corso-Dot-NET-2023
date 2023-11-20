@@ -20,11 +20,11 @@ namespace Arrays
 
             // Testing EUState, EURegion, and EUParliament functionalities
             EuropeanUnion europeanUnion = new EuropeanUnion();
-            EUState currentState = new EUState("Current State", europeanUnion, 30);
-            EUState newState = new EUState("New State", europeanUnion, 30);
+            EUState currentState = new EUState("Current State", europeanUnion);
+            EUState newState = new EUState("New State", europeanUnion);
             EUParliament euParliament = new EUParliament();
             EURegion euRegion = new EURegion(currentState, 5);
-            EUProvince newProvince = new EUProvince(euRegion, 4);
+            EUProvince newProvince = new EUProvince(euRegion);
 
             // State and Region Operations
             Console.WriteLine("State and Region Operations:");
@@ -47,7 +47,7 @@ namespace Arrays
 
 
             City city = new City();
-            EUMunicipality municipality = new EUMunicipality(city, newProvince, 20000);
+            EUMunicipality municipality = new EUMunicipality(city, newProvince);
             EUID citizenID = new EUID("John Doe", "123456");
             EUCitizen citizen = new EUCitizen("Nome", "cognome", municipality, citizenID);
 
