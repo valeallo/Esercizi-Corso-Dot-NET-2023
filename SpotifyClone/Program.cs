@@ -6,9 +6,8 @@ namespace SpotifyClone
     {
         static void Main(string[] args)
         {
-            Tester.TestPlaylist();
-            Tester.TestListenerWithPlaylists();
-            Tester.TestAmyWinehouseAlbum();
+            UIClass ui = new UIClass();
+            ui.Start();
         }
     }
 }
