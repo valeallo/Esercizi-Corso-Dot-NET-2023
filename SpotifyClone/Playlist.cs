@@ -18,37 +18,24 @@ namespace SpotifyClone
             _songs = new Song[0];
         }
 
-        public void AddSong (Song song)
-        {
-            int index = Array.FindIndex(_songs, s => s == null);
-            try
-            {
-                _songs[index] = song;
-                Console.WriteLine("song is added");
 
-            }
-            catch
-            {
-                Console.WriteLine("adding song failed");
-            }
+        public void AddSong(Song song)
+        {
+            Array.Resize(ref _songs, _songs.Length + 1);
+            _songs[_songs.Length - 1] = song;
         }
 
-
-        public void RemoveSong (Song song)
+        public void RemoveSong(Song songToRemove)
         {
-           
-            try
-            {
-                _songs = _songs.Where(i => i != song).ToArray();
-
-            }
-            catch
-            {
-                Console.WriteLine("removing song failed");
-            }
+            _songs = _songs.Where(s => s != songToRemove).ToArray();
         }
 
-
+        public Song[] GetAllSongs()
+        {
+            Song[] allSongs = new Song[_songs.Length];
+            Array.Copy(_songs, allSongs, _songs.Length);
+            return allSongs;
+        }
 
     }
 }

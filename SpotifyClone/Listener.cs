@@ -39,6 +39,12 @@ namespace SpotifyClone
             return currentPlaylists;
         }
 
+        public void RemovePlaylist(Playlist playlistToRemove)
+        {
+            _playlists = _playlists.Where(p => p != playlistToRemove).ToArray();
+            _playlistCount = _playlists.Length;
+        }
+
 
     }
 }

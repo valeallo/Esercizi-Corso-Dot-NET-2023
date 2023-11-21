@@ -40,5 +40,13 @@ namespace SpotifyClone
             return currentAlbums;
         }
 
+
+        public void RemoveAlbum(Album AlbumToRemove)
+        {
+            _albums = _albums.Where(p => p != AlbumToRemove).ToArray();
+            _albumCount = _albums.Length;
+        }
+
+
     }
 }
