@@ -37,5 +37,7 @@ namespace SpotifyClone
             return allSongs;
         }
 
+        public string Name { get { return _playlistName; } }
+
     }
 }

@@ -6,7 +6,8 @@ namespace SpotifyClone
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Tester.TestPlaylist();
+            Tester.TestListenerWithPlaylists();
         }
     }
 }
