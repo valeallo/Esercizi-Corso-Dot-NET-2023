@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Arrays.classes.UE
 {
-    internal partial class EUState : State, IEuropeanUnion, IEUAdministrativeEntity
+    internal class EUState : State, IEuropeanUnion, IEUAdministrativeEntity
     {
         EuropeanUnion _europeanUnion;
         private EURegion[] _europeanRegions;
