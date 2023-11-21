@@ -9,7 +9,7 @@ namespace SpotifyClone
     internal class Tester
     {
 
-        public static void TestAmyWinehouseAlbum()
+        public static void TestArtistAndAlbum()
         {
             Console.WriteLine("Testing Amy Winehouse and 'Back to Black' Album...");
 

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SpotifyClone
 {
-    internal class Player
+    internal interface IPlaylist
     {
-        
-
+        public Song[] Songs { get; }
     }
 }

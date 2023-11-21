@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpotifyClone
 {
-    internal class Playlist
+    internal class Playlist : IPlaylist
     {
         string _playlistName;
         Song[] _songs;
@@ -18,6 +18,8 @@ namespace SpotifyClone
             _songs = new Song[0];
         }
 
+        public string Name { get { return _playlistName; } }
+        public Song[] Songs { get { return _songs; } }
 
         public void AddSong(Song song)
         {
@@ -28,15 +30,5 @@ namespace SpotifyClone
         {
           _songs = _songs.Where(s => s != songToRemove).ToArray();
         }
-
-        public Song[] GetAllSongs()
-        {
-            Song[] allSongs = new Song[_songs.Length];
-            Array.Copy(_songs, allSongs, _songs.Length);
-            return allSongs;
-        }
-
-        public string Name { get { return _playlistName; } }
-
     }
 }

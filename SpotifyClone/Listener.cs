@@ -13,7 +13,7 @@ namespace SpotifyClone
 
         public Listener(string name) : base(name)
         {
-                _playlists = new Playlist[1];
+            _playlists = new Playlist[1];
             _playlists[0] = new Playlist("Favorites");
         }
 
@@ -25,6 +25,11 @@ namespace SpotifyClone
    
         }
 
+        public void RemovePlaylist(Playlist playlistToRemove)
+        {
+            _playlists = _playlists.Where(p => p != playlistToRemove).ToArray();
+        }
+
 
         public Playlist[] GetAllPlaylists()
         {
@@ -32,12 +37,6 @@ namespace SpotifyClone
             Array.Copy(_playlists, currentPlaylists, _playlists.Length);
             return currentPlaylists;
         }
-
-        public void RemovePlaylist(Playlist playlistToRemove)
-        {
-            _playlists = _playlists.Where(p => p != playlistToRemove).ToArray();
-        }
-
 
     }
 }
