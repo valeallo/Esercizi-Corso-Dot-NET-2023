@@ -9,6 +9,40 @@ namespace SpotifyClone
     internal class Tester
     {
 
+        public static void TestAmyWinehouseAlbum()
+        {
+            Console.WriteLine("Testing Amy Winehouse and 'Back to Black' Album...");
+
+            // Create artist Amy Winehouse
+            Artist amyWinehouse = new Artist("Amy Winehouse", "Amy Winehouse");
+
+            // Create songs for the album
+            Song[] backToBlackSongs = {
+            new Song("Rehab", "3:35"),
+            new Song("You Know I'm No Good", "4:17"),
+            new Song("Back to Black", "4:01"),
+            // Add more songs as needed
+            };
+
+            // Create the album and associate it with the songs and the artist
+            Album backToBlack = new Album("Back to Black", backToBlackSongs, "2006-10-27", amyWinehouse);
+
+            // Add the album to the artist
+            amyWinehouse.AddAlbum(backToBlack);
+
+            // Test: Print out details
+            Console.WriteLine($"Artist: {amyWinehouse.Name}, Alias: {amyWinehouse.Alias}");
+            foreach (Album album in amyWinehouse.GetAllAlbums())
+            {
+                Console.WriteLine($"Album: {album.Name}, Release Date: {album.ReleaseDate}");
+                foreach (Song song in album.Songs)
+                {
+                    Console.WriteLine($"Song: {song.Name}, Duration: {song.Duration}");
+                }
+            }
+        }
+
+
         public static void TestSong()
         {
             Console.WriteLine("Testing Song Class...");
@@ -41,8 +75,6 @@ namespace SpotifyClone
                 Console.WriteLine(song.Name);
             }
         }
-
-
 
         public static void TestListenerWithPlaylists()
         {

@@ -24,6 +24,7 @@ namespace SpotifyClone
         public string Duration { get { return _duration; } }
         public Album Album { get {  return _album; } set { _album = value; } }
         public Artist Artist { get { return _artist; } set { _artist = value; } }
+        public string ReleaseDate { get { return _album.ReleaseDate;  } }
 
 }
 }

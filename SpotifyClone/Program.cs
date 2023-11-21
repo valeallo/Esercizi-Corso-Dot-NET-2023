@@ -8,6 +8,7 @@ namespace SpotifyClone
         {
             Tester.TestPlaylist();
             Tester.TestListenerWithPlaylists();
+            Tester.TestAmyWinehouseAlbum();
         }
     }
 }
