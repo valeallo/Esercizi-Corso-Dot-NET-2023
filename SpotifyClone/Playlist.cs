@@ -12,10 +12,10 @@ namespace SpotifyClone
         string _playlistName;
         Song[] _songs;
 
-        public Playlist (string playlistName, int PlaylistCapacity)
+        public Playlist (string playlistName)
         {
             _playlistName = playlistName;
-            _songs = new Song[PlaylistCapacity];
+            _songs = new Song[0];
         }
 
         public void AddSong (Song song)
