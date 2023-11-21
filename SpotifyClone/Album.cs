@@ -12,11 +12,17 @@ namespace SpotifyClone
         Song[] _songs;
         string _realeaseDate;
         int _numberOfSongs;
-        public Album(string Name,  int NumberOfSongs, string ReleaseDate) 
+        public Album(string Name, Song[] songs, string ReleaseDate) 
         {
             _name = Name;
-            _realeaseDate = ReleaseDate;    
-            
+            _realeaseDate = ReleaseDate;
+            _songs = songs;
+
+            foreach (var song in _songs)
+            {
+                song.Album = this;
+            }
+
         }
     }
 }

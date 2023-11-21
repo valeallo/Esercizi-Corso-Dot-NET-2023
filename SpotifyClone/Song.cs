@@ -12,7 +12,7 @@ namespace SpotifyClone
         string _duration;
         Album _album;
 
-        public Song(string Name, Album Album, string Duration) 
+        public Song(string Name, string Duration) 
         {
             _name = Name;
             _duration = Duration;
@@ -21,10 +21,7 @@ namespace SpotifyClone
 
         public string Name { get { return _name; } }
         public string Duration { get { return _duration; } }
-        public Album Album { get {  return _album; } }
+        public Album Album { get {  return _album; } set { _album = value; } }
 
-
-
-
-    }
+}
 }
