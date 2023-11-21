@@ -21,13 +21,12 @@ namespace SpotifyClone
 
         public void AddSong(Song song)
         {
-            Array.Resize(ref _songs, _songs.Length + 1);
-            _songs[_songs.Length - 1] = song;
+          _songs = _songs.Append(song).ToArray();
         }
 
         public void RemoveSong(Song songToRemove)
         {
-            _songs = _songs.Where(s => s != songToRemove).ToArray();
+          _songs = _songs.Where(s => s != songToRemove).ToArray();
         }
 
         public Song[] GetAllSongs()

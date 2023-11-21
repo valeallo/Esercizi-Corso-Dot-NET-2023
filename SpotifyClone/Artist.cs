@@ -10,12 +10,10 @@ namespace SpotifyClone
     {
         string _alias;
         Album[] _albums;
-        private int _albumCount;
 
         public Artist (string name, string Alias) : base (name) 
         { 
             _alias = Alias;
-            _albumCount = 0;
             _albums = new Album[0];
         }
 
@@ -23,20 +21,14 @@ namespace SpotifyClone
 
         public void AddAlbum(Album album)
         {
-            if (_albumCount == _albums.Length)
-            {
-                int newSize = _albums.Length + 1;
-                Array.Resize(ref _albums, newSize);
-            }
-
-            _albums[_albumCount++] = album;
+            _albums = _albums.Append(album).ToArray();
         }
 
 
         public Album[] GetAllAlbums()
         {
-            Album[] currentAlbums = new Album[_albumCount];
-            Array.Copy(_albums, currentAlbums, _albumCount);
+            Album[] currentAlbums = new Album[_albums.Length];
+            Array.Copy(_albums, currentAlbums, _albums.Length);
             return currentAlbums;
         }
 
@@ -44,7 +36,6 @@ namespace SpotifyClone
         public void RemoveAlbum(Album AlbumToRemove)
         {
             _albums = _albums.Where(p => p != AlbumToRemove).ToArray();
-            _albumCount = _albums.Length;
         }
 
 
