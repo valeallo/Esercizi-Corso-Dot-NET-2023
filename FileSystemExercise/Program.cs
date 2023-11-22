@@ -38,8 +38,8 @@ namespace FileSystemExercise
   
 
 
-            string costumerfilename = "CostumersTabularFile";
-            string accountTabular = "AccountsTabular";
+            string costumerfilename = "CostumersTabularFile.csv";
+            string accountTabular = "AccountsTabular.csv";
             string accountJSOn = "AccountsJSON.json";
 
             WriteAsTabular(logsDirectory, costumerfilename, users);
@@ -279,10 +279,6 @@ namespace FileSystemExercise
         {
            _id = accountId;
            _saldo = saldo;
-        }
-
-        public Account()
-        {
         }
 
 
