@@ -43,8 +43,8 @@ namespace FileSystemExercise
             string accountJSOn = "AccountsJSON.json";
 
             WriteAsTabular(logsDirectory, costumerfilename, users);
-            WriteAccountsAsTabular(logsDirectory, accountTabular, accounts);
-            WriteAccountsAsJSON(logsDirectory, accountJSOn, accounts);
+            WriteAsTabular(logsDirectory, accountTabular, accounts);
+            WriteAsJSON(logsDirectory, accountJSOn, accounts);
 
 
             #endregion
@@ -207,7 +207,7 @@ namespace FileSystemExercise
         }
 
 
-        static void WriteAccountsAsTabular(string path, string Filename, List<Account> data)
+        static void WriteAsTabular(string path, string Filename, List<Account> data)
         {
 
             StringBuilder sb = new StringBuilder();
@@ -228,7 +228,7 @@ namespace FileSystemExercise
 
         }
 
-        static void WriteAccountsAsJSON(string path, string Filename, List<Account> data)
+        static void WriteAsJSON(string path, string Filename, List<Account> data)
         {
 
             StringBuilder sb = new StringBuilder();
