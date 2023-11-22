@@ -15,14 +15,20 @@ namespace FileSystemExercise
             #region Tabular
 
             List<Customer> users = new List<Customer>();
-            users.Add(new Customer());
-            users.Add(new Customer());
-            users.Add(new Customer());
-            users.Add(new Customer());
-            users.Add(new Customer());
-            users.Add(new Customer());
-            users.Add(new Customer());
-            users.Add(new Customer());
+            users.Add(new Customer("Alessio trotta", 50));
+            users.Add(new Customer("Chiara Francini", 40));
+            users.Add(new Customer("Sara Fedeli", 40));
+            users.Add(new Customer("Giulia Ferragni", 30));
+            users.Add(new Customer("Mario Spelta", 30));
+
+
+            List<Account> accounts = new List<Account>();
+            accounts.Add(new Account(1010, 0));
+            accounts.Add(new Account(70898, 4000));
+            accounts.Add(new Account(85798, 400));
+            accounts.Add(new Account(989809, 308));
+            accounts.Add(new Account(687687, 3000000));
+
 
 
             WriteAsTabular(@"D:\logs\", "TabularFile", users);
@@ -169,9 +175,31 @@ namespace FileSystemExercise
             }
             foreach (var usr in data)
             {
-                //  sb.AppendLine(string.Format($"{usr[0]},{usr[1]}"));
+                  sb.AppendLine(string.Format($"{usr.Name},{usr.Age}"));
             }
-            File.AppendAllText(FilePath, sb.ToString()); // - string 
+            File.AppendAllText(FilePath, sb.ToString()); 
+
+
+        }
+
+
+        static void WriteAccountsAsTabular(string path, string Filename, List<Account> data)
+        {
+
+            StringBuilder sb = new StringBuilder();
+
+            string FilePath = Path.Combine(path, Filename);
+
+            if (!File.Exists(FilePath))
+            {
+                string header = string.Format("Name,Age");
+                sb.AppendLine(header);
+            }
+            foreach (var acc in data)
+            {
+                sb.AppendLine(string.Format($"{acc.AccountId},{acc.Saldo}"));
+            }
+            File.AppendAllText(FilePath, sb.ToString());
 
 
         }
