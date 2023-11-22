@@ -6,74 +6,113 @@ using System.Threading.Tasks;
 
 namespace SpotifyClone
 {
+
     internal class UIClass
     {
         public void Start()
         {
             bool isRunning = true;
+            MusicPlayer musicPlayer = new MusicPlayer(this);
+            char input;
+
             while (isRunning)
             {
-                Console.Clear(); 
+                Console.Clear();
                 Console.WriteLine("Press 'M' to play music, press 'V' to watch movies, press 'Q' to quit.");
 
-                char input = Console.ReadKey().KeyChar;
-                Console.WriteLine(); 
+                input = char.ToUpper(Console.ReadKey().KeyChar);
+                Console.WriteLine();
 
                 switch (input)
                 {
                     case 'M':
-                    case 'm':
-                        ShowMusicMenu();
-                        isRunning = false;
+                        musicPlayer.ShowMusicMenu();
                         break;
                     case 'V':
-                    case 'v':
                         Console.WriteLine("Feature not available.");
-                        Console.ReadKey(); 
+                        Console.ReadKey();
                         break;
                     case 'Q':
-                    case 'q':
-                        isRunning = false; 
+                        isRunning = false;
                         break;
                     default:
                         Console.WriteLine("Invalid input. Please try again.");
-                        Console.ReadKey(); 
+                        Console.ReadKey();
                         break;
                 }
             }
         }
 
-        private void ShowMusicMenu()
+        public class MusicPlayer
         {
-          
-            Console.Clear();
-            Console.WriteLine("Music Menu:");
-            Console.WriteLine("1. Play a song");
-            Console.WriteLine("2. View playlist");
-            Console.WriteLine("3. Return to main menu");
+            private UIClass _uiClass;
 
-            char selection = Console.ReadKey().KeyChar;
-            Console.WriteLine(); 
-
-            switch (selection)
+            public MusicPlayer(UIClass uiClass)
             {
-                case '1':
-                    Console.WriteLine("You pressed 1");
-                    break;
-                case '2':
-                    Console.WriteLine("You pressed 2");
-                    break;
-                case '3':
-                    Start();
-                    return;
-                default:
-                    Console.WriteLine("Invalid selection. Please try again.");
-                    Console.ReadKey(); 
-                    break;
+                _uiClass = uiClass;
             }
 
-             ShowMusicMenu();
-        }
+            public void ShowMusicMenu()
+            {
+                bool inMenu = true;
+                while (inMenu)
+                {
+                    Console.Clear();
+                    this.Navbar();
 
+                    char selection = Console.ReadKey().KeyChar;
+                    Console.WriteLine();
+
+                    switch (selection)
+                    {
+                        case '1':
+                            Console.WriteLine("You pressed 1");
+                            break;
+                        case '2':
+                            Console.WriteLine("You pressed 2");
+                            break;
+                        case '3':
+                            inMenu = false;
+                            break;
+                        default:
+                            Console.WriteLine("Invalid selection. Please try again.");
+                            Console.ReadKey();
+                            break;
+                    }
+                }
+            }
+
+            public void Navbar() 
+            {
+                Console.WriteLine("               (M)Music            (P)Profile           ");
+                Console.WriteLine("                                                        ");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write("    Artists   ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("    Albums    ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("   Playlists  ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write("    Radio     ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("    Search     ");
+            }
+
+            public void Display(string[] array)
+            {
+
+                    if (array == null || array.Length == 0)
+                    {
+                        Console.WriteLine("No items to display.");
+                        return;
+                    }
+
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {array[i]}");
+                    }
+            }
+        }
     }
+    
 }

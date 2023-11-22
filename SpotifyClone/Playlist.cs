@@ -23,6 +23,7 @@ namespace SpotifyClone
 
         public void AddSong(Song song)
         {
+            //nel caso mettere un if (song != null )
           _songs = _songs.Append(song).ToArray();
         }
 

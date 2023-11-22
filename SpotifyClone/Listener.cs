@@ -10,12 +10,16 @@ namespace SpotifyClone
     internal class Listener : User
     {
         Playlist[] _playlists;
+        Playlist _favorites;
 
         public Listener(string name) : base(name)
         {
-            _playlists = new Playlist[1];
-            _playlists[0] = new Playlist("Favorites");
+            _playlists = new Playlist[0];
+            _favorites = new Playlist("Favorites");
         }
+
+        public Playlist Favorites { get { return _favorites; } }
+        public Playlist[] Playlists { get { return _playlists; } }
 
 
         public void AddPlaylist(Playlist Playlist)
@@ -31,12 +35,17 @@ namespace SpotifyClone
         }
 
 
-        public Playlist[] GetAllPlaylists()
-        {
-            Playlist[] currentPlaylists = new Playlist[_playlists.Length];
-            Array.Copy(_playlists, currentPlaylists, _playlists.Length);
-            return currentPlaylists;
-        }
+        
+
+
+
+
+        //public Playlist[] GetAllPlaylists()
+        //{
+        //    Playlist[] currentPlaylists = new Playlist[_playlists.Length];
+        //    Array.Copy(_playlists, currentPlaylists, _playlists.Length);
+        //    return currentPlaylists;
+        //}
 
     }
 }

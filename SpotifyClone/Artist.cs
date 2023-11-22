@@ -12,12 +12,12 @@ namespace SpotifyClone
         Album[] _albums;
 
         public Artist (string name, string Alias) : base (name) 
-        { 
+        {
             _alias = Alias;
-            _albums = new Album[0];
         }
 
         public string Alias { get { return _alias; } }
+
 
         public void AddAlbum(Album album)
         {

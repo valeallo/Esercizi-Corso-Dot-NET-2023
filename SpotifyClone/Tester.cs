@@ -18,9 +18,9 @@ namespace SpotifyClone
 
             // Create songs for the album
             Song[] backToBlackSongs = {
-            new Song("Rehab", "3:35"),
-            new Song("You Know I'm No Good", "4:17"),
-            new Song("Back to Black", "4:01"),
+            new Song("Rehab", 3.35),
+            new Song("You Know I'm No Good", 4.17),
+            new Song("Back to Black", 4.01),
             // Add more songs as needed
             };
 
@@ -47,7 +47,7 @@ namespace SpotifyClone
         {
             Console.WriteLine("Testing Song Class...");
 
-            Song song = new Song("Test Song", "3:30");
+            Song song = new Song("Test Song", 3.30);
             Console.WriteLine($"Created song: {song.Name}, Duration: {song.Duration}");
         }
 
@@ -56,9 +56,9 @@ namespace SpotifyClone
         {
             // Create a playlist and add some songs
             Playlist playlist = new Playlist("My Playlist");
-            Song song1 = new Song("Song 1", "3:45");
-            Song song2 = new Song("Song 2", "4:00");
-            Song song3 = new Song("Song 3", "2:55");
+            Song song1 = new Song("Song 1", 3.45);
+            Song song2 = new Song("Song 2", 4.00);
+            Song song3 = new Song("Song 3", 2.55);
             playlist.AddSong(song1);
             playlist.AddSong(song2);
             playlist.AddSong(song3);
@@ -88,8 +88,8 @@ namespace SpotifyClone
             listener.AddPlaylist(playlist2);
 
             // Adding songs to playlists (optional, demonstrate if needed)
-            Song rockSong = new Song("Rock Song", "3:15");
-            Song chillSong = new Song("Chill Song", "4:20");
+            Song rockSong = new Song("Rock Song", 315);
+            Song chillSong = new Song("Chill Song", 420);
             playlist1.AddSong(rockSong);
             playlist2.AddSong(chillSong);
 
@@ -98,7 +98,7 @@ namespace SpotifyClone
             listener.RemovePlaylist(playlist1);
 
             // Get all playlists and print
-            Playlist[] allPlaylists = listener.GetAllPlaylists();
+            Playlist[] allPlaylists = listener.Playlists;
             Console.WriteLine("\nPlaylists for the listener:");
             foreach (var playlist in allPlaylists)
             {
