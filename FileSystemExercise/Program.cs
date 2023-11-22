@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using System.Xml.Serialization;
 
 
 namespace FileSystemExercise
@@ -39,9 +40,11 @@ namespace FileSystemExercise
 
             string costumerfilename = "CostumersTabularFile";
             string accountTabular = "AccountsTabular";
+            string accountJSOn = "AccountsJSON.json";
 
             WriteAsTabular(logsDirectory, costumerfilename, users);
             WriteAccountsAsTabular(logsDirectory, accountTabular, accounts);
+            WriteAccountsAsJSON(logsDirectory, accountJSOn, accounts);
 
 
             #endregion
@@ -188,7 +191,6 @@ namespace FileSystemExercise
             StringBuilder sb = new StringBuilder();
 
             string FilePath = Path.Combine(path, Filename);
-            Console.WriteLine(path);
 
             if (!File.Exists(FilePath))
             {
@@ -226,14 +228,33 @@ namespace FileSystemExercise
 
         }
 
+        static void WriteAccountsAsJSON(string path, string Filename, List<Account> data)
+        {
 
-        //public static void WriteAccountsAsJson(string path, string filename, List<Account> data)
-        //{
-        //    string filePath = Path.Combine(path, filename);
-        //    string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+            StringBuilder sb = new StringBuilder();
 
-        //    File.WriteAllText(filePath, json);
-        //}
+            string FilePath = Path.Combine(path, Filename);
+
+            if (!File.Exists(FilePath))
+            {
+                string header = string.Format("id,total");
+                sb.AppendLine(header);
+            }
+            for (int i = 0; i < data.Count; i++)
+            {
+                var acc = data[i];
+                string jsonLine = $"{{\"AccountId\": {acc.AccountId}, \"Saldo\": {acc.Saldo}}}";
+                if (i < data.Count - 1)
+                {
+                    jsonLine += ",";
+                }
+                sb.AppendLine(jsonLine);
+               
+            }
+            File.AppendAllText(FilePath,$"[{sb.ToString()}]");
+
+
+        }
 
     }
     public class Customer
@@ -245,6 +266,7 @@ namespace FileSystemExercise
             _name = name;
             _age = age;
         }
+
         public string Name { get {return _name; } }
         public int Age { get {return _age; } }
 
@@ -258,6 +280,11 @@ namespace FileSystemExercise
            _id = accountId;
            _saldo = saldo;
         }
+
+        public Account()
+        {
+        }
+
 
         public int AccountId { get { return _id; } }
         public decimal Saldo { get { return _saldo; } }
