@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml;
+
 
 namespace FileSystemExercise
 {
@@ -9,8 +11,9 @@ namespace FileSystemExercise
     {
         static void Main(string[] args)
         {
-            GetDirInfo();
-            //WriteOnFile(@"D:\logs\FileSystemLesson", "FileSystemLesson");
+            //GetDirInfo();
+            string path = myProjectDirectory();
+            string logsDirectory = Path.Combine(path, "logs");
 
             #region Tabular
 
@@ -31,7 +34,15 @@ namespace FileSystemExercise
 
 
 
-            WriteAsTabular(@"D:\logs\", "TabularFile", users);
+  
+
+
+            string costumerfilename = "CostumersTabularFile";
+            string accountTabular = "AccountsTabular";
+
+            WriteAsTabular(logsDirectory, costumerfilename, users);
+            WriteAccountsAsTabular(logsDirectory, accountTabular, accounts);
+
 
             #endregion
 
@@ -85,7 +96,7 @@ namespace FileSystemExercise
             foreach (var item in dInfos.GetFiles())
             {
                 Console.WriteLine($"Name -  {item.Name}");
-                Console.WriteLine($"Parent Directory -  {item.Directory.Parent}");
+                Console.WriteLine($"Parent Directory -  {item.Directory.Parent.Parent.Parent}");
                 Console.WriteLine($" Directory FullName -  {item.Directory.FullName}");
                 Console.WriteLine($" Directory CreationTime -  {item.Directory.CreationTime}");
                 Console.WriteLine($" Directory LastAccessTime -  {item.Directory.LastAccessTime}");
@@ -93,6 +104,16 @@ namespace FileSystemExercise
 
 
             }
+        }
+
+
+        static string myProjectDirectory()
+        {
+            string path = Directory.GetCurrentDirectory(); // -> trova il Path 
+            DirectoryInfo dInfos = new DirectoryInfo(path);
+            string myPath = dInfos.Parent.Parent.Parent.ToString();
+            return myPath;
+
         }
         static void SearchInDirectory()
         {
@@ -167,6 +188,7 @@ namespace FileSystemExercise
             StringBuilder sb = new StringBuilder();
 
             string FilePath = Path.Combine(path, Filename);
+            Console.WriteLine(path);
 
             if (!File.Exists(FilePath))
             {
@@ -192,7 +214,7 @@ namespace FileSystemExercise
 
             if (!File.Exists(FilePath))
             {
-                string header = string.Format("Name,Age");
+                string header = string.Format("id,total");
                 sb.AppendLine(header);
             }
             foreach (var acc in data)
@@ -203,6 +225,15 @@ namespace FileSystemExercise
 
 
         }
+
+
+        //public static void WriteAccountsAsJson(string path, string filename, List<Account> data)
+        //{
+        //    string filePath = Path.Combine(path, filename);
+        //    string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+
+        //    File.WriteAllText(filePath, json);
+        //}
 
     }
     public class Customer
