@@ -58,7 +58,8 @@ namespace SpotifyClone
             Display display = new Display();
             Controller controller = new Controller();
             Listener listener;
-            
+            IPlaylist[] currentArray;
+
 
             private UIClass _uiClass;
       
@@ -75,8 +76,9 @@ namespace SpotifyClone
             {
                 bool inMenu = true;
                 int displayStartLine = 10;
-                string[] currentArrayToDisplay = GetCurrentArray(1);
+                string[] currentArrayToDisplay = GetCurrentArray("album");
                 ConsoleColor myColor = ConsoleColor.Magenta;
+                string selectedMenu = "Album";
 
                 while (inMenu)
                 {
@@ -84,9 +86,11 @@ namespace SpotifyClone
                     navbar.PrintNavbar();
                     controller.PrintCurrentSong();
                     controller.PrintController();
+             
 
                     ClearDisplayArea(displayStartLine, currentArrayToDisplay.Length);
                     Console.ForegroundColor = myColor;
+            
                     display.PrintDisplay(currentArrayToDisplay, displayStartLine);
 
                     char selection = char.ToUpper(Console.ReadKey().KeyChar);
@@ -98,15 +102,18 @@ namespace SpotifyClone
                     {
                         case 'A':
                             myColor = ConsoleColor.Magenta;
-                            currentArrayToDisplay = GetCurrentArray(1);
+                            selectedMenu = "album";
+                            currentArrayToDisplay = GetCurrentArray(selectedMenu);
                             break;
                         case 'S':
                             myColor = ConsoleColor.Red;
-                            currentArrayToDisplay = GetCurrentArray(2);
+                            selectedMenu = "artist";
+                            currentArrayToDisplay = GetCurrentArray(selectedMenu);
                             break;
                         case 'D':
                             myColor = ConsoleColor.Green;
-                            currentArrayToDisplay = GetCurrentArray(3);
+                            selectedMenu = "playlist";
+                            currentArrayToDisplay = GetCurrentArray(selectedMenu);
                             break;
                         case 'Q':
                             inMenu = false;
@@ -122,20 +129,24 @@ namespace SpotifyClone
 
 
 
-            public string[] GetCurrentArray(int num)
+            public string[] GetCurrentArray(string str)
             {
                 string[] array;
 
-                if (num == 1)
+                if (str == "album")
                 {
                     array = GetAlbumArray(listener.AllAlbums);
 
                 }
-                else if (num == 2)
+                else if (str == "artist")
                 {
                     array = GetArtistsArray();
                 }
-                else if (num == 3)
+                else if (str == "playlist")
+                {
+                    array = GetAlbumArray(listener.Playlists);
+                }
+                else if (str == "radio")
                 {
                     array = GetAlbumArray(listener.Playlists);
                 }
@@ -172,6 +183,23 @@ namespace SpotifyClone
                 }
 
                 return artistNames;
+            }
+
+            public string[] GetSongNames(IPlaylist playlist)
+            {
+                if (playlist.Songs == null || playlist.Songs.Length == 0)
+                {
+                    return new string[0];
+                }
+
+                string[] songNames = new string[playlist.Songs.Length];
+
+                for (int i = 0; i < songNames.Length; i++)
+                {
+                    songNames[i] = playlist.Songs[i].Name; 
+                }
+
+                return songNames;
             }
 
 
