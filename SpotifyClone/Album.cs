@@ -14,12 +14,16 @@ namespace SpotifyClone
         string _realeaseDate;
         int _numberOfSongs;
         Artist _artist;
-        public Album(string Name, Song[] songs, string ReleaseDate, Artist artist)
+        public Album(string Name, Song[] songs, string ReleaseDate, Artist artist, Listener listener)
         {
             _name = Name;
             _realeaseDate = ReleaseDate;
             _songs = songs;
             _artist = artist;
+
+            //listener added temporarly cause we dont have a db or a file but this data dont belong in the listener 
+            listener.AddAlbum(this);
+
 
             foreach (var song in _songs)
             {
@@ -32,6 +36,9 @@ namespace SpotifyClone
             public string ArtistName { get { return _artist.Alias; } }
             public string ReleaseDate { get { return _realeaseDate; } }
             public Song[] Songs { get {  return _songs; } }
+
+
+            
 
     }
 }

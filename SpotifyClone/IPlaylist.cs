@@ -9,5 +9,7 @@ namespace SpotifyClone
     internal interface IPlaylist
     {
         public Song[] Songs { get; }
+
+
     }
 }
