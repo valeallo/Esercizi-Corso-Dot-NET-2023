@@ -24,6 +24,7 @@ namespace SpotifyClone
             //listener added temporarly cause we dont have a db or a file but this data dont belong in the listener 
             listener.AddAlbum(this);
             listener.AddArtist(artist);
+            artist.AddAlbum(this);
 
 
             foreach (var song in _songs)

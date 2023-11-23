@@ -81,7 +81,7 @@ namespace SpotifyClone
                 ConsoleColor myColor = ConsoleColor.Magenta;
                 string[] currentArrayToDisplay = new string[] {"please select a category" };
                 IPlaylist[] currentPlaylist = new IPlaylist[0];
-                Artist[] currentArtistsList;
+                Artist[] currentArtistsList = new Artist[0];
                 string selectedMenu = "Album";
 
 
@@ -94,7 +94,7 @@ namespace SpotifyClone
                     controller.PrintController();
              
 
-                    ClearDisplayArea(displayStartLine, currentArrayToDisplay.Length);
+                    display.ClearDisplayArea(displayStartLine, currentArrayToDisplay.Length);
                     Console.ForegroundColor = myColor;
             
                     display.PrintDisplay(currentArrayToDisplay, displayStartLine);
@@ -108,13 +108,19 @@ namespace SpotifyClone
                         int number = selection - '0';
                
 
-                        if (selectedMenu == "artists")
+                        if (selectedMenu == "artist" && number <= currentArtistsList.Length)
                         {
-                        
+                           Artist SelectedArtist = currentArtistsList[number - 1];
+                            Console.WriteLine(SelectedArtist.Name);
+                            selectedMenu = "songs";
+                            currentPlaylist = SelectedArtist.GetAllAlbums();
+                            currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames();
+
                         }
                         else if ((selectedMenu == "album" || selectedMenu == "playlist" || selectedMenu == "radio") && number <= currentArrayToDisplay.Length)
                         {
-                            currentArrayToDisplay = GetSongNames(currentPlaylist[number - 1]);
+                            selectedMenu = "songs";
+                            currentArrayToDisplay = display.GetSongNames(currentPlaylist[number - 1]);
                         } else
                         {
                             Console.WriteLine("Invalid selection. Please try again.");
@@ -165,31 +171,9 @@ namespace SpotifyClone
                 }
             }
 
-            public string[] GetSongNames(IPlaylist playlist)
-            {
-                if (playlist.Songs == null || playlist.Songs.Length == 0)
-                {
-                    return new string[0];
-                }
 
-                string[] songNames = new string[playlist.Songs.Length];
 
-                for (int i = 0; i < songNames.Length; i++)
-                {
-                    songNames[i] = playlist.Songs[i].Name; 
-                }
-
-                return songNames;
-            }
-
-            private void ClearDisplayArea(int startLine, int numberOfLines)
-            {
-                for (int i = 0; i < numberOfLines; i++)
-                {
-                    Console.SetCursorPosition(0, startLine + i);
-                    Console.Write(new string(' ', Console.WindowWidth));
-                }
-            }
+     
 
 
 
@@ -238,6 +222,32 @@ namespace SpotifyClone
                     }
                 }
 
+                public string[] GetSongNames(IPlaylist playlist)
+                {
+                    if (playlist.Songs == null || playlist.Songs.Length == 0)
+                    {
+                        return new string[0];
+                    }
+
+                    string[] songNames = new string[playlist.Songs.Length];
+
+                    for (int i = 0; i < songNames.Length; i++)
+                    {
+                        songNames[i] = playlist.Songs[i].Name;
+                    }
+
+                    return songNames;
+                }
+
+
+                public void ClearDisplayArea(int startLine, int numberOfLines)
+                {
+                    for (int i = 0; i < numberOfLines; i++)
+                    {
+                        Console.SetCursorPosition(0, startLine + i);
+                        Console.Write(new string(' ', Console.WindowWidth));
+                    }
+                }
             }
 
 
