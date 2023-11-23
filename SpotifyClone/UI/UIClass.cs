@@ -59,6 +59,7 @@ namespace SpotifyClone
             Display display = new Display();
             Controller controller = new Controller();
             Listener listener;
+            Player player = new Player();
 
 
 
@@ -83,6 +84,7 @@ namespace SpotifyClone
                 IPlaylist[] currentPlaylist = new IPlaylist[0];
                 Artist[] currentArtistsList = new Artist[0];
                 string selectedMenu = "Album";
+                int currentlyPlaying = 0;
 
 
 
@@ -107,8 +109,12 @@ namespace SpotifyClone
                     {
                         int number = selection - '0';
                
-
-                        if (selectedMenu == "artist" && number <= currentArtistsList.Length)
+                        if (selectedMenu == "songs" && number <= currentArrayToDisplay.Length)
+                        {
+                            currentlyPlaying = number;
+                            controller.currentSong = currentArrayToDisplay[number - 1];
+                        }
+                        else if (selectedMenu == "artist" && number <= currentArtistsList.Length)
                         {
                            Artist SelectedArtist = currentArtistsList[number - 1];
                             Console.WriteLine(SelectedArtist.Name);
@@ -117,7 +123,7 @@ namespace SpotifyClone
                             currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames();
 
                         }
-                        else if ((selectedMenu == "album" || selectedMenu == "playlist" || selectedMenu == "radio") && number <= currentArrayToDisplay.Length)
+                        else if ((selectedMenu == "album" || selectedMenu == "playlist" || selectedMenu == "radio") && number <= currentPlaylist.Length)
                         {
                             selectedMenu = "songs";
                             currentArrayToDisplay = display.GetSongNames(currentPlaylist[number - 1]);
@@ -158,6 +164,46 @@ namespace SpotifyClone
                                 selectedMenu = "radio";
                                 currentPlaylist = listener.Playlists;
                                 currentArrayToDisplay = listener.GetAlbumArray(listener.Playlists);
+                                break;
+                            case 'Z':
+                                if(currentlyPlaying > 1)
+    {                               controller.currentSong = currentArrayToDisplay[currentlyPlaying - 2];
+                                    currentlyPlaying--; 
+                                }
+                                else if (currentlyPlaying == 1)
+                                {
+                                    controller.currentSong = currentArrayToDisplay[currentArrayToDisplay.Length - 1];
+                                    currentlyPlaying = currentArrayToDisplay.Length; 
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid selection. Please try again.");
+                                    Console.ReadKey();
+                                }
+                                break;
+                            case 'X':
+                                controller.currentSong = "";
+                                break;
+                            case 'C':
+                                if (currentlyPlaying > currentArrayToDisplay.Length - 1)
+                                {
+                                    controller.currentSong = currentArrayToDisplay[0];
+                                    currentlyPlaying = 1;
+                                }
+                                else if (currentlyPlaying > 0)
+                                {
+                                    controller.currentSong = currentArrayToDisplay[currentlyPlaying];
+                                    currentlyPlaying = currentArrayToDisplay.Length;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid selection. Please try again.");
+                                    Console.ReadKey();
+                                }
+                                break;
+                            case 'V':
+                                controller.currentSong = " ";
+                                currentlyPlaying = 0;
                                 break;
                             case 'Q':
                                 inMenu = false;
@@ -254,12 +300,13 @@ namespace SpotifyClone
 
             class Controller
             {
+                public string currentSong { get; set; }
                 public void PrintCurrentSong ()
                 {
                     Console.WriteLine("                                                         ");
                     Console.BackgroundColor = ConsoleColor.Green;
                     Console.ForegroundColor= ConsoleColor.Black;
-                    Console.WriteLine("song that its playing now                                          ");
+                    Console.WriteLine(currentSong);
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("                                                         ");
@@ -271,13 +318,13 @@ namespace SpotifyClone
                     string initialspace = "             ";
                     Console.WriteLine("                                                         ");
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.Write(initialspace + space + "<-" + space);
+                    Console.Write(initialspace + space + "(Z)<-" + space);
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(space + "Play/Pause" + space);
+                    Console.Write(space + "(X)Play/Pause" + space);
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write(space +"->" + space);
+                    Console.Write(space +"->(C)" + space);
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(space + "Stop" + space);
+                    Console.Write(space + "Stop(V)" + space);
                     Console.WriteLine("                                                         ");
                 }
             }
