@@ -17,11 +17,11 @@ namespace SpotifyClone
             Album backToBlack = new Album("Back to Black", songs, "2006-10-27", amyWinehouse, listener);
             listener.AddAlbum(backToBlack);
 
-
+            Song BackInBlack = new Song("Back in Black", 4.15);
             Artist acdc = new Artist("AC/DC", "AC/DC");
             Song[] acdcSongs = new Song[]
             {
-            new Song("Back in Black", 4.15),
+            BackInBlack,
             new Song("You Shook Me All Night Long", 3.30),
             new Song("Hells Bells", 5.12)
             };
@@ -29,16 +29,19 @@ namespace SpotifyClone
             listener.AddAlbum(backInBlack);
 
 
+            Song dakiti = new Song("Dákiti", 3.25);
             Artist badBunny = new Artist("Bad Bunny", "Bad Bunny");
             Song[] badBunnySongs = new Song[]
             {
-            new Song("Dákiti", 3.25),
+            dakiti,
             new Song("La Noche de Anoche", 3.23),
             new Song("Yo Perreo Sola", 2.52)
             };
             Album yhlqmdlg = new Album("YHLQMDLG", badBunnySongs, "2020-02-29", badBunny, listener);
             listener.AddAlbum(yhlqmdlg);
 
+            listener.AddSongToPlaylist("Favorites", BackInBlack);
+            listener.AddSongToPlaylist("Favorites", dakiti);
 
 
             UIClass ui = new UIClass(listener);

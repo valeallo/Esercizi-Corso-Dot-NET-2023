@@ -9,7 +9,7 @@ namespace SpotifyClone
 {
     internal class Listener : User
     {
-       IPlaylist[] _playlists;
+       Playlist[] _playlists;
        public IPlaylist[] AllAlbums { get; set; }
        public Artist[] AllArtists { get; set; }
 
@@ -84,6 +84,20 @@ namespace SpotifyClone
             }
 
             return artistNames;
+        }
+
+
+        public void AddSongToPlaylist(string playlistName, Song song)
+        {
+            var playlist = _playlists.FirstOrDefault(p => p.Name == playlistName);
+            if (playlist != null)
+            {
+                playlist.AddSong(song);
+            }
+            else
+            {
+                Console.WriteLine($"Playlist '{playlistName}' not found.");
+            }
         }
 
     }
