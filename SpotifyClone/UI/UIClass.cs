@@ -285,7 +285,7 @@ namespace SpotifyClone
 
                     for (int i = 0; i < songNames.Length; i++)
                     {
-                        songNames[i] = playlist.Songs[i].Name;
+                        songNames[i] = playlist.Songs[i].Name + "--" + playlist.Songs[i].Artist.Name;
                     }
 
                     return songNames;
