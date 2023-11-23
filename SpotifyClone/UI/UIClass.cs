@@ -58,6 +58,7 @@ namespace SpotifyClone
             Display display = new Display();
             Controller controller = new Controller();
             Listener listener;
+            
 
             private UIClass _uiClass;
       
@@ -69,90 +70,13 @@ namespace SpotifyClone
             }
 
 
-            public string[] GetCurrentArray(int num)
-            {
-                string[] array;
-
-                if (num == 1)
-                {
-                    array = GetAlbumArray();
-
-                }
-                else if (num == 2)
-                {
-                    array = GetArtistsArray();
-                }
-                else if (num == 3)
-                {
-                    array = GetPlaylistsArray();
-                }
-                else
-                {
-                    array = new string[0];
-                }
-                
-                return array;   
-            }
-
-
-            public string[] GetAlbumArray ()
-            {
-                Album[] albums = listener.AllAlbums;
-                string[] albumNames = new string[albums.Length];
-
-                foreach (Album album in albums)
-                {
-                    albumNames = albumNames.Append(album.Name).ToArray();
-
-                }
-
-                return albumNames;
-            }
-
-            public string[] GetArtistsArray()
-            {
-                Artist[] artists = listener.AllArtists;
-                string[] artistNames = new string[artists.Length];
-
-                foreach (Artist artist in artists)
-                {
-                    artistNames = artistNames.Append(artist.Alias).ToArray();
-                }
-
-                return artistNames;
-            }
-
-
-            public string[] GetPlaylistsArray()
-            {
-                Playlist[] playlists = listener.Playlists;
-                string[] playlistsName = new string[playlists.Length];
-
-                foreach (Playlist playlist in playlists)
-                {
-                    playlistsName = playlistsName.Append(playlist.Name).ToArray();
-                }
-
-                return playlistsName;
-            }
-
-
-
-            private void ClearDisplayArea(int startLine, int numberOfLines)
-            {
-                for (int i = 0; i < numberOfLines; i++)
-                {
-                    Console.SetCursorPosition(0, startLine + i);
-                    Console.Write(new string(' ', Console.WindowWidth));
-                }
-            }
-
+      
             public void ShowMusicMenu()
             {
                 bool inMenu = true;
                 int displayStartLine = 10;
                 string[] currentArrayToDisplay = GetCurrentArray(1);
-                ConsoleColor myColor = ConsoleColor.Blue;
+                ConsoleColor myColor = ConsoleColor.Magenta;
 
                 while (inMenu)
                 {
@@ -184,7 +108,7 @@ namespace SpotifyClone
                             myColor = ConsoleColor.Green;
                             currentArrayToDisplay = GetCurrentArray(3);
                             break;
-                        case '4':
+                        case 'Q':
                             inMenu = false;
                             break;
                         default:
@@ -195,7 +119,73 @@ namespace SpotifyClone
                 }
             }
 
-           
+
+
+
+            public string[] GetCurrentArray(int num)
+            {
+                string[] array;
+
+                if (num == 1)
+                {
+                    array = GetAlbumArray(listener.AllAlbums);
+
+                }
+                else if (num == 2)
+                {
+                    array = GetArtistsArray();
+                }
+                else if (num == 3)
+                {
+                    array = GetAlbumArray(listener.Playlists);
+                }
+                else
+                {
+                    array = new string[] { "This category doesnt exist" };
+                }
+
+                return array;
+            }
+
+
+            public string[] GetAlbumArray(IPlaylist[] playlist)
+            {
+                string[] albumNames = new string[playlist.Length];
+
+                for (int i = 0; i < albumNames.Length; i++)
+                {
+                    albumNames[i] = playlist[i].Name;
+
+                }
+
+                return albumNames;
+            }
+
+            public string[] GetArtistsArray()
+            {
+                Artist[] artists = listener.AllArtists;
+                string[] artistNames = new string[artists.Length];
+
+                for (int i = 0; i < artists.Length; i++)
+                {
+                    artistNames[i] = artists[i].Alias;
+                }
+
+                return artistNames;
+            }
+
+
+
+
+            private void ClearDisplayArea(int startLine, int numberOfLines)
+            {
+                for (int i = 0; i < numberOfLines; i++)
+                {
+                    Console.SetCursorPosition(0, startLine + i);
+                    Console.Write(new string(' ', Console.WindowWidth));
+                }
+            }
+
 
 
             class Navbar
@@ -207,9 +197,9 @@ namespace SpotifyClone
                     Console.WriteLine("                  (M)Music            (P)Profile            ");
                     Console.WriteLine("                                                         ");
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.Write(space + "(A)Artists" + space);
+                    Console.Write(space + "(A)Albums" + space);
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(space + "(S)Albums" + space);
+                    Console.Write(space + "(S)Artists" + space);
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write(space + "(D)Playlists" + space);
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -229,7 +219,7 @@ namespace SpotifyClone
                 public void PrintDisplay(string[] array, int startingLine)
                 {
 
-                    Console.SetCursorPosition(0, startingLine); 
+                    Console.SetCursorPosition(0, startingLine);
 
                     if (array == null || array.Length == 0)
                     {
@@ -239,7 +229,7 @@ namespace SpotifyClone
 
                     for (int i = 0; i < array.Length; i++)
                     {
-                        Console.WriteLine("     {0}. {1}", i + 1, array[i]);
+                        Console.WriteLine($"      {i + 1}. {array[i]}");
                     }
                 }
 

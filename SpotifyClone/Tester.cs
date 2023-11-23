@@ -100,7 +100,7 @@ namespace SpotifyClone
             listener.RemovePlaylist(playlist1);
 
             // Get all playlists and print
-            Playlist[] allPlaylists = listener.Playlists;
+            IPlaylist[] allPlaylists = listener.Playlists;
             Console.WriteLine("\nPlaylists for the listener:");
             foreach (var playlist in allPlaylists)
             {

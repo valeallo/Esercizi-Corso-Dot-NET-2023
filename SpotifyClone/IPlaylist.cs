@@ -10,6 +10,8 @@ namespace SpotifyClone
     {
         public Song[] Songs { get; }
 
+        public string Name { get; }
+
 
     }
 }

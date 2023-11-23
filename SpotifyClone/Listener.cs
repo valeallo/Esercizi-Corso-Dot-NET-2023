@@ -9,8 +9,8 @@ namespace SpotifyClone
 {
     internal class Listener : User
     {
-       Playlist[] _playlists;
-       public Album[] AllAlbums { get; set; }
+       IPlaylist[] _playlists;
+       public IPlaylist[] AllAlbums { get; set; }
        public Artist[] AllArtists { get; set; }
 
 
@@ -21,14 +21,14 @@ namespace SpotifyClone
             _playlists = new Playlist[] { favoritesPlaylist };
         }
 
-        public Playlist[] Playlists { get { return _playlists; } }
+        public IPlaylist[] Playlists { get { return _playlists; } }
 
 
-        public void AddAlbum(Album album)
+        public void AddAlbum(IPlaylist album)
         {
             if (AllAlbums == null)
             {
-                AllAlbums = new Album[] { album };
+                AllAlbums = new IPlaylist[] { album };
             }
             else if(!AllAlbums.Contains(album))
             {
