@@ -8,7 +8,6 @@ namespace SpotifyClone
 {
     internal class RadioStation : Audiotrack
     {
-
         public RadioStation (string name) : base (name) { }
     }
 }

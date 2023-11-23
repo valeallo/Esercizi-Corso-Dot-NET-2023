@@ -61,7 +61,30 @@ namespace SpotifyClone
             _playlists = _playlists.Where(p => p != playlistToRemove).ToArray();
         }
 
+        public string[] GetAlbumArray(IPlaylist[] playlist)
+        {
+            string[] albumNames = new string[playlist.Length];
 
+            for (int i = 0; i < albumNames.Length; i++)
+            {
+                albumNames[i] = playlist[i].Name;
+
+            }
+
+            return albumNames;
+        }
+
+        public string[] GetArtistsArray()
+        {
+            string[] artistNames = new string[AllArtists.Length];
+
+            for (int i = 0; i < AllArtists.Length; i++)
+            {
+                artistNames[i] = AllArtists[i].Alias;
+            }
+
+            return artistNames;
+        }
 
     }
 }

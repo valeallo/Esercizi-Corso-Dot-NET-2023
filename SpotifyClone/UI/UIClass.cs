@@ -32,6 +32,7 @@ namespace SpotifyClone
                 input = char.ToUpper(Console.ReadKey().KeyChar);
                 Console.WriteLine();
 
+
                 switch (input)
                 {
                     case 'M':
@@ -58,7 +59,8 @@ namespace SpotifyClone
             Display display = new Display();
             Controller controller = new Controller();
             Listener listener;
-            IPlaylist[] currentArray;
+
+
 
 
             private UIClass _uiClass;
@@ -76,9 +78,13 @@ namespace SpotifyClone
             {
                 bool inMenu = true;
                 int displayStartLine = 10;
-                string[] currentArrayToDisplay = GetCurrentArray("album");
                 ConsoleColor myColor = ConsoleColor.Magenta;
+                string[] currentArrayToDisplay = new string[] {"please select a category" };
+                IPlaylist[] currentPlaylist = new IPlaylist[0];
+                Artist[] currentArtistsList;
                 string selectedMenu = "Album";
+
+
 
                 while (inMenu)
                 {
@@ -97,92 +103,66 @@ namespace SpotifyClone
 
 
                     Console.WriteLine();
-
-                    switch (selection)
+                    if (char.IsDigit(selection))
                     {
-                        case 'A':
-                            myColor = ConsoleColor.Magenta;
-                            selectedMenu = "album";
-                            currentArrayToDisplay = GetCurrentArray(selectedMenu);
-                            break;
-                        case 'S':
-                            myColor = ConsoleColor.Red;
-                            selectedMenu = "artist";
-                            currentArrayToDisplay = GetCurrentArray(selectedMenu);
-                            break;
-                        case 'D':
-                            myColor = ConsoleColor.Green;
-                            selectedMenu = "playlist";
-                            currentArrayToDisplay = GetCurrentArray(selectedMenu);
-                            break;
-                        case 'Q':
-                            inMenu = false;
-                            break;
-                        default:
+                        int number = selection - '0';
+               
+
+                        if (selectedMenu == "artists")
+                        {
+                        
+                        }
+                        else if ((selectedMenu == "album" || selectedMenu == "playlist" || selectedMenu == "radio") && number <= currentArrayToDisplay.Length)
+                        {
+                            currentArrayToDisplay = GetSongNames(currentPlaylist[number - 1]);
+                        } else
+                        {
                             Console.WriteLine("Invalid selection. Please try again.");
                             Console.ReadKey();
-                            break;
+                        }
+                      
+
+                    }
+                    else
+                    {
+
+                        switch (selection)
+                        {
+                            case 'A':
+                                myColor = ConsoleColor.Magenta;
+                                selectedMenu = "album";
+                                currentPlaylist = listener.AllAlbums;
+                                currentArrayToDisplay = listener.GetAlbumArray(listener.AllAlbums);
+                                break;
+                            case 'S':
+                                myColor = ConsoleColor.Red;
+                                selectedMenu = "artist";
+                                currentPlaylist = null;
+                                currentArtistsList = listener.AllArtists;
+                                currentArrayToDisplay = listener.GetArtistsArray();
+                                break;
+                            case 'D':
+                                myColor = ConsoleColor.Green;
+                                selectedMenu = "playlist";
+                                currentPlaylist = listener.Playlists;
+                                currentArrayToDisplay = listener.GetAlbumArray(listener.Playlists);
+                                break;
+                            case 'F':
+                                myColor = ConsoleColor.Yellow;
+                                selectedMenu = "radio";
+                                currentPlaylist = listener.Playlists;
+                                currentArrayToDisplay = listener.GetAlbumArray(listener.Playlists);
+                                break;
+                            case 'Q':
+                                inMenu = false;
+                                break;
+                            default:
+                                Console.WriteLine("Invalid selection. Please try again.");
+                                Console.ReadKey();
+                                break;
+                        }
                     }
                 }
-            }
-
-
-
-
-            public string[] GetCurrentArray(string str)
-            {
-                string[] array;
-
-                if (str == "album")
-                {
-                    array = GetAlbumArray(listener.AllAlbums);
-
-                }
-                else if (str == "artist")
-                {
-                    array = GetArtistsArray();
-                }
-                else if (str == "playlist")
-                {
-                    array = GetAlbumArray(listener.Playlists);
-                }
-                else if (str == "radio")
-                {
-                    array = GetAlbumArray(listener.Playlists);
-                }
-                else
-                {
-                    array = new string[] { "This category doesnt exist" };
-                }
-
-                return array;
-            }
-
-
-            public string[] GetAlbumArray(IPlaylist[] playlist)
-            {
-                string[] albumNames = new string[playlist.Length];
-
-                for (int i = 0; i < albumNames.Length; i++)
-                {
-                    albumNames[i] = playlist[i].Name;
-
-                }
-
-                return albumNames;
-            }
-
-            public string[] GetArtistsArray()
-            {
-                Artist[] artists = listener.AllArtists;
-                string[] artistNames = new string[artists.Length];
-
-                for (int i = 0; i < artists.Length; i++)
-                {
-                    artistNames[i] = artists[i].Alias;
-                }
-
-                return artistNames;
             }
 
             public string[] GetSongNames(IPlaylist playlist)
@@ -201,9 +181,6 @@ namespace SpotifyClone
 
                 return songNames;
             }
-
-
-
 
             private void ClearDisplayArea(int startLine, int numberOfLines)
             {
