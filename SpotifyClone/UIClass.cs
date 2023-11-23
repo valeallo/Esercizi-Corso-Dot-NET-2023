@@ -46,6 +46,12 @@ namespace SpotifyClone
         public class MusicPlayer
         {
             private UIClass _uiClass;
+            string[] backToBlackSongs = {
+                    "Rehab",
+                    "You Know I'm No Good",
+                    "Me & Mr Jones",
+                    "Just Friends",
+                    "Back to Black", };
 
             public MusicPlayer(UIClass uiClass)
             {
@@ -59,6 +65,7 @@ namespace SpotifyClone
                 {
                     Console.Clear();
                     this.Navbar();
+                    this.Display(backToBlackSongs);
 
                     char selection = Console.ReadKey().KeyChar;
                     Console.WriteLine();
@@ -84,8 +91,8 @@ namespace SpotifyClone
 
             public void Navbar() 
             {
-                Console.WriteLine("               (M)Music            (P)Profile           ");
-                Console.WriteLine("                                                        ");
+                Console.WriteLine("               (M)Music            (P)Profile            ");
+                Console.WriteLine("                                                         ");
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.Write("    Artists   ");
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -95,8 +102,11 @@ namespace SpotifyClone
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("    Radio     ");
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write("    Search     ");
+                Console.Write("    Search    ");
+                Console.ForegroundColor= ConsoleColor.White;
+                Console.WriteLine("                                                         ");
             }
+
 
             public void Display(string[] array)
             {
@@ -109,8 +119,17 @@ namespace SpotifyClone
 
                     for (int i = 0; i < array.Length; i++)
                     {
-                        Console.WriteLine($"{i + 1}. {array[i]}");
+                        string space = "     ";
+                        Console.WriteLine($"{space}{i + 1}. {array[i]}");
                     }
+            }
+
+
+            public void PlayerScreen ()
+            {
+            
+            
+            
             }
         }
     }
