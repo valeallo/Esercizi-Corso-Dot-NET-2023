@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,11 +10,19 @@ namespace SpotifyClone
 
     internal class UIClass
     {
+        MusicPlayer musicPlayer;
+        public UIClass(Listener listener) {
+
+            musicPlayer = new MusicPlayer(this, listener);
+
+
+        }
         public void Start()
         {
             bool isRunning = true;
-            MusicPlayer musicPlayer = new MusicPlayer(this);
             char input;
+
+
 
             while (isRunning)
             {
@@ -48,43 +57,134 @@ namespace SpotifyClone
             Navbar navbar = new Navbar();
             Display display = new Display();
             Controller controller = new Controller();
+            Listener listener;
 
             private UIClass _uiClass;
-            string[] backToBlackSongs = {
-                    "Rehab",
-                    "You Know I'm No Good",
-                    "Me & Mr Jones",
-                    "Just Friends",
-                    "Back to Black", };
+      
 
-            public MusicPlayer(UIClass uiClass)
+            public MusicPlayer(UIClass uiClass, Listener Listener)
             {
                 _uiClass = uiClass;
+                listener = Listener;
+            }
+
+
+            public string[] GetCurrentArray(int num)
+            {
+                string[] array;
+
+                if (num == 1)
+                {
+                    array = GetAlbumArray();
+
+                }
+                else if (num == 2)
+                {
+                    array = GetArtistsArray();
+                }
+                else if (num == 3)
+                {
+                    array = GetPlaylistsArray();
+                }
+                else
+                {
+                    array = new string[0];
+                }
+                
+                return array;   
+            }
+
+
+            public string[] GetAlbumArray ()
+            {
+                Album[] albums = listener.AllAlbums;
+                string[] albumNames = new string[albums.Length];
+
+                foreach (Album album in albums)
+                {
+                    albumNames = albumNames.Append(album.Name).ToArray();
+
+                }
+
+                return albumNames;
+            }
+
+            public string[] GetArtistsArray()
+            {
+                Artist[] artists = listener.AllArtists;
+                string[] artistNames = new string[artists.Length];
+
+                foreach (Artist artist in artists)
+                {
+                    artistNames = artistNames.Append(artist.Alias).ToArray();
+                }
+
+                return artistNames;
+            }
+
+
+            public string[] GetPlaylistsArray()
+            {
+                Playlist[] playlists = listener.Playlists;
+                string[] playlistsName = new string[playlists.Length];
+
+                foreach (Playlist playlist in playlists)
+                {
+                    playlistsName = playlistsName.Append(playlist.Name).ToArray();
+                }
+
+                return playlistsName;
+            }
+
+
+
+            private void ClearDisplayArea(int startLine, int numberOfLines)
+            {
+                for (int i = 0; i < numberOfLines; i++)
+                {
+                    Console.SetCursorPosition(0, startLine + i);
+                    Console.Write(new string(' ', Console.WindowWidth));
+                }
             }
 
             public void ShowMusicMenu()
             {
                 bool inMenu = true;
+                int displayStartLine = 10;
+                string[] currentArrayToDisplay = GetCurrentArray(1);
+                ConsoleColor myColor = ConsoleColor.Blue;
+
                 while (inMenu)
                 {
                     Console.Clear();
                     navbar.PrintNavbar();
-                    display.PrintDisplay(backToBlackSongs);
                     controller.PrintCurrentSong();
                     controller.PrintController();
 
-                    char selection = Console.ReadKey().KeyChar;
+                    ClearDisplayArea(displayStartLine, currentArrayToDisplay.Length);
+                    Console.ForegroundColor = myColor;
+                    display.PrintDisplay(currentArrayToDisplay, displayStartLine);
+
+                    char selection = char.ToUpper(Console.ReadKey().KeyChar);
+
+
                     Console.WriteLine();
 
                     switch (selection)
                     {
-                        case '1':
-                            Console.WriteLine("You pressed 1");
+                        case 'A':
+                            myColor = ConsoleColor.Magenta;
+                            currentArrayToDisplay = GetCurrentArray(1);
                             break;
-                        case '2':
-                            Console.WriteLine("You pressed 2");
+                        case 'S':
+                            myColor = ConsoleColor.Red;
+                            currentArrayToDisplay = GetCurrentArray(2);
                             break;
-                        case '3':
+                        case 'D':
+                            myColor = ConsoleColor.Green;
+                            currentArrayToDisplay = GetCurrentArray(3);
+                            break;
+                        case '4':
                             inMenu = false;
                             break;
                         default:
@@ -103,14 +203,15 @@ namespace SpotifyClone
                 public void PrintNavbar()
                 {
                     string space = "    ";
-                    Console.WriteLine("               (M)Music            (P)Profile            ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("                  (M)Music            (P)Profile            ");
                     Console.WriteLine("                                                         ");
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.Write(space + "Artists" + space);
+                    Console.Write(space + "(A)Artists" + space);
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(space + "Albums" + space);
+                    Console.Write(space + "(S)Albums" + space);
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write(space + "Playlists" + space);
+                    Console.Write(space + "(D)Playlists" + space);
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write(space + "Radio" + space);
                     Console.ForegroundColor = ConsoleColor.Cyan;
@@ -125,8 +226,10 @@ namespace SpotifyClone
             class Display
             {
 
-                public void PrintDisplay(string[] array)
+                public void PrintDisplay(string[] array, int startingLine)
                 {
+
+                    Console.SetCursorPosition(0, startingLine); 
 
                     if (array == null || array.Length == 0)
                     {
@@ -136,8 +239,7 @@ namespace SpotifyClone
 
                     for (int i = 0; i < array.Length; i++)
                     {
-                        string space = "     ";
-                        Console.WriteLine($"{space}{i + 1}. {array[i]}");
+                        Console.WriteLine("     {0}. {1}", i + 1, array[i]);
                     }
                 }
 

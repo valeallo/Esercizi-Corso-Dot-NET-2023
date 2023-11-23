@@ -9,31 +9,45 @@ namespace SpotifyClone
 {
     internal class Listener : User
     {
-        Playlist[] _playlists;
-        Playlist _favorites;
+       Playlist[] _playlists;
+       public Album[] AllAlbums { get; set; }
+       public Artist[] AllArtists { get; set; }
 
-        //temporary and to need updated , store all albums
-        public List<Album> AllAlbums { get; set; }
 
 
         public Listener(string name) : base(name)
         {
-            _playlists = new Playlist[0];
-            _favorites = new Playlist("Favorites");
-            AllAlbums = new List<Album>();
+            Playlist favoritesPlaylist = new Playlist("Favorites");
+            _playlists = new Playlist[] { favoritesPlaylist };
         }
 
-        public Playlist Favorites { get { return _favorites; } }
         public Playlist[] Playlists { get { return _playlists; } }
 
 
         public void AddAlbum(Album album)
         {
-            AllAlbums.Add(album);
+            if (AllAlbums == null)
+            {
+                AllAlbums = new Album[] { album };
+            }
+            else if(!AllAlbums.Contains(album))
+            {
+                AllAlbums = AllAlbums.Append(album).ToArray();
+            }
         }
 
 
-
+        public void AddArtist(Artist artist)
+        {
+            if (AllArtists == null)
+            {
+                AllArtists = new Artist[] { artist };
+            }
+            else if (!AllArtists.Contains(artist))
+            {
+                AllArtists = AllArtists.Append(artist).ToArray();
+            }
+        }
 
         public void AddPlaylist(Playlist Playlist)
         {
