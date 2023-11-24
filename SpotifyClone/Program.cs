@@ -7,6 +7,14 @@ namespace SpotifyClone
     {
         static void Main(string[] args)
         {
+            Listener listener = SetupApplication();
+
+            UIClass ui = new UIClass(listener);
+            ui.Start();
+        }
+
+        static Listener SetupApplication()
+        {
             Listener listener = new Listener("ListenerName");
             Artist amyWinehouse = new Artist("Amy Winehouse", "Amy Winehouse");
             Song[] songs = new Song[]
@@ -48,9 +56,8 @@ namespace SpotifyClone
             Radio Zeta = new Radio("Zeta", FavoriteRadios);
             Radio Radio105 = new Radio("Radio105", FavoriteRadios);
 
-
-            UIClass ui = new UIClass(listener);
-            ui.Start();
+            
+            return listener;
         }
     }
 }
