@@ -8,6 +8,7 @@ namespace SpotifyClone
         static void Main(string[] args)
         {
             Listener listener = SetupApplication();
+            CsvLoader.LoadAlbumsFromCsv("path_to_your_csv_file.csv", listener);
 
             UIClass ui = new UIClass(listener);
             ui.Start();
