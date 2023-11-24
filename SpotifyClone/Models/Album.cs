@@ -12,10 +12,10 @@ namespace SpotifyClone.Models
     {
         string _name;
         Song[] _songs;
-        string _realeaseDate;
+        //string _realeaseDate;
         int _numberOfSongs;
         Artist _artist;
-        public Album(string Name, Song[] songs, string ReleaseDate, Artist artist, Listener listener)
+        public Album(string Name, Song[] songs, Artist artist, Listener listener)
         {
             _name = Name;
             _realeaseDate = ReleaseDate;
@@ -37,7 +37,8 @@ namespace SpotifyClone.Models
 
         public string Name { get { return _name; } }
         public string ArtistName { get { return _artist.Alias; } }
-        public string ReleaseDate { get { return _realeaseDate; } }
+        //commented release date to have better match with csv
+        //public string ReleaseDate { get { return _realeaseDate; } }
         public Audiotrack[] Songs { get { return _songs; } }
 
 

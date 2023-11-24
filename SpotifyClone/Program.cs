@@ -23,7 +23,7 @@ namespace SpotifyClone
             new Song("You Know I'm No Good", 4.17),
             new Song("Back to Black", 4.01)
             };
-            Album backToBlack = new Album("Back to Black", songs, "2006-10-27", amyWinehouse, listener);
+            Album backToBlack = new Album("Back to Black", songs, amyWinehouse, listener);
             listener.AddAlbum(backToBlack);
 
             Song BackInBlack = new Song("Back in Black", 4.15);
@@ -34,7 +34,7 @@ namespace SpotifyClone
             new Song("You Shook Me All Night Long", 3.30),
             new Song("Hells Bells", 5.12)
             };
-            Album backInBlack = new Album("Back in Black", acdcSongs, "1980-07-25", acdc, listener);
+            Album backInBlack = new Album("Back in Black", acdcSongs, acdc, listener);
             listener.AddAlbum(backInBlack);
 
 
@@ -46,7 +46,7 @@ namespace SpotifyClone
             new Song("La Noche de Anoche", 3.23),
             new Song("Yo Perreo Sola", 2.52)
             };
-            Album yhlqmdlg = new Album("YHLQMDLG", badBunnySongs, "2020-02-29", badBunny, listener);
+            Album yhlqmdlg = new Album("YHLQMDLG", badBunnySongs,  badBunny, listener);
             listener.AddAlbum(yhlqmdlg);
 
             listener.AddSongToPlaylist("Favorites", BackInBlack);
