@@ -18,7 +18,7 @@ namespace SpotifyClone.Models
         public Album(string Name, Song[] songs, Artist artist, Listener listener)
         {
             _name = Name;
-            _realeaseDate = ReleaseDate;
+            //_realeaseDate = ReleaseDate;
             _songs = songs;
             _artist = artist;
 

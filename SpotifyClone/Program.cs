@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using SpotifyClone.Models;
 
 namespace SpotifyClone
@@ -7,8 +8,10 @@ namespace SpotifyClone
     {
         static void Main(string[] args)
         {
+            string path = myProjectDirectory();
+            string storageDirectory = Path.Combine(path, "storage", "songs.csv");
             Listener listener = SetupApplication();
-            CsvLoader.LoadAlbumsFromCsv("path_to_your_csv_file.csv", listener);
+            CsvLoader.LoadAlbumsFromCsv(storageDirectory, listener);
 
             UIClass ui = new UIClass(listener);
             ui.Start();
@@ -59,6 +62,15 @@ namespace SpotifyClone
 
             
             return listener;
+        }
+
+        static string myProjectDirectory()
+        {
+            string path = Directory.GetCurrentDirectory(); 
+            DirectoryInfo dInfos = new DirectoryInfo(path);
+            string myPath = dInfos.Parent.Parent.Parent.ToString();
+            return myPath;
+
         }
     }
 }

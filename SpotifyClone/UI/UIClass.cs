@@ -99,7 +99,7 @@ namespace SpotifyClone
                     display.PrintController();
              
 
-                    display.ClearDisplayArea(displayStartLine, currentArrayToDisplay.Length);
+                    //display.ClearDisplayArea(displayStartLine, currentArrayToDisplay.Length);
                     Console.ForegroundColor = myColor;
             
                     display.PrintDisplay(currentArrayToDisplay, displayStartLine);
@@ -295,7 +295,10 @@ namespace SpotifyClone
                 {
                     for (int i = 0; i < numberOfLines; i++)
                     {
-                        Console.SetCursorPosition(0, startLine + i);
+                        if (i > 0)
+                        {
+                            Console.SetCursorPosition(0, startLine + i);
+                        }
                         Console.Write(new string(' ', Console.WindowWidth));
                     }
                 }
