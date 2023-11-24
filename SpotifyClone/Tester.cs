@@ -70,7 +70,7 @@ namespace SpotifyClone
             playlist.RemoveSong(song1);
 
             // Get all songs and print
-            Song[] allSongs = playlist.Songs;
+            Audiotrack[] allSongs = playlist.Songs;
             Console.WriteLine("Songs in the playlist:");
             foreach (var song in allSongs)
             {

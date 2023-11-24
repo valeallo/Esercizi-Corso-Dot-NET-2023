@@ -10,8 +10,12 @@ namespace SpotifyClone
     internal class Listener : User
     {
        Playlist[] _playlists;
-       public IPlaylist[] AllAlbums { get; set; }
+       public Album[] AllAlbums { get; set; }
        public Artist[] AllArtists { get; set; }
+       public RadioCollection RadioCollection { get; set; }
+
+      
+
 
 
 
@@ -21,14 +25,14 @@ namespace SpotifyClone
             _playlists = new Playlist[] { favoritesPlaylist };
         }
 
-        public IPlaylist[] Playlists { get { return _playlists; } }
+        public Playlist[] Playlists { get { return _playlists; } }
 
 
-        public void AddAlbum(IPlaylist album)
+        public void AddAlbum(Album album)
         {
             if (AllAlbums == null)
             {
-                AllAlbums = new IPlaylist[] { album };
+                AllAlbums = new Album[] { album };
             }
             else if(!AllAlbums.Contains(album))
             {

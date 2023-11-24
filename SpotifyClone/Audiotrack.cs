@@ -15,7 +15,7 @@ namespace SpotifyClone
             _name = Name;        
         }
         public string Name { get { return _name; } }
-
+        public  abstract string TrackDetails { get; }
         
     }
 }

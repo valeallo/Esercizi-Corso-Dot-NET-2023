@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace SpotifyClone
 {
-    internal class RadioStation : Audiotrack
+    internal class Radio : Audiotrack
     {
-        public RadioStation (string name) : base (name) { }
+        public Radio (string name, RadioCollection collection) : base (name)
+        {
+            collection.AddRadio (this);
+        }
+
+
+  
+
+        public override string TrackDetails { get { return Name; } }
     }
 }

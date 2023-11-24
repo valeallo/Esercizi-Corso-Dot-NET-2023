@@ -37,7 +37,7 @@ namespace SpotifyClone
             public string Name { get { return _name; } }
             public string ArtistName { get { return _artist.Alias; } }
             public string ReleaseDate { get { return _realeaseDate; } }
-            public Song[] Songs { get {  return _songs; } }
+            public Audiotrack[] Songs { get {  return _songs; } }
 
 
             
