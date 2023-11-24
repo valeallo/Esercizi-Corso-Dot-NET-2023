@@ -9,8 +9,6 @@ using System.IO;
 namespace SpotifyClone
 {
 
-    using System.Linq;
-
     public static class CsvLoader
     {
         internal static void LoadAlbumsFromCsv(string filePath, Listener listener)

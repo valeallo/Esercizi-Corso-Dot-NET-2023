@@ -56,8 +56,10 @@ namespace SpotifyClone.Models
 
         public void AddPlaylist(Playlist Playlist)
         {
-
-            _playlists = _playlists.Append(Playlist).ToArray();
+            if (!_playlists.Contains(Playlist))
+            {
+                _playlists = _playlists.Append(Playlist).ToArray();
+            }
 
         }
 
