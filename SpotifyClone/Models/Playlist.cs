@@ -4,15 +4,16 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using SpotifyClone.Interfaces;
 
-namespace SpotifyClone
+namespace SpotifyClone.Models
 {
     internal class Playlist : IPlaylist
     {
         string _playlistName;
         Song[] _songs;
 
-        public Playlist (string playlistName)
+        public Playlist(string playlistName)
         {
             _playlistName = playlistName;
             _songs = new Song[0];
@@ -31,12 +32,12 @@ namespace SpotifyClone
             {
                 _songs = _songs.Append(song).ToArray();
             }
-     
+
         }
 
         public void RemoveSong(Song songToRemove)
         {
-          _songs = _songs.Where(s => s != songToRemove).ToArray();
+            _songs = _songs.Where(s => s != songToRemove).ToArray();
         }
 
 

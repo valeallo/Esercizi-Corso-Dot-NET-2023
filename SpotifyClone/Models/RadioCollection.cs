@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SpotifyClone.Interfaces;
 
-namespace SpotifyClone
+namespace SpotifyClone.Models
 {
     internal class RadioCollection : IPlaylist
     {
         string _name;
         Radio[] _radios;
-        public RadioCollection (string name, Listener listener)
+        public RadioCollection(string name, Listener listener)
         {
 
             _name = name;
@@ -40,6 +41,6 @@ namespace SpotifyClone
 
 
 
-        public Audiotrack[] Songs { get { return _radios ; } }
+        public Audiotrack[] Songs { get { return _radios; } }
     }
 }

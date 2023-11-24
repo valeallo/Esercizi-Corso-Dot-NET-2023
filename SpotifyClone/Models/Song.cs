@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpotifyClone
+namespace SpotifyClone.Models
 {
     internal class Song : Audiotrack
     {
@@ -12,17 +12,17 @@ namespace SpotifyClone
         Album _album;
         Artist _artist;
 
-        public Song(string Name, double Duration)  : base (Name)
+        public Song(string Name, double Duration) : base(Name)
         {
             _duration = Duration;
         }
 
         public double Duration { get { return _duration; } }
-        public Album Album { get {  return _album; } set { _album = value; } }
+        public Album Album { get { return _album; } set { _album = value; } }
         public Artist Artist { get { return _artist; } set { _artist = value; } }
-        public string ReleaseDate { get { return _album.ReleaseDate;  } }
+        public string ReleaseDate { get { return _album.ReleaseDate; } }
 
         public override string TrackDetails { get { return Name + "  -  " + _artist.Alias; } }
 
-}
+    }
 }

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpotifyClone
+namespace SpotifyClone.Models
 {
     internal class Artist : User
     {
         string _alias;
         Album[] _albums;
 
-        public Artist (string name, string Alias) : base (name) 
+        public Artist(string name, string Alias) : base(name)
         {
             _alias = Alias;
         }
@@ -41,9 +41,9 @@ namespace SpotifyClone
 
         public string[] GetAllAlbumsNames()
         {
-             if (_albums == null || _albums.Length == 0)
+            if (_albums == null || _albums.Length == 0)
             {
-                return new string[0]; 
+                return new string[0];
             }
 
             string[] array = new string[_albums.Length];

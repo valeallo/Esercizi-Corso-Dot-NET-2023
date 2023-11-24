@@ -4,8 +4,9 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using SpotifyClone.Interfaces;
 
-namespace SpotifyClone
+namespace SpotifyClone.Models
 {
     internal class Album : IPlaylist
     {
@@ -34,13 +35,13 @@ namespace SpotifyClone
             }
         }
 
-            public string Name { get { return _name; } }
-            public string ArtistName { get { return _artist.Alias; } }
-            public string ReleaseDate { get { return _realeaseDate; } }
-            public Audiotrack[] Songs { get {  return _songs; } }
+        public string Name { get { return _name; } }
+        public string ArtistName { get { return _artist.Alias; } }
+        public string ReleaseDate { get { return _realeaseDate; } }
+        public Audiotrack[] Songs { get { return _songs; } }
 
 
-            
+
 
     }
 }

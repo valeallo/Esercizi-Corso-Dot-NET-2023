@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SpotifyClone.Interfaces;
 
-namespace SpotifyClone
+namespace SpotifyClone.Models
 {
     internal class Listener : User
     {
-       Playlist[] _playlists;
-       public Album[] AllAlbums { get; set; }
-       public Artist[] AllArtists { get; set; }
-       public RadioCollection RadioCollection { get; set; }
+        Playlist[] _playlists;
+        public Album[] AllAlbums { get; set; }
+        public Artist[] AllArtists { get; set; }
+        public RadioCollection RadioCollection { get; set; }
 
-      
+
 
 
 
@@ -34,7 +35,7 @@ namespace SpotifyClone
             {
                 AllAlbums = new Album[] { album };
             }
-            else if(!AllAlbums.Contains(album))
+            else if (!AllAlbums.Contains(album))
             {
                 AllAlbums = AllAlbums.Append(album).ToArray();
             }
@@ -55,9 +56,9 @@ namespace SpotifyClone
 
         public void AddPlaylist(Playlist Playlist)
         {
-           
-             _playlists = _playlists.Append(Playlist).ToArray();
-   
+
+            _playlists = _playlists.Append(Playlist).ToArray();
+
         }
 
         public void RemovePlaylist(Playlist playlistToRemove)

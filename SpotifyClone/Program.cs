@@ -1,4 +1,5 @@
 ﻿using System;
+using SpotifyClone.Models;
 
 namespace SpotifyClone
 {

@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpotifyClone
+namespace SpotifyClone.Models
 {
     abstract class Audiotrack
     {
         string _name;
 
-        public Audiotrack (string Name) 
+        public Audiotrack(string Name)
         {
-            _name = Name;        
+            _name = Name;
         }
         public string Name { get { return _name; } }
-        public  abstract string TrackDetails { get; }
-        
+        public abstract string TrackDetails { get; }
+
     }
 }
