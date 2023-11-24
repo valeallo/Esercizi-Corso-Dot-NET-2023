@@ -11,7 +11,9 @@ namespace SpotifyClone
 
         public static void TestArtistAndAlbum()
         {
+            Listener Default = new Listener("Default");
             Console.WriteLine("Testing Amy Winehouse and 'Back to Black' Album...");
+            
 
             // Create artist Amy Winehouse
             Artist amyWinehouse = new Artist("Amy Winehouse", "Amy Winehouse");
@@ -25,7 +27,7 @@ namespace SpotifyClone
             };
 
             // Create the album and associate it with the songs and the artist
-            Album backToBlack = new Album("Back to Black", backToBlackSongs, "2006-10-27", amyWinehouse);
+            Album backToBlack = new Album("Back to Black", backToBlackSongs, "2006-10-27", amyWinehouse, Default);
 
             // Add the album to the artist
             amyWinehouse.AddAlbum(backToBlack);
@@ -98,7 +100,7 @@ namespace SpotifyClone
             listener.RemovePlaylist(playlist1);
 
             // Get all playlists and print
-            Playlist[] allPlaylists = listener.Playlists;
+            IPlaylist[] allPlaylists = listener.Playlists;
             Console.WriteLine("\nPlaylists for the listener:");
             foreach (var playlist in allPlaylists)
             {

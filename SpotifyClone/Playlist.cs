@@ -23,13 +23,23 @@ namespace SpotifyClone
 
         public void AddSong(Song song)
         {
-            //nel caso mettere un if (song != null )
-          _songs = _songs.Append(song).ToArray();
+            if (_songs == null)
+            {
+                _songs = new Song[] { song };
+            }
+            else if (!_songs.Contains(song))
+            {
+                _songs = _songs.Append(song).ToArray();
+            }
+     
         }
 
         public void RemoveSong(Song songToRemove)
         {
           _songs = _songs.Where(s => s != songToRemove).ToArray();
         }
+
+
+
     }
 }
