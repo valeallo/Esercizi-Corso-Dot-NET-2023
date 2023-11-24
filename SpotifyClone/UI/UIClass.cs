@@ -99,7 +99,7 @@ namespace SpotifyClone
                     display.PrintController();
              
 
-                    //display.ClearDisplayArea(displayStartLine, currentArrayToDisplay.Length);
+                    display.ClearDisplayArea(displayStartLine, currentArrayToDisplay.Length);
                     Console.ForegroundColor = myColor;
             
                     display.PrintDisplay(currentArrayToDisplay, displayStartLine);
