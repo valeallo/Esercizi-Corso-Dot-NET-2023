@@ -43,6 +43,10 @@ namespace SpotifyClone
             listener.AddSongToPlaylist("Favorites", BackInBlack);
             listener.AddSongToPlaylist("Favorites", dakiti);
 
+            RadioCollection FavoriteRadios = new RadioCollection("FavoriteRadios", listener);
+            Radio Zeta = new Radio("Zeta", FavoriteRadios);
+            Radio Radio105 = new Radio("Radio105", FavoriteRadios);
+
 
             UIClass ui = new UIClass(listener);
             ui.Start();

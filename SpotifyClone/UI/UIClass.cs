@@ -110,7 +110,7 @@ namespace SpotifyClone
                     {
                         int number = selection - '0';
                
-                        if (selectedMenu == "songs" && number <= currentArrayToDisplay.Length)
+                        if ((selectedMenu == "songs" || selectedMenu == "radio") && number <= currentArrayToDisplay.Length)
                         {
                             currentlyPlaying = number;
                             isPlaying = true;
@@ -125,7 +125,7 @@ namespace SpotifyClone
                             currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames();
 
                         }
-                        else if ((selectedMenu == "album" || selectedMenu == "playlist" || selectedMenu == "radio") && number <= currentPlaylistCollection.Length)
+                        else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= currentPlaylistCollection.Length)
                         {
                             selectedMenu = "songs";
                             currentArrayToDisplay = display.GetSongNames(currentPlaylistCollection[number - 1]);
@@ -164,8 +164,8 @@ namespace SpotifyClone
                             case 'F':
                                 myColor = ConsoleColor.Yellow;
                                 selectedMenu = "radio";
-                                currentPlaylistCollection = listener.Playlists;
-                                currentArrayToDisplay = listener.GetAlbumArray(listener.Playlists);
+                                currentPlaylistCollection = null;
+                                currentArrayToDisplay = display.GetSongNames(listener.RadioCollection);
                                 break;
                             case 'Z':
                                 if(currentlyPlaying > 1)
@@ -250,7 +250,7 @@ namespace SpotifyClone
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write(space + "(D)Playlists" + space);
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(space + "Radio" + space);
+                    Console.Write(space + "(F)Radio" + space);
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write(space + "Search" + space);
                     Console.ForegroundColor = ConsoleColor.White;
@@ -288,6 +288,7 @@ namespace SpotifyClone
 
                     return songNames;
                 }
+
                 public void ClearDisplayArea(int startLine, int numberOfLines)
                 {
                     for (int i = 0; i < numberOfLines; i++)
