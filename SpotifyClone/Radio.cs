@@ -8,6 +8,16 @@ namespace SpotifyClone
 {
     internal class RadioStation : Audiotrack
     {
-        public RadioStation (string name) : base (name) { }
+        public RadioStation (string name) : base (name)
+        {
+        
+        
+        
+        }
+
+
+
+
+        public override string TrackDetails { get { return Name; } }
     }
 }

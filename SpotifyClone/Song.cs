@@ -22,7 +22,7 @@ namespace SpotifyClone
         public Artist Artist { get { return _artist; } set { _artist = value; } }
         public string ReleaseDate { get { return _album.ReleaseDate;  } }
 
-        public string SongDetails { get { return Name + " - " + _artist.Alias + "-" + _album.Name + _duration.ToString(); } }
+        public override string TrackDetails { get { return Name + "  -  " + _artist.Alias; } }
 
 }
 }

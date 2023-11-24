@@ -19,7 +19,7 @@ namespace SpotifyClone
         }
 
         public string Name { get { return _playlistName; } }
-        public Song[] Songs { get { return _songs; } }
+        public Audiotrack[] Songs { get { return _songs; } }
 
         public void AddSong(Song song)
         {
