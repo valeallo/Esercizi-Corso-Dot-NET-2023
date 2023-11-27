@@ -20,27 +20,32 @@ namespace SpotifyClone
 
 
         public void Play() { }
-        public void Stop() { }
-        public string Next(string[] songs, int currentIndex)
+        public bool Stop(bool isPlaying) 
         {
-            if (songs == null || songs.Length == 0)
+            return !isPlaying;
+        }
+        public int Next(string[] currentArrayToDisplay, int currentlyPlaying)
+        {
+            if (currentlyPlaying >= currentArrayToDisplay.Length)
             {
-                return "No songs available";
+                return 1;
+        
             }
+            
+             return currentlyPlaying++;
+              
+           
 
-            int nextIndex = (currentIndex + 1) % songs.Length;
-            return songs[nextIndex];
         }
 
-        public string Previous(string[] songs, int currentIndex)
+        public int Previous(string[] currentArrayToDisplay, int currentlyPlaying)
         {
-            if (songs == null || songs.Length == 0)
+            if (currentlyPlaying == 1)
             {
-                return "No songs available";
+                return currentArrayToDisplay.Length;
             }
 
-            int previousIndex = (currentIndex - 1 + songs.Length) % songs.Length;
-            return songs[previousIndex];
+            return  currentlyPlaying--;
         }
 
 
