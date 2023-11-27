@@ -35,22 +35,27 @@ namespace SpotifyClone
 
         public void PlayPause(int num)
         {
+            isPlaying = true;
             currentSong = currentArrayToDisplay[num - 1];
+            Audiotrack current = playlist.Songs[num -1];
             currentlyPlaying = num;
-            isPlaying = !isPlaying;
+
+            if (current is Song song)
+            {
+                _listener.AddListeningTime(song.Duration);
+            }
 
         }
         public void Next()
         {
             if (currentlyPlaying >= currentArrayToDisplay.Length)
             {
-                currentlyPlaying = 1;
-                currentSong = currentArrayToDisplay[currentlyPlaying - 1];
+                PlayPause(1);
             }
             else
             {
                 currentlyPlaying++;
-                currentSong = currentArrayToDisplay[currentlyPlaying - 1];
+                PlayPause(currentlyPlaying);
             }
 
         }
@@ -60,14 +65,16 @@ namespace SpotifyClone
             if (currentlyPlaying == 1)
             {
                 currentlyPlaying = currentArrayToDisplay.Length;
-                currentSong = currentArrayToDisplay[currentlyPlaying - 1];
+                PlayPause(currentlyPlaying);
             }
             else
             {
                 currentlyPlaying--;
-                currentSong = currentArrayToDisplay[currentlyPlaying - 1];
+                PlayPause(currentlyPlaying);
             }
         }
+
+
 
 
         public string[] GetSongNames()
