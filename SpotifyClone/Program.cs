@@ -31,7 +31,7 @@ namespace SpotifyClone
             listener.AddAlbum(backToBlack);
 
             Song BackInBlack = new Song("Back in Black", 4.15);
-            Artist acdc = new Artist("AC/DC", "AC/DC");
+            Artist acdc = new Artist("ACDC", "ACDC");
             Song[] acdcSongs = new Song[]
             {
             BackInBlack,

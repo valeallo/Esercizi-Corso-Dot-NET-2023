@@ -271,7 +271,10 @@ namespace SpotifyClone
 
                     for (int i = 0; i < array.Length; i++)
                     {
-                        Console.WriteLine($"      {i + 1}. {array[i]}");
+                        if (array[i].Length > 0)
+                        {
+                            Console.WriteLine($"      {i + 1}. {array[i]}");
+                        }
                     }
                 }
                 public string[] GetSongNames(IPlaylist playlist)

@@ -13,28 +13,37 @@ namespace SpotifyClone
     {
         internal static void LoadAlbumsFromCsv(string filePath, Listener listener)
         {
-            var lines = File.ReadAllLines(filePath);
-            var songsGroupedByAlbum = lines.Skip(1) 
+            string[] lines = File.ReadAllLines(filePath);
+            var songs = lines.Skip(1) 
                 .Select(line =>
                 {
-                    var values = line.Split(',');
-                    var song = new Song(values[2], double.Parse(values[1]));
-                    return new { AlbumTitle = values[3], ArtistName = values[4], Song = song };
-                })
-                .GroupBy(x => x.AlbumTitle);
+                    string[] values = line.Split(',');
+                    Song song = new Song(values[2], double.Parse(values[1]));
+                    Artist artist = listener.AllArtists?.FirstOrDefault(a => a.Name == values[4]) ?? new Artist(values[4], values[4]);
+                    song.Artist = artist;
+                    listener.AddArtist(artist);
+                    
+                    if (values[6].Length > 0)
+                    {
+                        Playlist playlist = listener.Playlists?.FirstOrDefault(a => a.Name == values[6]) ?? new Playlist(values[6]);
+                        listener.AddPlaylist(playlist);
+                        playlist.AddSong(song);
+                    }
+                    return new {AlbumTitle = values[3], Artist = artist , Song = song};
+                }).ToList();
+            var songsGroupedByAlbum = songs.GroupBy(x => x.AlbumTitle);
+
 
             foreach (var group in songsGroupedByAlbum)
             {
-                var albumTitle = group.Key;
-                var artistName = group.First().ArtistName; 
-                var songs = group.Select(x => x.Song).ToArray();
+                string albumTitle = group.Key;
+                Song[] songsArray = group.Select(x => x.Song).ToArray();
+                Artist albumArtist = group.First().Artist;
 
-                var artist = listener.AllArtists?.FirstOrDefault(a => a.Name == artistName) ?? new Artist(artistName, artistName);
-                listener.AddArtist(artist);
-
-                var album = listener.AllAlbums?.FirstOrDefault(a => a.Name == albumTitle) ?? new Album(albumTitle, songs, artist, listener);
-                listener.AddAlbum(album);
+                Album album = listener.AllAlbums?.FirstOrDefault(a => a.Name == albumTitle) ?? new Album(albumTitle, songsArray, albumArtist, listener);
             }
+
+           
         }
     }
 
