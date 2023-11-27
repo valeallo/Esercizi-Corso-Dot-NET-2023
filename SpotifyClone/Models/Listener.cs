@@ -38,6 +38,8 @@ namespace SpotifyClone.Models
 
             Subscription = subscription;
             TotalListeningTime = TimeSpan.Zero;
+
+            InitializeListenerFromLog();
         }
 
         public Playlist[] Playlists { get { return _playlists; } }
@@ -134,6 +136,7 @@ namespace SpotifyClone.Models
             TotalListeningTime += additionalListeningTime;
             string logEntry = $"{DateTime.UtcNow:yyyy-MM-ddTHH:mm:ss}, {TotalListeningTime:c}";
 
+
             File.WriteAllText(filePath, logEntry); 
         }
 
@@ -150,6 +153,24 @@ namespace SpotifyClone.Models
                     return true;
                 default:
                     return false;
+            }
+        }
+
+
+        private void InitializeListenerFromLog()
+        {
+            string path = Directory.GetCurrentDirectory();
+            string logsDirectory = Path.Combine(path, "logs");
+            string filePath = Path.Combine(logsDirectory, $"{Name}_timelog.csv");
+
+            if (File.Exists(filePath))
+            {
+                var line = File.ReadAllText(filePath);
+                var parts = line.Split(',');
+                if (parts.Length >= 2 && TimeSpan.TryParse(parts[1].Trim(), out TimeSpan loggedTime))
+                {
+                    TotalListeningTime = loggedTime;
+                }
             }
         }
 
