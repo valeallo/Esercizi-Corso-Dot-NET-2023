@@ -33,7 +33,7 @@ namespace SpotifyClone
             Album backToBlack = new Album("Back to Black", songs, amyWinehouse, listener);
             listener.AddAlbum(backToBlack);
 
-            Song BackInBlack = new Song("Back in Black", 104.15);
+            Song BackInBlack = new Song("Back in Black", 1004.15);
             Artist acdc = new Artist("ACDC", "ACDC");
             Song[] acdcSongs = new Song[]
             {

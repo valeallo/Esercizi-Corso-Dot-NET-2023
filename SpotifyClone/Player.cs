@@ -40,6 +40,7 @@ namespace SpotifyClone
             if (!_listener.CanListen()) 
             {
                 Random rnd = new Random();
+                Console.WriteLine("Free listening limit reached - playing Random track");
                 songNumber = rnd.Next(0, currentArrayToDisplay.Length);
 
             }
