@@ -36,9 +36,16 @@ namespace SpotifyClone
         public void PlayPause(int num)
         {
             isPlaying = true;
-            currentSong = currentArrayToDisplay[num - 1];
-            Audiotrack current = playlist.Songs[num -1];
-            currentlyPlaying = num;
+            int songNumber = num - 1;
+            if (!_listener.CanListen()) 
+            {
+                Random rnd = new Random();
+                songNumber = rnd.Next(0, currentArrayToDisplay.Length);
+
+            }
+            currentSong = currentArrayToDisplay[songNumber];
+            Audiotrack current = playlist.Songs[songNumber];
+            currentlyPlaying = songNumber + 1;
 
             if (current is Song song)
             {

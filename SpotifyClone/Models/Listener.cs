@@ -121,17 +121,10 @@ namespace SpotifyClone.Models
 
         public void AddListeningTime(TimeSpan listeningDuration)
         {
-            if (CanListen())
-            {
                 TotalListeningTime += listeningDuration;
-            }
-            else
-            {
-                Console.WriteLine("Maximum listening time reached for your subscription type.");
-            }
         }
 
-        private bool CanListen()
+        public bool CanListen()
         {
             switch (Subscription)
             {
