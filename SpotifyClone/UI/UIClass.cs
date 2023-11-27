@@ -170,15 +170,19 @@ namespace SpotifyClone
                                 currentArrayToDisplay = display.GetSongNames(listener.RadioCollection);
                                 break;
                             case 'Z':
-                                if(currentlyPlaying > 1)
-                                {                               
-                                    display.currentSong = currentArrayToDisplay[currentlyPlaying - 2];
-                                    currentlyPlaying--; 
-                                }
-                                else if (currentlyPlaying == 1)
-                                {
-                                    display.currentSong = currentArrayToDisplay[currentArrayToDisplay.Length - 1];
-                                    currentlyPlaying = currentArrayToDisplay.Length; 
+                                if (currentlyPlaying >= 1) {
+                                    if (currentlyPlaying == 1)
+                                    {
+                                        currentlyPlaying = currentArrayToDisplay.Length;
+                                        display.currentSong = currentArrayToDisplay[currentlyPlaying - 1];
+                               
+                                    }
+                                    else
+                                    {
+                                   
+                                        currentlyPlaying--;
+                                        display.currentSong = currentArrayToDisplay[currentlyPlaying - 1];
+                                    }
                                 }
                                 else
                                 {
@@ -187,19 +191,22 @@ namespace SpotifyClone
                                 }
                                 break;
                             case 'X':
-                                isPlaying = !isPlaying;
+                                isPlaying = player.Stop(isPlaying);
                                 display.currentSongColor = isPlaying ? ConsoleColor.Green :  ConsoleColor.Yellow;
                                 break;
                             case 'C':
-                                if (currentlyPlaying >= currentArrayToDisplay.Length - 1)
+                                if (currentlyPlaying >= 1)
                                 {
-                                    display.currentSong = currentArrayToDisplay[0];
-                                    currentlyPlaying = 0;
-                                }
-                                else if (currentlyPlaying >= 0)
-                                {
-                                    currentlyPlaying++;
-                                    display.currentSong = currentArrayToDisplay[currentlyPlaying];
+                                    if (currentlyPlaying >= currentArrayToDisplay.Length)
+                                    {
+                                        currentlyPlaying = 1;
+                                        display.currentSong = currentArrayToDisplay[currentlyPlaying - 1];
+                                    }
+                                    else 
+                                    {
+                                        currentlyPlaying++;
+                                        display.currentSong = currentArrayToDisplay[currentlyPlaying -1];
+                                    }
                                 }
                                 else
                                 {

@@ -20,7 +20,10 @@ namespace SpotifyClone
 
 
         public void Play() { }
-        public void Stop() { }
+        public bool Stop(bool isPlaying) 
+        {
+            return !isPlaying;
+        }
         public string Next(string[] songs, int currentIndex)
         {
             if (songs == null || songs.Length == 0)
