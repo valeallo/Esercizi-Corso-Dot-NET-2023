@@ -14,7 +14,10 @@ namespace SpotifyClone.Models
 
         public Song(string Name, double Duration) : base(Name)
         {
-            _duration = TimeSpan.FromSeconds(Duration);
+            int minutes = (int)Duration;
+            int seconds = (int)((Duration - minutes) * 100);
+            int totalSeconds = minutes * 60 + seconds;
+            _duration = TimeSpan.FromSeconds(totalSeconds);
         }
 
         public TimeSpan Duration { get { return _duration; } }
