@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpotifyClone
+namespace SpotifyClone.Models
 {
     internal class Radio : Audiotrack
     {
-        public Radio (string name, RadioCollection collection) : base (name)
+        public Radio(string name, RadioCollection collection) : base(name)
         {
-            collection.AddRadio (this);
+            collection.AddRadio(this);
         }
 
 
-  
+
 
         public override string TrackDetails { get { return Name; } }
     }

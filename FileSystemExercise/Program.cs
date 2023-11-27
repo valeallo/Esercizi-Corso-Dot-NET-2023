@@ -112,7 +112,7 @@ namespace FileSystemExercise
 
         static string myProjectDirectory()
         {
-            string path = Directory.GetCurrentDirectory(); // -> trova il Path 
+            string path = Directory.GetCurrentDirectory();
             DirectoryInfo dInfos = new DirectoryInfo(path);
             string myPath = dInfos.Parent.Parent.Parent.ToString();
             return myPath;

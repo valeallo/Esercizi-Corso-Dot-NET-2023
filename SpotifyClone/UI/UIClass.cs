@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using SpotifyClone.Interfaces;
+using SpotifyClone.Models;
 
 namespace SpotifyClone
 {
@@ -269,7 +271,10 @@ namespace SpotifyClone
 
                     for (int i = 0; i < array.Length; i++)
                     {
-                        Console.WriteLine($"      {i + 1}. {array[i]}");
+                        if (array[i].Length > 0)
+                        {
+                            Console.WriteLine($"      {i + 1}. {array[i]}");
+                        }
                     }
                 }
                 public string[] GetSongNames(IPlaylist playlist)
@@ -293,7 +298,10 @@ namespace SpotifyClone
                 {
                     for (int i = 0; i < numberOfLines; i++)
                     {
-                        Console.SetCursorPosition(0, startLine + i);
+                        if (i > 0)
+                        {
+                            Console.SetCursorPosition(0, startLine + i);
+                        }
                         Console.Write(new string(' ', Console.WindowWidth));
                     }
                 }
