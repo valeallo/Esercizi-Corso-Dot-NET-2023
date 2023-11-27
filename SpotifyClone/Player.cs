@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using SpotifyClone.Interfaces;
+using SpotifyClone.Models;
 
 namespace SpotifyClone
 {
@@ -15,21 +16,31 @@ namespace SpotifyClone
 
         public int currentlyPlaying = 0;
 
-        string[] currentArrayToDisplay = new string[] { "please select a category" };
+        public string[] currentArrayToDisplay = new string[] { "please select a category" };
+        private Listener _listener;
+        public bool isPlaying = false;
 
-        public Player() 
+        public Player(Listener listener) 
         {
-
+            _listener = listener;
         
         }
 
 
-        public void Play() { }
-        public bool Stop(bool isPlaying) 
+        public void PlayPause() 
         {
-            return !isPlaying;
+            isPlaying = !isPlaying;
         }
-        public void Next(string[] currentArrayToDisplay)
+
+
+        public void PlayPause(int num)
+        {
+            currentSong = currentArrayToDisplay[num - 1];
+            currentlyPlaying = num;
+            isPlaying = !isPlaying;
+
+        }
+        public void Next()
         {
             if (currentlyPlaying >= currentArrayToDisplay.Length)
             {
@@ -44,7 +55,7 @@ namespace SpotifyClone
 
         }
 
-        public void Previous(string[] currentArrayToDisplay)
+        public void Previous()
         {
             if (currentlyPlaying == 1)
             {
