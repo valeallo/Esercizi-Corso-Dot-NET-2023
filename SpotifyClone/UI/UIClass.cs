@@ -130,7 +130,8 @@ namespace SpotifyClone
                         else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= currentPlaylistCollection.Length)
                         {
                             selectedMenu = "songs";
-                            currentArrayToDisplay = player.GetSongNames(currentPlaylistCollection[number - 1]);
+                            player.playlist = currentPlaylistCollection[number - 1];
+                            currentArrayToDisplay = player.GetSongNames();
                         } else
                         {
                             Console.WriteLine("Invalid selection. Please try again.");
@@ -167,7 +168,8 @@ namespace SpotifyClone
                                 myColor = ConsoleColor.Yellow;
                                 selectedMenu = "radio";
                                 currentPlaylistCollection = null;
-                                currentArrayToDisplay = player.GetSongNames(listener.RadioCollection);
+                                player.playlist = listener.RadioCollection;
+                                currentArrayToDisplay = player.GetSongNames();
                                 break;
                             case 'Z':
                                 if (currentlyPlaying >= 1) {

@@ -10,7 +10,7 @@ namespace SpotifyClone
     internal class Player
     {
         public string currentSong {  get; set; }
-        IPlaylist playlist { get; set; }
+        public IPlaylist playlist { get; set; }
 
         public Player() 
         {
@@ -49,7 +49,7 @@ namespace SpotifyClone
         }
 
 
-        public string[] GetSongNames(IPlaylist playlist)
+        public string[] GetSongNames()
         {
             if (playlist.Songs == null || playlist.Songs.Length == 0)
             {

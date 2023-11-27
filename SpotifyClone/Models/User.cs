@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpotifyClone.Models
+namespace SpotifyClone
 {
     internal abstract class User
     {
@@ -25,7 +25,7 @@ namespace SpotifyClone.Models
         }
 
 
-        public string Name { get { return _name; } }
-        public int Id { get { return _id; } }
+        public string Name { get {return _name; } }
+        public int Id { get { return _id;} }
     }
 }
