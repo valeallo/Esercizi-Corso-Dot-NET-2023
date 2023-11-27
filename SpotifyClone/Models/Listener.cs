@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SpotifyClone.Interfaces;
+using static SpotifyClone.Models.Listener;
 
 namespace SpotifyClone.Models
 {
@@ -14,16 +15,28 @@ namespace SpotifyClone.Models
         public Album[] AllAlbums { get; set; }
         public Artist[] AllArtists { get; set; }
         public RadioCollection RadioCollection { get; set; }
+        public TimeSpan TotalListeningTime { get; private set; }
+        public SubscriptionType Subscription { get; set; }
 
 
+        private const int MaxListeningTimeFree = 100;
+        private const int MaxListeningTimePremium = 1000;
+
+        public enum SubscriptionType
+        {
+            Free,
+            Premium,
+            Gold
+        }
 
 
-
-
-        public Listener(string name) : base(name)
+        public Listener(string name, SubscriptionType subscription) : base(name)
         {
             Playlist favoritesPlaylist = new Playlist("Favorites");
             _playlists = new Playlist[] { favoritesPlaylist };
+
+            Subscription = subscription;
+            TotalListeningTime = TimeSpan.Zero;
         }
 
         public Playlist[] Playlists { get { return _playlists; } }
@@ -93,7 +106,6 @@ namespace SpotifyClone.Models
             return artistNames;
         }
 
-
         public void AddSongToPlaylist(string playlistName, Song song)
         {
             var playlist = _playlists.FirstOrDefault(p => p.Name == playlistName);
@@ -104,6 +116,33 @@ namespace SpotifyClone.Models
             else
             {
                 Console.WriteLine($"Playlist '{playlistName}' not found.");
+            }
+        }
+
+        public void AddListeningTime(TimeSpan listeningDuration)
+        {
+            if (CanListen())
+            {
+                TotalListeningTime += listeningDuration;
+            }
+            else
+            {
+                Console.WriteLine("Maximum listening time reached for your subscription type.");
+            }
+        }
+
+        private bool CanListen()
+        {
+            switch (Subscription)
+            {
+                case SubscriptionType.Free:
+                    return TotalListeningTime.TotalHours < MaxListeningTimeFree;
+                case SubscriptionType.Premium:
+                    return TotalListeningTime.TotalHours < MaxListeningTimePremium;
+                case SubscriptionType.Gold:
+                    return true;
+                default:
+                    return false;
             }
         }
 

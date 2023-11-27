@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using SpotifyClone.Models;
+using static SpotifyClone.Models.Listener;
 
 namespace SpotifyClone
 {
@@ -19,7 +20,9 @@ namespace SpotifyClone
 
         static Listener SetupApplication()
         {
-            Listener listener = new Listener("ListenerName");
+            SubscriptionType subscriptionType = SubscriptionType.Free;
+
+            Listener listener = new Listener("ListenerName", subscriptionType);
             Artist amyWinehouse = new Artist("Amy Winehouse", "Amy Winehouse");
             Song[] songs = new Song[]
             {

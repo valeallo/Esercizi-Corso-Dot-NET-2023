@@ -57,11 +57,10 @@ namespace SpotifyClone
 
         class MusicPlayer
         {
- 
-            Display display = new Display();
+
             Listener listener;
             Player player = new Player();
-
+            Display display;
 
 
 
@@ -72,6 +71,7 @@ namespace SpotifyClone
             {
                 _uiClass = uiClass;
                 listener = Listener;
+                display = new Display(Listener);
             }
 
 
@@ -130,7 +130,7 @@ namespace SpotifyClone
                         else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= currentPlaylistCollection.Length)
                         {
                             selectedMenu = "songs";
-                            currentArrayToDisplay = display.GetSongNames(currentPlaylistCollection[number - 1]);
+                            currentArrayToDisplay = player.GetSongNames(currentPlaylistCollection[number - 1]);
                         } else
                         {
                             Console.WriteLine("Invalid selection. Please try again.");
@@ -167,7 +167,7 @@ namespace SpotifyClone
                                 myColor = ConsoleColor.Yellow;
                                 selectedMenu = "radio";
                                 currentPlaylistCollection = null;
-                                currentArrayToDisplay = display.GetSongNames(listener.RadioCollection);
+                                currentArrayToDisplay = player.GetSongNames(listener.RadioCollection);
                                 break;
                             case 'Z':
                                 if(currentlyPlaying > 1)
@@ -235,6 +235,12 @@ namespace SpotifyClone
             {
                 public string currentSong { get; set; }
                 public ConsoleColor currentSongColor = ConsoleColor.Green;
+                private Listener _listener;
+
+                public Display(Listener listener)
+                {
+                    _listener = listener;
+                }
 
 
 
@@ -243,7 +249,7 @@ namespace SpotifyClone
                 {
                     string space = "    ";
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                     (M)Music            (P)Profile               ");
+                    Console.WriteLine($"                     (M)Music            (P)Profile              Listening Time: {_listener.TotalListeningTime}\"");
                     Console.WriteLine("                                                         ");
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.Write(space + "(A)Albums" + space);
@@ -277,22 +283,7 @@ namespace SpotifyClone
                         }
                     }
                 }
-                public string[] GetSongNames(IPlaylist playlist)
-                {
-                    if (playlist.Songs == null || playlist.Songs.Length == 0)
-                    {
-                        return new string[0];
-                    }
-
-                    string[] songNames = new string[playlist.Songs.Length];
-
-                    for (int i = 0; i < songNames.Length; i++)
-                    {
-                        songNames[i] = playlist.Songs[i].TrackDetails;
-                    }
-
-                    return songNames;
-                }
+        
 
                 public void ClearDisplayArea(int startLine, int numberOfLines)
                 {

@@ -44,5 +44,22 @@ namespace SpotifyClone
         }
 
 
+        public string[] GetSongNames(IPlaylist playlist)
+        {
+            if (playlist.Songs == null || playlist.Songs.Length == 0)
+            {
+                return new string[0];
+            }
+
+            string[] songNames = new string[playlist.Songs.Length];
+
+            for (int i = 0; i < songNames.Length; i++)
+            {
+                songNames[i] = playlist.Songs[i].TrackDetails;
+            }
+
+            return songNames;
+        }
+
     }
 }
