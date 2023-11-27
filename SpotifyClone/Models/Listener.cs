@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,10 +120,23 @@ namespace SpotifyClone.Models
             }
         }
 
-        public void AddListeningTime(TimeSpan listeningDuration)
+        //public void AddListeningTime(TimeSpan listeningDuration)
+        //{
+        //        TotalListeningTime += listeningDuration;
+        //}
+
+        public void UpdateListeningLog(TimeSpan additionalListeningTime)
         {
-                TotalListeningTime += listeningDuration;
+            string path = Directory.GetCurrentDirectory();
+            string logsDirectory = Path.Combine(path, "logs");
+            string filePath = Path.Combine(logsDirectory, $"{Name}_timelog.csv"); 
+
+            TotalListeningTime += additionalListeningTime;
+            string logEntry = $"{DateTime.UtcNow:yyyy-MM-ddTHH:mm:ss}, {TotalListeningTime:c}";
+
+            File.WriteAllText(filePath, logEntry); 
         }
+
 
         public bool CanListen()
         {
