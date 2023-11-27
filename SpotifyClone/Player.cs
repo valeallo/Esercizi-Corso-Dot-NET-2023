@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using SpotifyClone.Interfaces;
@@ -11,6 +12,10 @@ namespace SpotifyClone
     {
         public string currentSong {  get; set; }
         public IPlaylist playlist { get; set; }
+
+        public int currentlyPlaying = 0;
+
+        string[] currentArrayToDisplay = new string[] { "please select a category" };
 
         public Player() 
         {
@@ -24,28 +29,33 @@ namespace SpotifyClone
         {
             return !isPlaying;
         }
-        public int Next(string[] currentArrayToDisplay, int currentlyPlaying)
+        public void Next(string[] currentArrayToDisplay)
         {
             if (currentlyPlaying >= currentArrayToDisplay.Length)
             {
-                return 1;
-        
+                currentlyPlaying = 1;
+                currentSong = currentArrayToDisplay[currentlyPlaying - 1];
             }
-            
-             return currentlyPlaying++;
-              
-           
+            else
+            {
+                currentlyPlaying++;
+                currentSong = currentArrayToDisplay[currentlyPlaying - 1];
+            }
 
         }
 
-        public int Previous(string[] currentArrayToDisplay, int currentlyPlaying)
+        public void Previous(string[] currentArrayToDisplay)
         {
             if (currentlyPlaying == 1)
             {
-                return currentArrayToDisplay.Length;
+                currentlyPlaying = currentArrayToDisplay.Length;
+                currentSong = currentArrayToDisplay[currentlyPlaying - 1];
             }
-
-            return  currentlyPlaying--;
+            else
+            {
+                currentlyPlaying--;
+                currentSong = currentArrayToDisplay[currentlyPlaying - 1];
+            }
         }
 
 
@@ -62,7 +72,6 @@ namespace SpotifyClone
             {
                 songNames[i] = playlist.Songs[i].TrackDetails;
             }
-
             return songNames;
         }
 

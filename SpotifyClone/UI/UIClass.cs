@@ -71,7 +71,7 @@ namespace SpotifyClone
             {
                 _uiClass = uiClass;
                 listener = Listener;
-                display = new Display(Listener);
+                display = new Display(Listener, player);
             }
 
 
@@ -81,11 +81,11 @@ namespace SpotifyClone
                 bool inMenu = true;
                 int displayStartLine = 10;
                 ConsoleColor myColor = ConsoleColor.Magenta;
-                string[] currentArrayToDisplay = new string[] {"please select a category"};
+                string[] currentArrayToDisplay = new string[] { "please select a category" };
                 IPlaylist[] currentPlaylistCollection = new IPlaylist[0];
                 Artist[] currentArtistsList = new Artist[0];
                 string selectedMenu = "album";
-                int currentlyPlaying = 0;
+
                 IPlaylist currentPlaylist = null;
                 bool isPlaying = false;
 
@@ -114,9 +114,9 @@ namespace SpotifyClone
                
                         if ((selectedMenu == "songs" || selectedMenu == "radio") && number <= currentArrayToDisplay.Length)
                         {
-                            currentlyPlaying = number;
+                            player.currentlyPlaying = number;
                             isPlaying = true;
-                            display.currentSong = currentArrayToDisplay[number - 1];
+                            player.currentSong = currentArrayToDisplay[number - 1];
                         }
                         else if (selectedMenu == "artist" && number <= currentArtistsList.Length)
                         {
@@ -172,19 +172,8 @@ namespace SpotifyClone
                                 currentArrayToDisplay = player.GetSongNames();
                                 break;
                             case 'Z':
-                                if (currentlyPlaying >= 1) {
-                                    if (currentlyPlaying == 1)
-                                    {
-                                        currentlyPlaying = currentArrayToDisplay.Length;
-                                        display.currentSong = currentArrayToDisplay[currentlyPlaying - 1];
-                               
-                                    }
-                                    else
-                                    {
-                                   
-                                        currentlyPlaying--;
-                                        display.currentSong = currentArrayToDisplay[currentlyPlaying - 1];
-                                    }
+                                if (player.currentlyPlaying >= 1) {
+                                    player.Previous(currentArrayToDisplay);
                                 }
                                 else
                                 {
@@ -197,18 +186,9 @@ namespace SpotifyClone
                                 display.currentSongColor = isPlaying ? ConsoleColor.Green :  ConsoleColor.Yellow;
                                 break;
                             case 'C':
-                                if (currentlyPlaying >= 1)
+                                if (player.currentlyPlaying >= 1)
                                 {
-                                    if (currentlyPlaying >= currentArrayToDisplay.Length)
-                                    {
-                                        currentlyPlaying = 1;
-                                        display.currentSong = currentArrayToDisplay[currentlyPlaying - 1];
-                                    }
-                                    else 
-                                    {
-                                        currentlyPlaying++;
-                                        display.currentSong = currentArrayToDisplay[currentlyPlaying -1];
-                                    }
+                                    player.Next(currentArrayToDisplay);
                                 }
                                 else
                                 {
@@ -218,8 +198,8 @@ namespace SpotifyClone
                                 break;
                             case 'V':
                                 isPlaying = false;
-                                display.currentSong = " ";
-                                currentlyPlaying = 0;
+                                player.currentSong = " ";
+                                player.currentlyPlaying = 0;
                                 break;
                             case 'Q':
                                 inMenu = false;
@@ -242,13 +222,15 @@ namespace SpotifyClone
 
             class Display
             {
-                public string currentSong { get; set; }
+
                 public ConsoleColor currentSongColor = ConsoleColor.Green;
                 private Listener _listener;
+                private Player _player;
 
-                public Display(Listener listener)
+                public Display(Listener listener, Player player)
                 {
                     _listener = listener;
+                    _player = player;
                 }
 
 
@@ -310,7 +292,7 @@ namespace SpotifyClone
                     Console.WriteLine("                                                         ");
                     Console.BackgroundColor = currentSongColor;
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine(currentSong);
+                    Console.WriteLine(_player.currentSong);
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("                                                         ");
