@@ -122,10 +122,6 @@ namespace SpotifyClone.Models
             }
         }
 
-        //public void AddListeningTime(TimeSpan listeningDuration)
-        //{
-        //        TotalListeningTime += listeningDuration;
-        //}
 
         public void UpdateListeningLog(TimeSpan additionalListeningTime)
         {

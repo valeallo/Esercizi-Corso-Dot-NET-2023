@@ -80,7 +80,7 @@ namespace SpotifyClone
             public void ShowMusicMenu()
             {
                 bool inMenu = true;
-                int displayStartLine = 12;
+                int displayStartLine = 14;
                 ConsoleColor myColor = ConsoleColor.Magenta;
                 IPlaylist[] currentPlaylistCollection = new IPlaylist[0];
                 Artist[] currentArtistsList = new Artist[0];
@@ -231,7 +231,7 @@ namespace SpotifyClone
                 }
 
 
-                public void  Divisor()
+                public void  Divider()
                 {
                     Console.WriteLine("                                                         ");
                 }
@@ -240,10 +240,12 @@ namespace SpotifyClone
                 {
                     string space = "    ";
                     Console.ForegroundColor = ConsoleColor.White;
-                    Divisor();
+                    Divider();
+                    Console.WriteLine($"                                                                                   (Q) Quit");
+                    Divider();
                     Console.Write($"                     (M)Music            (P)Profile              ");
-                    Console.Write($"Listening Time: {_listener.TotalListeningTime}\"");
-                    Divisor();
+                    Console.Write($"Listening Time: {_listener.TotalListeningTime}\' ");
+                    Divider();
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.Write(space + "(A)Albums" + space);
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -255,7 +257,7 @@ namespace SpotifyClone
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write(space + "Search" + space);
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                         ");
+                    Divider();
                 }
                 public void PrintDisplay(string[] array, int startingLine)
                 {
@@ -291,20 +293,20 @@ namespace SpotifyClone
                 }
                 public void PrintCurrentSong()
                 {
-                    Divisor();
+                    Divider();
                     Console.BackgroundColor = currentSongColor;
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.WriteLine(_player.currentSong);
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.ForegroundColor = ConsoleColor.White;
-                    Divisor();
+                    Divider();
 
                 }
                 public void PrintController()
                 {
                     string space = "    ";
                     string initialspace = "             ";
-                    Divisor();
+                    Divider();
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.Write(initialspace + space + "(Z)<-" + space);
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -313,7 +315,7 @@ namespace SpotifyClone
                     Console.Write(space + "->(C)" + space);
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write(space + "Stop(V)" + space);
-                    Divisor();
+                    Divider();
                 }
             }
 
