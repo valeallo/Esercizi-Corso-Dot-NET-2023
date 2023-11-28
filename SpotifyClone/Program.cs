@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using SpotifyClone.Models;
+using static SpotifyClone.Models.Listener;
 
 namespace SpotifyClone
 {
@@ -14,12 +15,14 @@ namespace SpotifyClone
             CsvLoader.LoadAlbumsFromCsv(storageDirectory, listener);
 
             UIClass ui = new UIClass(listener);
-            ui.Start();
+            ui.AskForTimeZone();
         }
 
         static Listener SetupApplication()
         {
-            Listener listener = new Listener("ListenerName");
+            SubscriptionType subscriptionType = SubscriptionType.Free;
+
+            Listener listener = new Listener("ListenerName", subscriptionType);
             Artist amyWinehouse = new Artist("Amy Winehouse", "Amy Winehouse");
             Song[] songs = new Song[]
             {
@@ -30,7 +33,7 @@ namespace SpotifyClone
             Album backToBlack = new Album("Back to Black", songs, amyWinehouse, listener);
             listener.AddAlbum(backToBlack);
 
-            Song BackInBlack = new Song("Back in Black", 4.15);
+            Song BackInBlack = new Song("Back in Black", 1004.15);
             Artist acdc = new Artist("ACDC", "ACDC");
             Song[] acdcSongs = new Song[]
             {

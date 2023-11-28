@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SpotifyClone.Interfaces;
+using static SpotifyClone.Models.Listener;
 
 namespace SpotifyClone.Models
 {
@@ -14,16 +16,32 @@ namespace SpotifyClone.Models
         public Album[] AllAlbums { get; set; }
         public Artist[] AllArtists { get; set; }
         public RadioCollection RadioCollection { get; set; }
+        public TimeSpan TotalListeningTime { get; private set; }
+        public SubscriptionType Subscription { get; set; }
+        
+       public string Timezone { get; set; }
 
 
+        private const int MaxListeningTimeFree = 100;
+        private const int MaxListeningTimePremium = 1000;
+
+        public enum SubscriptionType
+        {
+            Free,
+            Premium,
+            Gold
+        }
 
 
-
-
-        public Listener(string name) : base(name)
+        public Listener(string name, SubscriptionType subscription) : base(name)
         {
             Playlist favoritesPlaylist = new Playlist("Favorites");
             _playlists = new Playlist[] { favoritesPlaylist };
+
+            Subscription = subscription;
+            TotalListeningTime = TimeSpan.Zero;
+
+            InitializeListenerFromLog();
         }
 
         public Playlist[] Playlists { get { return _playlists; } }
@@ -93,7 +111,6 @@ namespace SpotifyClone.Models
             return artistNames;
         }
 
-
         public void AddSongToPlaylist(string playlistName, Song song)
         {
             var playlist = _playlists.FirstOrDefault(p => p.Name == playlistName);
@@ -104,6 +121,54 @@ namespace SpotifyClone.Models
             else
             {
                 Console.WriteLine($"Playlist '{playlistName}' not found.");
+            }
+        }
+
+
+        public void UpdateListeningLog(TimeSpan additionalListeningTime)
+        {
+            string path = Directory.GetCurrentDirectory();
+            string logsDirectory = Path.Combine(path, "logs");
+            string filePath = Path.Combine(logsDirectory, $"{Name}_timelog.csv"); 
+
+            TotalListeningTime += additionalListeningTime;
+            string logEntry = $"{DateTime.UtcNow:yyyy-MM-ddTHH:mm:ss}, {TotalListeningTime:c}";
+
+
+            File.WriteAllText(filePath, logEntry); 
+        }
+
+
+        public bool CanListen()
+        {
+            switch (Subscription)
+            {
+                case SubscriptionType.Free:
+                    return TotalListeningTime.TotalHours < MaxListeningTimeFree;
+                case SubscriptionType.Premium:
+                    return TotalListeningTime.TotalHours < MaxListeningTimePremium;
+                case SubscriptionType.Gold:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+
+        private void InitializeListenerFromLog()
+        {
+            string path = Directory.GetCurrentDirectory();
+            string logsDirectory = Path.Combine(path, "logs");
+            string filePath = Path.Combine(logsDirectory, $"{Name}_timelog.csv");
+
+            if (File.Exists(filePath))
+            {
+                var line = File.ReadAllText(filePath);
+                var parts = line.Split(',');
+                if (parts.Length >= 2 && TimeSpan.TryParse(parts[1].Trim(), out TimeSpan loggedTime))
+                {
+                    TotalListeningTime = loggedTime;
+                }
             }
         }
 
