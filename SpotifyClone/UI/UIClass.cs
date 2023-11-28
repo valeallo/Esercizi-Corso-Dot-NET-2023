@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -13,12 +14,37 @@ namespace SpotifyClone
     internal class UIClass
     {
         MusicPlayer musicPlayer;
+        Listener _listener;
         public UIClass(Listener listener) {
 
             musicPlayer = new MusicPlayer(this, listener);
-
+            _listener = listener;
 
         }
+
+
+        public void AskForTimeZone()
+        {
+            Console.WriteLine("Please enter a nation code (e.g., 'de', 'it', 'fr', 'en-US'): ");
+            string inputTimeZoneId = Console.ReadLine();
+
+            try
+            {
+                string currentTime = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss", new CultureInfo(inputTimeZoneId));
+                Console.WriteLine($"You selected this timezone: {inputTimeZoneId}");
+                _listener.Timezone = inputTimeZoneId;
+                Start();
+            }
+            catch (TimeZoneNotFoundException)
+            {
+                Console.WriteLine($"The entered nation code '{inputTimeZoneId}' was not recognized.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+        }
+
         public void Start()
         {
             bool isRunning = true;
@@ -39,6 +65,7 @@ namespace SpotifyClone
                 {
                     case 'M':
                         musicPlayer.ShowMusicMenu();
+                        
                         break;
                     case 'V':
                         Console.WriteLine("Feature not available.");
@@ -52,8 +79,17 @@ namespace SpotifyClone
                         Console.ReadKey();
                         break;
                 }
+
+
+
+
+
+                
             }
         }
+
+
+
 
         class MusicPlayer
         {
@@ -231,6 +267,16 @@ namespace SpotifyClone
                 }
 
 
+                public void CurrentDateTime()
+                {
+                    string currentTime = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss", new CultureInfo(_listener.Timezone));
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("           "+currentTime + "       ");
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+
                 public void  Divider()
                 {
                     Console.WriteLine("                                                         ");
@@ -241,7 +287,7 @@ namespace SpotifyClone
                     string space = "    ";
                     Console.ForegroundColor = ConsoleColor.White;
                     Divider();
-                    Console.WriteLine($"                                                                                   (Q) Quit");
+                    CurrentDateTime();
                     Divider();
                     Console.Write($"                     (M)Music            (P)Profile              ");
                     Console.Write($"Listening Time: {_listener.TotalListeningTime}\' ");
@@ -317,6 +363,10 @@ namespace SpotifyClone
                     Console.Write(space + "Stop(V)" + space);
                     Divider();
                 }
+
+
+
+              
             }
 
 

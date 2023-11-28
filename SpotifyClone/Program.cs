@@ -15,7 +15,7 @@ namespace SpotifyClone
             CsvLoader.LoadAlbumsFromCsv(storageDirectory, listener);
 
             UIClass ui = new UIClass(listener);
-            ui.Start();
+            ui.AskForTimeZone();
         }
 
         static Listener SetupApplication()

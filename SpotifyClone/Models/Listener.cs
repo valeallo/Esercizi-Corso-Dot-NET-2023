@@ -18,6 +18,8 @@ namespace SpotifyClone.Models
         public RadioCollection RadioCollection { get; set; }
         public TimeSpan TotalListeningTime { get; private set; }
         public SubscriptionType Subscription { get; set; }
+        
+       public string Timezone { get; set; }
 
 
         private const int MaxListeningTimeFree = 100;
