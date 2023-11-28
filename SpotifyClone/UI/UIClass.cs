@@ -315,9 +315,6 @@ namespace SpotifyClone
                         //    player.currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames();
 
                         //}
-                    
-
-
                     }
                     else
                     {
@@ -395,7 +392,7 @@ namespace SpotifyClone
 
             public void CurrentDateTime()
             {
-                string currentTime = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss", new CultureInfo(_listener.Timezone));
+                string currentTime = DateTime.Now.ToString("dddd, dd MMMM yyyy", new CultureInfo(_listener.Timezone));
                 Console.BackgroundColor = ConsoleColor.Cyan;
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("           " + currentTime + "       ");

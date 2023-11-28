@@ -15,6 +15,7 @@ namespace SpotifyClone.Models
         Playlist[] _playlists;
         public Album[] AllAlbums { get; set; }
         public Artist[] AllArtists { get; set; }
+
         public RadioCollection RadioCollection { get; set; }
         public MovieCollection MovieCollection { get; set; }
         public TimeSpan TotalListeningTime { get; private set; }
