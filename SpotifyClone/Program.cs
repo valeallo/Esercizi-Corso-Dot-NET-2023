@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using SpotifyClone.Controllers;
 using SpotifyClone.Models;
 using static SpotifyClone.Models.Listener;
 
@@ -62,6 +63,10 @@ namespace SpotifyClone
             RadioCollection FavoriteRadios = new RadioCollection("FavoriteRadios", listener);
             Radio Zeta = new Radio("Zeta", FavoriteRadios);
             Radio Radio105 = new Radio("Radio105", FavoriteRadios);
+
+            MovieCollection AllMovies = new MovieCollection("Allmovies", listener);
+            Movie caricaDei101 = new Movie("la carica dei 101", AllMovies);
+            Movie armageddon = new Movie ("Armageddon", AllMovies);
 
             
             return listener;
