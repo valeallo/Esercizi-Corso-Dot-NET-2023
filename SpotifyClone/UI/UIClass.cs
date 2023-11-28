@@ -281,6 +281,7 @@ namespace SpotifyClone
 
                 while (inMenu)
                 {
+                    display.CurrentDateTime();
                     Console.Clear();
                     display.PrintCurrentSong();
                     display.PrintController();
@@ -408,6 +409,31 @@ namespace SpotifyClone
             }
 
             public void PrintNavbar()
+            {
+                string space = "    ";
+                Console.ForegroundColor = ConsoleColor.White;
+                Divider();
+                CurrentDateTime();
+                Divider();
+                Console.Write($"                     (M)Music            (P)Profile              ");
+                Console.Write($"Listening Time: {_listener.TotalListeningTime}\' ");
+                Divider();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write(space + "(A)Albums" + space);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(space + "(S)Artists" + space);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(space + "(D)Playlists" + space);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(space + "(F)Radio" + space);
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(space + "Search" + space);
+                Console.ForegroundColor = ConsoleColor.White;
+                Divider();
+            }
+
+
+            public void PrintMovieNavbar()
             {
                 string space = "    ";
                 Console.ForegroundColor = ConsoleColor.White;
