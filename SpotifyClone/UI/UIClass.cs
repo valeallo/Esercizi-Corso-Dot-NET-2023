@@ -149,30 +149,27 @@ namespace SpotifyClone
                
                         if ((selectedMenu == "songs" || selectedMenu == "radio") && number <= player.currentArrayToDisplay.Length)
                         {
-            
                             player.PlayPause(number);
-     
                         }
-                        else if (selectedMenu == "artist" && number <= currentArtistsList.Length)
+                        else if (selectedMenu == "artist" && number <= player.currentArtistsList.Length)
                         {
-                           Artist SelectedArtist = currentArtistsList[number - 1];
+                            Artist SelectedArtist = player.currentArtistsList[number - 1];
                             Console.WriteLine(SelectedArtist.Name);
                             selectedMenu = "album";
-                            currentPlaylistCollection = SelectedArtist.GetAllAlbums();
+                            player.currentPlaylistCollection = SelectedArtist.GetAllAlbums();
                             player.currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames();
 
                         }
-                        else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= currentPlaylistCollection.Length)
+                        else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= player.currentPlaylistCollection.Length)
                         {
                             selectedMenu = "songs";
-                            player.playlist = currentPlaylistCollection[number - 1];
+                            player.playlist = player.currentPlaylistCollection[number - 1];
                             player.currentArrayToDisplay = player.GetSongNames();
                         } else
                         {
                             Console.WriteLine("Invalid selection. Please try again.");
                             Console.ReadKey();
                         }
-                      
 
                     }
                     else
@@ -183,27 +180,22 @@ namespace SpotifyClone
                             case 'A':
                                 myColor = ConsoleColor.Magenta;
                                 selectedMenu = "album";
-                                currentPlaylistCollection = listener.AllAlbums;
-                                player.currentArrayToDisplay = listener.GetAlbumArray(listener.AllAlbums);
+                                player.UpdateDisplayForMenuOption(selectedMenu);
                                 break;
                             case 'S':
                                 myColor = ConsoleColor.Red;
                                 selectedMenu = "artist";
-                                currentPlaylistCollection = null;
-                                currentArtistsList = listener.AllArtists;
-                                player.currentArrayToDisplay = listener.GetArtistsArray();
+                                player.UpdateDisplayForMenuOption(selectedMenu);
                                 break;
                             case 'D':
                                 myColor = ConsoleColor.Green;
                                 selectedMenu = "playlist";
-                                currentPlaylistCollection = listener.Playlists;
-                                player.currentArrayToDisplay = listener.GetAlbumArray(listener.Playlists);
+                                player.UpdateDisplayForMenuOption(selectedMenu);
                                 break;
                             case 'F':
                                 myColor = ConsoleColor.Yellow;
-                                currentPlaylistCollection = null;
-                                player.playlist = listener.RadioCollection;
-                                player.currentArrayToDisplay = player.GetSongNames();
+                                selectedMenu = "radio";
+                                player.UpdateDisplayForMenuOption(selectedMenu);
                                 break;
                             case 'Z':
                                 if (player.currentlyPlaying >= 1) {
@@ -268,14 +260,12 @@ namespace SpotifyClone
 
             public void ShowMovieMenu()
             {
-                player.playlist = listener.MovieCollection;
-                player.currentArrayToDisplay = player.GetSongNames();
-
                 bool inMenu = true;
                 int displayStartLine = 14;
                 ConsoleColor myColor = ConsoleColor.Magenta;
                 Artist[] currentArtistsList = new Artist[0];
                 string selectedMenu = "movies";
+                player.UpdateDisplayForMenuOption(selectedMenu);
 
 
 
