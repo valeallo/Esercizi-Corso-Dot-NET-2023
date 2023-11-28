@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using SpotifyClone.Interfaces;
 using SpotifyClone.Models;
 
-namespace SpotifyClone
+namespace SpotifyClone.Controllers
 {
     internal class Player
     {
-        public string currentSong {  get; set; }
+        public string currentSong { get; set; }
         public IPlaylist playlist { get; set; }
 
         public int currentlyPlaying = 0;
@@ -20,14 +20,14 @@ namespace SpotifyClone
         private Listener _listener;
         public bool isPlaying = false;
 
-        public Player(Listener listener) 
+        public Player(Listener listener)
         {
             _listener = listener;
-        
+
         }
 
 
-        public void PlayPause() 
+        public void PlayPause()
         {
             isPlaying = !isPlaying;
         }
@@ -37,7 +37,7 @@ namespace SpotifyClone
         {
             isPlaying = true;
             int songNumber = num - 1;
-            if (!_listener.CanListen()) 
+            if (!_listener.CanListen())
             {
                 Random rnd = new Random();
                 songNumber = rnd.Next(0, currentArrayToDisplay.Length);

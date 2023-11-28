@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace SpotifyClone
+namespace SpotifyClone.Controllers
 {
 
     public static class CsvLoader
@@ -14,7 +14,7 @@ namespace SpotifyClone
         internal static void LoadAlbumsFromCsv(string filePath, Listener listener)
         {
             string[] lines = File.ReadAllLines(filePath);
-            var songs = lines.Skip(1) 
+            var songs = lines.Skip(1)
                 .Select(line =>
                 {
                     string[] values = line.Split(',');
@@ -22,14 +22,14 @@ namespace SpotifyClone
                     Artist artist = listener.AllArtists?.FirstOrDefault(a => a.Name == values[4]) ?? new Artist(values[4], values[4]);
                     song.Artist = artist;
                     listener.AddArtist(artist);
-                    
+
                     if (values[6].Length > 0)
                     {
                         Playlist playlist = listener.Playlists?.FirstOrDefault(a => a.Name == values[6]) ?? new Playlist(values[6]);
                         listener.AddPlaylist(playlist);
                         playlist.AddSong(song);
                     }
-                    return new {AlbumTitle = values[3], Artist = artist , Song = song};
+                    return new { AlbumTitle = values[3], Artist = artist, Song = song };
                 }).ToList();
             var songsGroupedByAlbum = songs.GroupBy(x => x.AlbumTitle);
 
@@ -43,7 +43,7 @@ namespace SpotifyClone
                 Album album = listener.AllAlbums?.FirstOrDefault(a => a.Name == albumTitle) ?? new Album(albumTitle, songsArray, albumArtist, listener);
             }
 
-           
+
         }
     }
 
