@@ -8,9 +8,9 @@ namespace SpotifyClone.Models
 {
     internal class Movie : Audiotrack
     {
-        public Movie(string name, RadioCollection collection) : base(name)
+        public Movie(string name, MovieCollection collection) : base(name)
         {
-            collection.AddRadio();
+            collection.AddMovie(this);
         }
 
 
