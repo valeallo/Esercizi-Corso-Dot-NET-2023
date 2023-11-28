@@ -13,9 +13,6 @@ namespace SpotifyClone.Models
             collection.AddMovie(this);
         }
 
-
-
-
         public override string TrackDetails { get { return Name; } }
     }
 }
