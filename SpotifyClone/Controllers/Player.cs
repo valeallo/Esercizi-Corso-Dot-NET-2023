@@ -55,6 +55,14 @@ namespace SpotifyClone.Controllers
             }
 
         }
+
+
+        public void Stop ()
+        {
+            isPlaying = false;
+            currentSong = " ";
+            currentlyPlaying = 0;
+        }
         public void Next()
         {
             if (currentlyPlaying >= currentArrayToDisplay.Length)
@@ -134,6 +142,26 @@ namespace SpotifyClone.Controllers
                     currentArrayToDisplay = GetSongNames();
                     break;
             }
+        }
+
+
+        public void UpdateDisplayForMenuOption(string selectedMenu, int num)
+        {
+
+            switch (selectedMenu)
+            {
+                case "album":
+                    Artist SelectedArtist = currentArtistsList[num - 1];
+                    currentPlaylistCollection = SelectedArtist.GetAllAlbums();
+                    currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames(); ;
+                    break;
+                case "songs":
+                    playlist = currentPlaylistCollection[num - 1];
+                    currentArrayToDisplay = GetSongNames();
+                    break;
+            }
+           
+          
         }
 
     }

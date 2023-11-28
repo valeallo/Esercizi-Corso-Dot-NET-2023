@@ -68,7 +68,6 @@ namespace SpotifyClone
                 {
                     case 'M':
                         musicPlayer.ShowMusicMenu();
-                        
                         break;
                     case 'V':
                         moviePlayer.ShowMovieMenu();
@@ -120,9 +119,8 @@ namespace SpotifyClone
                 bool inMenu = true;
                 int displayStartLine = 14;
                 ConsoleColor myColor = ConsoleColor.Magenta;
-                IPlaylist[] currentPlaylistCollection = new IPlaylist[0];
-                Artist[] currentArtistsList = new Artist[0];
                 string selectedMenu = "album";
+                player.UpdateDisplayForMenuOption(selectedMenu);
 
 
 
@@ -153,18 +151,13 @@ namespace SpotifyClone
                         }
                         else if (selectedMenu == "artist" && number <= player.currentArtistsList.Length)
                         {
-                            Artist SelectedArtist = player.currentArtistsList[number - 1];
-                            Console.WriteLine(SelectedArtist.Name);
                             selectedMenu = "album";
-                            player.currentPlaylistCollection = SelectedArtist.GetAllAlbums();
-                            player.currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames();
-
+                            player.UpdateDisplayForMenuOption(selectedMenu, number);
                         }
                         else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= player.currentPlaylistCollection.Length)
                         {
                             selectedMenu = "songs";
-                            player.playlist = player.currentPlaylistCollection[number - 1];
-                            player.currentArrayToDisplay = player.GetSongNames();
+                            player.UpdateDisplayForMenuOption(selectedMenu, number);
                         } else
                         {
                             Console.WriteLine("Invalid selection. Please try again.");
@@ -345,9 +338,7 @@ namespace SpotifyClone
                                 }
                                 break;
                             case 'V':
-                                player.isPlaying = false;
-                                player.currentSong = " ";
-                                player.currentlyPlaying = 0;
+                                player.Stop();
                                 break;
                             case 'Q':
                                 inMenu = false;
