@@ -256,7 +256,6 @@ namespace SpotifyClone
                 bool inMenu = true;
                 int displayStartLine = 14;
                 ConsoleColor myColor = ConsoleColor.Magenta;
-                Artist[] currentArtistsList = new Artist[0];
                 string selectedMenu = "movies";
                 player.UpdateDisplayForMenuOption(selectedMenu);
 
