@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arrays", "Arrays\Arrays.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifyClone", "SpotifyClone\SpotifyClone.csproj", "{81D05950-D48A-4DAD-A9B4-F74EA7116C4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemExercise", "FileSystemExercise\FileSystemExercise.csproj", "{4337E2A5-0E5B-4B2E-ABA6-623BD5BB0AC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystemExercise", "FileSystemExercise\FileSystemExercise.csproj", "{4337E2A5-0E5B-4B2E-ABA6-623BD5BB0AC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Singleton", "Singleton\Singleton.csproj", "{D07BE673-73CA-413C-A57A-5A8BC51BD397}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{4337E2A5-0E5B-4B2E-ABA6-623BD5BB0AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4337E2A5-0E5B-4B2E-ABA6-623BD5BB0AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4337E2A5-0E5B-4B2E-ABA6-623BD5BB0AC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D07BE673-73CA-413C-A57A-5A8BC51BD397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D07BE673-73CA-413C-A57A-5A8BC51BD397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07BE673-73CA-413C-A57A-5A8BC51BD397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D07BE673-73CA-413C-A57A-5A8BC51BD397}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
