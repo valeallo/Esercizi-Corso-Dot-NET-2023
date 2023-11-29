@@ -68,7 +68,6 @@ namespace SpotifyClone
                 {
                     case 'M':
                         musicPlayer.ShowMusicMenu();
-                        
                         break;
                     case 'V':
                         moviePlayer.ShowMovieMenu();
@@ -120,9 +119,8 @@ namespace SpotifyClone
                 bool inMenu = true;
                 int displayStartLine = 14;
                 ConsoleColor myColor = ConsoleColor.Magenta;
-                IPlaylist[] currentPlaylistCollection = new IPlaylist[0];
-                Artist[] currentArtistsList = new Artist[0];
                 string selectedMenu = "album";
+                player.UpdateDisplayForMenuOption(selectedMenu);
 
 
 
@@ -149,30 +147,22 @@ namespace SpotifyClone
                
                         if ((selectedMenu == "songs" || selectedMenu == "radio") && number <= player.currentArrayToDisplay.Length)
                         {
-            
                             player.PlayPause(number);
-     
                         }
-                        else if (selectedMenu == "artist" && number <= currentArtistsList.Length)
+                        else if (selectedMenu == "artist" && number <= player.currentArtistsList.Length)
                         {
-                           Artist SelectedArtist = currentArtistsList[number - 1];
-                            Console.WriteLine(SelectedArtist.Name);
                             selectedMenu = "album";
-                            currentPlaylistCollection = SelectedArtist.GetAllAlbums();
-                            player.currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames();
-
+                            player.UpdateDisplayForMenuOption(selectedMenu, number);
                         }
-                        else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= currentPlaylistCollection.Length)
+                        else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= player.currentPlaylistCollection.Length)
                         {
                             selectedMenu = "songs";
-                            player.playlist = currentPlaylistCollection[number - 1];
-                            player.currentArrayToDisplay = player.GetSongNames();
+                            player.UpdateDisplayForMenuOption(selectedMenu, number);
                         } else
                         {
                             Console.WriteLine("Invalid selection. Please try again.");
                             Console.ReadKey();
                         }
-                      
 
                     }
                     else
@@ -183,27 +173,22 @@ namespace SpotifyClone
                             case 'A':
                                 myColor = ConsoleColor.Magenta;
                                 selectedMenu = "album";
-                                currentPlaylistCollection = listener.AllAlbums;
-                                player.currentArrayToDisplay = listener.GetAlbumArray(listener.AllAlbums);
+                                player.UpdateDisplayForMenuOption(selectedMenu);
                                 break;
                             case 'S':
                                 myColor = ConsoleColor.Red;
                                 selectedMenu = "artist";
-                                currentPlaylistCollection = null;
-                                currentArtistsList = listener.AllArtists;
-                                player.currentArrayToDisplay = listener.GetArtistsArray();
+                                player.UpdateDisplayForMenuOption(selectedMenu);
                                 break;
                             case 'D':
                                 myColor = ConsoleColor.Green;
                                 selectedMenu = "playlist";
-                                currentPlaylistCollection = listener.Playlists;
-                                player.currentArrayToDisplay = listener.GetAlbumArray(listener.Playlists);
+                                player.UpdateDisplayForMenuOption(selectedMenu);
                                 break;
                             case 'F':
                                 myColor = ConsoleColor.Yellow;
-                                currentPlaylistCollection = null;
-                                player.playlist = listener.RadioCollection;
-                                player.currentArrayToDisplay = player.GetSongNames();
+                                selectedMenu = "radio";
+                                player.UpdateDisplayForMenuOption(selectedMenu);
                                 break;
                             case 'Z':
                                 if (player.currentlyPlaying >= 1) {
@@ -268,19 +253,17 @@ namespace SpotifyClone
 
             public void ShowMovieMenu()
             {
-                player.playlist = listener.MovieCollection;
-                player.currentArrayToDisplay = player.GetSongNames();
-
                 bool inMenu = true;
                 int displayStartLine = 14;
                 ConsoleColor myColor = ConsoleColor.Magenta;
-                Artist[] currentArtistsList = new Artist[0];
                 string selectedMenu = "movies";
+                player.UpdateDisplayForMenuOption(selectedMenu);
 
 
 
                 while (inMenu)
                 {
+                    display.CurrentDateTime();
                     Console.Clear();
                     display.PrintCurrentSong();
                     display.PrintController();
@@ -314,9 +297,6 @@ namespace SpotifyClone
                         //    player.currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames();
 
                         //}
-                    
-
-
                     }
                     else
                     {
@@ -357,9 +337,7 @@ namespace SpotifyClone
                                 }
                                 break;
                             case 'V':
-                                player.isPlaying = false;
-                                player.currentSong = " ";
-                                player.currentlyPlaying = 0;
+                                player.Stop();
                                 break;
                             case 'Q':
                                 inMenu = false;
@@ -394,7 +372,7 @@ namespace SpotifyClone
 
             public void CurrentDateTime()
             {
-                string currentTime = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss", new CultureInfo(_listener.Timezone));
+                string currentTime = DateTime.Now.ToString("dddd, dd MMMM yyyy", new CultureInfo(_listener.Timezone));
                 Console.BackgroundColor = ConsoleColor.Cyan;
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("           " + currentTime + "       ");
@@ -408,6 +386,31 @@ namespace SpotifyClone
             }
 
             public void PrintNavbar()
+            {
+                string space = "    ";
+                Console.ForegroundColor = ConsoleColor.White;
+                Divider();
+                CurrentDateTime();
+                Divider();
+                Console.Write($"                     (M)Music            (P)Profile              ");
+                Console.Write($"Listening Time: {_listener.TotalListeningTime}\' ");
+                Divider();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write(space + "(A)Albums" + space);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(space + "(S)Artists" + space);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(space + "(D)Playlists" + space);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(space + "(F)Radio" + space);
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(space + "Search" + space);
+                Console.ForegroundColor = ConsoleColor.White;
+                Divider();
+            }
+
+
+            public void PrintMovieNavbar()
             {
                 string space = "    ";
                 Console.ForegroundColor = ConsoleColor.White;

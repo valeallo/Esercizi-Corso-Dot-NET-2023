@@ -11,11 +11,10 @@ namespace SpotifyClone.Models
     {
         string _name;
         Movie[] _movies;
-        public MovieCollection(string name, Listener listener)
+        public MovieCollection(string name)
         {
 
             _name = name;
-            listener.MovieCollection = this;
         }
 
         public string Name { get { return _name; } }

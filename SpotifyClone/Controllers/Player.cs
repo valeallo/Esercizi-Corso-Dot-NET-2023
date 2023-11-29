@@ -13,6 +13,8 @@ namespace SpotifyClone.Controllers
     {
         public string currentSong { get; set; }
         public IPlaylist playlist { get; set; }
+        public Artist[] currentArtistsList {  get; set; }
+        public IPlaylist[] currentPlaylistCollection { get; set; }
 
         public int currentlyPlaying = 0;
 
@@ -52,6 +54,14 @@ namespace SpotifyClone.Controllers
                 _listener.UpdateListeningLog(song.Duration);
             }
 
+        }
+
+
+        public void Stop ()
+        {
+            isPlaying = false;
+            currentSong = " ";
+            currentlyPlaying = 0;
         }
         public void Next()
         {
@@ -98,6 +108,60 @@ namespace SpotifyClone.Controllers
                 songNames[i] = playlist.Songs[i].TrackDetails;
             }
             return songNames;
+        }
+
+
+
+
+        public void UpdateDisplayForMenuOption(string selectedMenu)
+        {
+            switch (selectedMenu)
+            {
+                case "album":
+                    currentPlaylistCollection = _listener.AllAlbums;
+                    currentArrayToDisplay = _listener.GetAlbumArray(_listener.AllAlbums); ;
+                    break;
+                case "artist":
+                    selectedMenu = "artist";
+                    currentPlaylistCollection = null;
+                    currentArtistsList = _listener.AllArtists;
+                    currentArrayToDisplay = _listener.GetArtistsArray();
+                    break;
+                case "playlist":
+                    currentPlaylistCollection = _listener.Playlists;
+                    currentArrayToDisplay = _listener.GetAlbumArray(_listener.Playlists); ;
+                    break;
+                case "radio":
+                    currentPlaylistCollection = null;
+                    playlist = _listener.RadioCollection;
+                    currentArrayToDisplay = GetSongNames();
+                    break;
+                case "movies":
+                    currentPlaylistCollection = null;
+                    playlist = _listener.MovieCollection;
+                    currentArrayToDisplay = GetSongNames();
+                    break;
+            }
+        }
+
+
+        public void UpdateDisplayForMenuOption(string selectedMenu, int num)
+        {
+
+            switch (selectedMenu)
+            {
+                case "album":
+                    Artist SelectedArtist = currentArtistsList[num - 1];
+                    currentPlaylistCollection = SelectedArtist.GetAllAlbums();
+                    currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames(); ;
+                    break;
+                case "songs":
+                    playlist = currentPlaylistCollection[num - 1];
+                    currentArrayToDisplay = GetSongNames();
+                    break;
+            }
+           
+          
         }
 
     }

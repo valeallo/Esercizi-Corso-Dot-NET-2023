@@ -8,11 +8,15 @@ namespace SpotifyClone.Models
 {
     internal class Movie : Audiotrack
     {
-        public Movie(string name, MovieCollection collection) : base(name)
+        Director _director;
+        public Movie(string name, MovieCollection collection, Director director) : base(name)
         {
             collection.AddMovie(this);
+            _director = director;
+            _director.AddMovie(this);
         }
 
         public override string TrackDetails { get { return Name; } }
+        public Director Director { get { return _director; } set { _director = value; } }
     }
 }
