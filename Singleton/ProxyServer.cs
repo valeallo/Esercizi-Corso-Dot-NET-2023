@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Singleton
 {
-     class ProxyServer
+     sealed class ProxyServer
     {
-        
         public static ProxyServer _instance;
         static Random rnd = new Random();
         private string[] ipAddresses = new string[4];
