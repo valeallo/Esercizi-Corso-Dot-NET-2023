@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Singleton
 {
-     class ProxyServer
+     sealed class ProxyServer
     {
-        
         public static ProxyServer _instance;
         static Random rnd = new Random();
         private string[] ipAddresses = new string[4];
+        private static readonly object  _lock = new object();
 
         private ProxyServer() 
         {
@@ -27,7 +27,14 @@ namespace Singleton
         {
             if (_instance == null)
             {
-                _instance = new ProxyServer();
+                lock (_lock) 
+                { 
+                    if ( _instance == null )
+                    {
+                        _instance = new ProxyServer();
+                    }
+                }
+ 
             }
             return _instance;
         }
