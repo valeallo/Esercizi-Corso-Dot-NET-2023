@@ -48,6 +48,7 @@ namespace SpotifyClone.Controllers
             currentSong = currentArrayToDisplay[songNumber];
             Audiotrack current = playlist.Songs[songNumber];
             currentlyPlaying = songNumber + 1;
+            current.IncrementListenCount();
 
             if (current is Song song)
             {

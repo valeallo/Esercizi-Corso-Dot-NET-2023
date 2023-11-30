@@ -10,22 +10,26 @@ namespace SpotifyClone
     {
         static void Main(string[] args)
         {
-
+            string path = myProjectDirectory();
+            string storageDirectory = Path.Combine(path, "storage", "songs.csv");
+            string allSongsJsonPath = Path.Combine(path, "storage", "allSongs.json");
             Listener listener = SetupApplication();
-     
+            CsvLoader.LoadAlbumsFromCsv(storageDirectory, listener);
+            UserDataManager.SaveToJsonFile(listener.AllSongs, allSongsJsonPath);
+
 
             UIClass ui = new UIClass(listener);
             ui.AskForTimeZone();
+             UserDataManager.SaveToJsonFile(listener.AllSongs, allSongsJsonPath); ;
         }
 
         static Listener SetupApplication()
         {
-            string path = myProjectDirectory();
-            string storageDirectory = Path.Combine(path, "storage", "songs.csv");
+            
             SubscriptionType subscriptionType = SubscriptionType.Free;
 
             Listener listener = new Listener("ListenerName", subscriptionType);
-            CsvLoader.LoadAlbumsFromCsv(storageDirectory, listener);
+   
 
 
             RadioCollection FavoriteRadios = new RadioCollection("FavoriteRadios", listener);
@@ -38,10 +42,7 @@ namespace SpotifyClone
             Movie armageddon = new Movie ("Armageddon", AllMovies, director);
 
 
-            string allSongsJsonPath = Path.Combine(path, "storage", "allSongs.json");
-
-
-            UserDataManager.SaveToJsonFile(listener.AllSongs, allSongsJsonPath);
+           
             return listener;
         }
 
