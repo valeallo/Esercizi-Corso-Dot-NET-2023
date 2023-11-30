@@ -11,6 +11,7 @@ namespace SpotifyClone.Models
         Album[] _albums;
         string _genre;
 
+
         public Artist(string name, string Genre) : base(name)
         {
             _genre = Genre;

@@ -9,7 +9,7 @@ namespace SpotifyClone.Models
     internal class Song : Audiotrack
     {
         TimeSpan _duration;
-        Album _album;
+        private Album _album;
         Artist _artist;
 
         public Song(string Name, double Duration) : base(Name)
@@ -21,11 +21,23 @@ namespace SpotifyClone.Models
         }
 
         public TimeSpan Duration { get { return _duration; } }
-        public Album Album { get { return _album; } set { _album = value; } }
-        public Artist Artist { get { return _artist; } set { _artist = value; } }
+        public string Album {get { return _album?.Name; } }
+        public string Artist { get { return _artist?.Name; } }
         //public string ReleaseDate { get { return _album.ReleaseDate; } }
 
-        public override string TrackDetails { get { return Name + "  -  " + _artist.Name +  "  -  " + _artist.Genre; } }
+        public override string GetTrackDetails ()
+        {
+            return Name + "  -  " + _artist.Name + "  -  " + _artist.Genre;
+        }
 
+
+        internal void AddAlbum(Album album)
+        {
+            _album = album;
+        }
+        internal void AddArtist(Artist artist)
+        {
+            _artist = artist;
+        }
     }
 }

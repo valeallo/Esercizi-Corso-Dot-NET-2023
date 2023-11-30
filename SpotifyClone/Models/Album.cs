@@ -32,8 +32,9 @@ namespace SpotifyClone.Models
 
             foreach (var song in _songs)
             {
-                song.Album = this;
-                song.Artist = artist;
+                song.AddAlbum(this);
+                song.AddArtist(artist);
+                listener.AddSong(song);
             }
         }
 

@@ -20,8 +20,10 @@ namespace SpotifyClone.Models
         public MovieCollection MovieCollection { get; set; }
         public TimeSpan TotalListeningTime { get; private set; }
         public SubscriptionType Subscription { get; set; }
-        
-       public string Timezone { get; set; }
+        public List<Song> AllSongs { get; private set; }
+
+        public string Timezone { get; set; }
+
 
 
         private const int MaxListeningTimeFree = 100;
@@ -42,6 +44,8 @@ namespace SpotifyClone.Models
 
             Subscription = subscription;
             TotalListeningTime = TimeSpan.Zero;
+
+            AllSongs = new List<Song>();
 
             InitializeListenerFromLog();
         }
@@ -173,6 +177,28 @@ namespace SpotifyClone.Models
                 }
             }
         }
+
+
+
+        public void AddSong(Song song)
+        {
+            if (!AllSongs.Contains(song))
+            {
+                AllSongs.Add(song);
+            }
+        }
+
+        public void RemoveSong(Song song)
+        {
+            AllSongs.Remove(song);
+        }
+
+
+        public Song GetSongByName(string name)
+        {
+            return AllSongs.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+
 
     }
 }

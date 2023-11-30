@@ -16,7 +16,10 @@ namespace SpotifyClone.Models
             _director.AddMovie(this);
         }
 
-        public override string TrackDetails { get { return Name; } }
+        public override string GetTrackDetails()
+        {
+            return Name + "-" + _director.Name;
+        }
         public Director Director { get { return _director; } set { _director = value; } }
     }
 }

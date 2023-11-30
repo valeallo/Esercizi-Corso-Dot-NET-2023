@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,9 @@ namespace SpotifyClone.Models
 
 
 
-        public override string TrackDetails { get { return Name; } }
+        public override string GetTrackDetails()
+        {
+            return Name;
+        }
     }
 }

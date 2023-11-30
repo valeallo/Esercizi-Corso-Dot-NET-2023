@@ -105,7 +105,7 @@ namespace SpotifyClone.Controllers
 
             for (int i = 0; i < songNames.Length; i++)
             {
-                songNames[i] = playlist.Songs[i].TrackDetails;
+                songNames[i] = playlist.Songs[i].GetTrackDetails();
             }
             return songNames;
         }
