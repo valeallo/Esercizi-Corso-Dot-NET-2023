@@ -38,9 +38,6 @@ namespace SpotifyClone.Models
             _radios = _radios.Where(p => p != radio).ToArray();
         }
 
-
-
-
         public Audiotrack[] Songs { get { return _radios; } }
     }
 }
