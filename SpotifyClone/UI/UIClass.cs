@@ -149,7 +149,7 @@ namespace SpotifyClone
                         {
                             player.PlayPause(number);
                         }
-                        else if (selectedMenu == "artist" && number <= player.currentArtistsList.Length)
+                        else if (selectedMenu == "artist" && number <= player.currentArrayToDisplay.Length)
                         {
                             selectedMenu = "album";
                             player.UpdateDisplayForMenuOption(selectedMenu, number);

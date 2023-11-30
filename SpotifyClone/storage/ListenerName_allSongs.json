@@ -4,335 +4,449 @@
     "Album": "Innuendo",
     "Artist": "Queen",
     "Name": "The Time to Kill is Now",
-    "Id": "3e16d07c-9bb2-4f4a-adc1-fed006a11c54",
-    "ListenCount": 4
+    "Id": "bdc26a9c-2ca5-4fc4-b6c6-0bdc98d97724",
+    "ListenCount": 0,
+    "Playlists": [
+      "Workout"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Innuendo",
     "Artist": "Queen",
     "Name": "Walk this Way",
-    "Id": "64c08e4e-96da-4bdd-9c91-f966d7d31a08",
-    "ListenCount": 3
+    "Id": "81c3c735-6865-4191-80a8-8860c9f2d29c",
+    "ListenCount": 0,
+    "Playlists": [
+      "90's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Innuendo",
     "Artist": "Queen",
     "Name": "Vegans Bomb",
-    "Id": "a2304859-925d-4de2-9ecd-2cab91d3fb24",
-    "ListenCount": 0
+    "Id": "80a0d976-bbcc-470a-91c7-888a6b308288",
+    "ListenCount": 0,
+    "Playlists": []
   },
   {
     "Duration": "00:04:00",
     "Album": "Innuendo",
     "Artist": "Queen",
     "Name": "Mareluna",
-    "Id": "fef0755b-6102-4d87-9906-9a8e596d6498",
-    "ListenCount": 1
+    "Id": "fdfd3e51-d7c4-444e-9f78-991c0d3f7170",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Innuendo",
     "Artist": "Queen",
     "Name": "The Unforgiven",
-    "Id": "5e531477-26b0-4cd0-93b7-50fa290f8e24",
-    "ListenCount": 2
+    "Id": "96473539-3e45-4561-8745-5ca5893634cb",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Innuendo",
     "Artist": "Queen",
     "Name": "Let me put my love into you",
-    "Id": "941b58ca-c156-49d6-9820-04730d6dc136",
-    "ListenCount": 0
+    "Id": "0eb70748-38b4-4e54-8a5a-c00090d1ba6b",
+    "ListenCount": 0,
+    "Playlists": [
+      "Hard Rock 70's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Like a virgin",
     "Artist": "Madonna",
     "Name": "Murder Worship",
-    "Id": "a3e28177-3eb0-45eb-adaf-5088469bbed8",
-    "ListenCount": 8
+    "Id": "cc2ce2cb-3350-4cf6-81a4-7cdb06073a8f",
+    "ListenCount": 0,
+    "Playlists": [
+      "Workout"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Like a virgin",
     "Artist": "Madonna",
     "Name": "Barbaric",
-    "Id": "40df0456-8080-437e-8aca-3b90a6bdae89",
-    "ListenCount": 10
+    "Id": "f4d6e623-48e1-491b-b00d-a2fbec8d37ce",
+    "ListenCount": 0,
+    "Playlists": [
+      "Workout"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Like a virgin",
     "Artist": "Madonna",
     "Name": "Skinny Little Missy",
-    "Id": "e2e9f15f-4292-4a67-b07a-d669d4fd0069",
-    "ListenCount": 3
+    "Id": "6ecc51ce-cd7a-4a98-956a-4109b1c80476",
+    "ListenCount": 0,
+    "Playlists": []
   },
   {
     "Duration": "00:04:00",
     "Album": "Like a virgin",
     "Artist": "Madonna",
     "Name": "Those Days",
-    "Id": "a3fc5df4-ede3-462b-9610-82b13fdc2557",
-    "ListenCount": 3
+    "Id": "298dfe98-1b0c-4734-b76e-7813ffcda10f",
+    "ListenCount": 0,
+    "Playlists": []
   },
   {
     "Duration": "00:04:00",
     "Album": "Like a virgin",
     "Artist": "Madonna",
     "Name": "Who's that girl",
-    "Id": "ef577e4e-dae2-4997-9685-00e13ebdb2d0",
-    "ListenCount": 2
+    "Id": "58fb397b-ea8c-4613-aa87-db085ad8d4c9",
+    "ListenCount": 0,
+    "Playlists": []
   },
   {
     "Duration": "00:04:00",
     "Album": "Like a virgin",
     "Artist": "Madonna",
     "Name": "Evviva o rre",
-    "Id": "204bc241-9e6e-470f-8024-aa65fa193df8",
-    "ListenCount": 2
+    "Id": "3f97af75-4149-4a56-bcc2-534ce37d19ef",
+    "ListenCount": 0,
+    "Playlists": [
+      "90's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Like a virgin",
     "Artist": "Madonna",
     "Name": "Tempo di cambiare",
-    "Id": "40f987d6-caf8-4be8-9291-39797ef25f50",
-    "ListenCount": 2
+    "Id": "1fc2e7fc-37e2-41a6-acf5-8956e90c011b",
+    "ListenCount": 0,
+    "Playlists": [
+      "90's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Like a virgin",
     "Artist": "Madonna",
     "Name": "Sad but true",
-    "Id": "5155ed80-ccda-4ea9-81b1-eaaac553ecba",
-    "ListenCount": 2
+    "Id": "839b2d1c-cd3e-4269-af06-36f92870682a",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Like a virgin",
     "Artist": "Madonna",
     "Name": "Bck in Black",
-    "Id": "3da1947e-a4a5-44d4-9ad5-69b36c29bd84",
-    "ListenCount": 3
+    "Id": "d267dcb4-8704-4405-a9cb-fdda1a89916c",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Like a virgin",
     "Artist": "Madonna",
     "Name": "Have a drink on me",
-    "Id": "8a7b8ccc-347a-4ed2-8dca-0a33e33b5932",
-    "ListenCount": 7
+    "Id": "07266bb0-8bb8-4afc-927c-89b9faea5806",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Thriller",
     "Artist": "Michael Jackson",
     "Name": "Death Waking Terror",
-    "Id": "3c5f5812-b03b-4735-90fe-2e3d4c82f76d",
-    "ListenCount": 2
+    "Id": "023bf4ba-d692-42bb-a9ff-ffc30e07ded3",
+    "ListenCount": 0,
+    "Playlists": [
+      "Workout"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Thriller",
     "Artist": "Michael Jackson",
     "Name": "Crazy",
-    "Id": "a4b962a6-e93b-4ffc-baa4-b83c83ad96c4",
-    "ListenCount": 3
+    "Id": "1a3b0d7a-daa2-4d63-a752-cb8c5451aac6",
+    "ListenCount": 0,
+    "Playlists": [
+      "Workout"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Thriller",
     "Artist": "Michael Jackson",
     "Name": "Dream On",
-    "Id": "6f329f86-312e-42b3-81e6-182ddf92544e",
-    "ListenCount": 4
+    "Id": "da9e261f-b250-44d4-a8bc-2894bfe4487d",
+    "ListenCount": 0,
+    "Playlists": [
+      "Workout"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Thriller",
     "Artist": "Michael Jackson",
     "Name": "Rag Doll",
-    "Id": "c067380c-bb2f-4a4c-b2d1-83816d324158",
-    "ListenCount": 0
+    "Id": "abaf95e6-6191-477c-a168-21a96a34c8ad",
+    "ListenCount": 0,
+    "Playlists": [
+      "90's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Thriller",
     "Artist": "Michael Jackson",
     "Name": "San Quentin",
-    "Id": "d0eeb7ca-d1f6-4fd4-9035-c4767d0fd141",
-    "ListenCount": 0
+    "Id": "9181ec09-211b-4ea6-a109-fcfe97dddff4",
+    "ListenCount": 0,
+    "Playlists": [
+      "90's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Thriller",
     "Artist": "Michael Jackson",
     "Name": "High Time",
-    "Id": "47fe852a-6c19-42b1-a557-76bcda6f7abc",
-    "ListenCount": 0
+    "Id": "d4cc3777-f24c-452d-b82a-b517f6b4e39c",
+    "ListenCount": 0,
+    "Playlists": []
   },
   {
     "Duration": "00:04:00",
     "Album": "Thriller",
     "Artist": "Michael Jackson",
     "Name": "Sara",
-    "Id": "9d859ff5-cf97-4821-ac34-b55ab8abc1df",
-    "ListenCount": 0
+    "Id": "bdb25f58-0aeb-4c88-a3e1-745fa9e5edec",
+    "ListenCount": 0,
+    "Playlists": [
+      "90's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Thriller",
     "Artist": "Michael Jackson",
     "Name": "Wherever i may roam",
-    "Id": "b0aefde9-1144-4f6b-b614-30606f489e36",
-    "ListenCount": 0
+    "Id": "770ed5d0-4c1c-4dbf-af7e-5e1f4a20e2c4",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Thriller",
     "Artist": "Michael Jackson",
     "Name": "Shake a leg",
-    "Id": "e54c3556-255a-4ef5-8e80-afd5bd36ccef",
-    "ListenCount": 0
+    "Id": "529d4315-5c98-4672-acc7-2f500ef109ec",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Nevermind",
     "Artist": "Nirvana",
     "Name": "Make Them Suffer",
-    "Id": "7869eb80-ea3c-457d-8ddc-2f826242a4dc",
-    "ListenCount": 6
+    "Id": "d3e1aedb-e1ad-4329-bc79-3387ca8bcb2f",
+    "ListenCount": 0,
+    "Playlists": [
+      "Workout"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Nevermind",
     "Artist": "Nirvana",
     "Name": "Cryin",
-    "Id": "ea8b0086-9a4d-4c1f-b085-b46cb0fbe418",
-    "ListenCount": 3
+    "Id": "e7af5db0-d26c-47a1-97cd-61c1b693fe08",
+    "ListenCount": 0,
+    "Playlists": [
+      "Workout"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Nevermind",
     "Artist": "Nirvana",
     "Name": "Senza di te",
-    "Id": "30ef411a-7984-4b71-9614-4257770796f2",
-    "ListenCount": 0
+    "Id": "3f461a3a-6aad-4420-a782-9f95577d78fe",
+    "ListenCount": 0,
+    "Playlists": [
+      "90's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Nevermind",
     "Artist": "Nirvana",
     "Name": "Holler then thou",
-    "Id": "619bd5df-70d1-4605-a0ae-5d300494fdb1",
-    "ListenCount": 0
+    "Id": "a0962db7-c1d0-4348-a3e6-4417227f00cd",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Nevermind",
     "Artist": "Nirvana",
     "Name": "Nothing else matter",
-    "Id": "948cdb05-7179-420c-82ab-4cb8afe7e207",
-    "ListenCount": 0
+    "Id": "2be1c5ec-32e1-4be9-bb4a-1a45c8f7d4df",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Nevermind",
     "Artist": "Nirvana",
     "Name": "Hells Bells",
-    "Id": "445dbea3-2697-4a19-8fe1-15d68e949b07",
-    "ListenCount": 0
+    "Id": "ca45bf4b-bece-4623-ac59-1f595a75b981",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Nevermind",
     "Artist": "Nirvana",
     "Name": "Shoot to thrill",
-    "Id": "05c51f50-dfb9-4845-84ec-767abdbd899c",
-    "ListenCount": 0
+    "Id": "65a5b113-f4b5-49d8-9520-f81c166e8048",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Back to Black",
     "Artist": "ACDC",
     "Name": "Purification by fire",
-    "Id": "3347386d-e711-43ed-bdc9-bcfcf3d7e0da",
-    "ListenCount": 4
+    "Id": "99684e3e-7ce7-42db-91c0-5c53a490da11",
+    "ListenCount": 0,
+    "Playlists": [
+      "Workout"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Back to Black",
     "Artist": "ACDC",
     "Name": "Angel",
-    "Id": "a2666712-1992-4118-8895-b618586d9887",
-    "ListenCount": 4
+    "Id": "d4f6ff9a-307e-45fe-84b0-e95afeba9d02",
+    "ListenCount": 0,
+    "Playlists": [
+      "Workout"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Back to Black",
     "Artist": "ACDC",
     "Name": "Tidal Wave",
-    "Id": "c533701e-afa8-4593-b8c4-72d007bef2e5",
-    "ListenCount": 0
+    "Id": "c5365534-6af5-453d-947b-a97df6b976c2",
+    "ListenCount": 0,
+    "Playlists": []
   },
   {
     "Duration": "00:04:00",
     "Album": "Back to Black",
     "Artist": "ACDC",
     "Name": "Enter Sandman",
-    "Id": "e64dd870-2b2f-494f-97fa-7f9cbc5cf013",
-    "ListenCount": 0
+    "Id": "11546e0e-8b1d-4872-a851-01e055872657",
+    "ListenCount": 0,
+    "Playlists": [
+      "Grunge Era"
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Kind Of Magic",
     "Artist": "Queen",
     "Name": "The Time to Kill is Now",
-    "Id": "3f98eb66-006e-4090-8b90-aede862130cc",
-    "ListenCount": 0
+    "Id": "4f218a90-bc33-473b-ab0b-f86c6f4c90cd",
+    "ListenCount": 0,
+    "Playlists": [
+      "Hard Rock 70's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Kind Of Magic",
     "Artist": "Queen",
     "Name": "Walk this Way",
-    "Id": "57a410e8-0b9e-4aad-8509-35c9400ac156",
-    "ListenCount": 0
+    "Id": "400dcdb0-7832-40b7-8ffd-0c7ba4251f67",
+    "ListenCount": 0,
+    "Playlists": [
+      "Hard Rock 70's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Kind Of Magic",
     "Artist": "Queen",
     "Name": "Vegans Bomb",
-    "Id": "f045473e-57e2-484c-9d08-5b9d12c03fb2",
-    "ListenCount": 0
+    "Id": "cfe5219a-0182-44c9-b97c-7d5026bc9f5f",
+    "ListenCount": 0,
+    "Playlists": [
+      "Hard Rock 70's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Kind Of Magic",
     "Artist": "Queen",
     "Name": "Mareluna",
-    "Id": "2176baa9-3fbf-4ae3-b6d5-e3620fdefa5b",
-    "ListenCount": 0
+    "Id": "08adca9f-c463-4bb3-9216-dd1942e8acbd",
+    "ListenCount": 0,
+    "Playlists": [
+      "Hard Rock 70's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Kind Of Magic",
     "Artist": "Queen",
     "Name": "The Unforgiven",
-    "Id": "94d5dcd3-359c-4a2b-8c39-77f72e3df601",
-    "ListenCount": 0
+    "Id": "5ad0ac12-fccb-432e-82d0-a421d7720091",
+    "ListenCount": 0,
+    "Playlists": [
+      "Hard Rock 70's "
+    ]
   },
   {
     "Duration": "00:04:00",
     "Album": "Kind Of Magic",
     "Artist": "Queen",
     "Name": "Let me put my love into you",
-    "Id": "800d9179-a101-4e42-91e8-447766af0e41",
-    "ListenCount": 0
+    "Id": "180dd78f-c6f7-4028-90cf-1fcc5bfde2da",
+    "ListenCount": 0,
+    "Playlists": [
+      "Hard Rock 70's "
+    ]
   }
 ]

@@ -200,5 +200,35 @@ namespace SpotifyClone.Models
         }
 
 
+
+        public string[] GetDistinctAlbumNames()
+        {
+            return AllSongs
+                .Where(song => song.Album != null)
+                .Select(song => song.Album + " - " + song.Artist) 
+                .Distinct()
+                .ToArray();
+  
+        }
+
+        public string[] GetDistinctArtistNames()
+        {
+            return AllSongs
+                .Where(song => song.Artist != null)
+                .Select(song => song.Artist)
+                .Distinct()
+                .ToArray();
+
+        }
+
+
+        public string[] GetAlbumsByArtist(string artistName)
+        {
+            return AllSongs
+                .Where(song => song.Artist != null && song.Artist.Equals(artistName, StringComparison.OrdinalIgnoreCase)) 
+                .Select(song => song.Album)
+                .Distinct()
+                .ToArray(); 
+        }
     }
 }
