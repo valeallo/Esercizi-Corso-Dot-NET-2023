@@ -19,7 +19,7 @@ namespace SpotifyClone.Controllers
                 {
                     string[] values = line.Split(',');
                     Song song = new Song(values[2], 4.00);
-                    Artist artist = listener.AllArtists?.FirstOrDefault(a => a.Name == values[4]) ?? new Artist(values[4], values[4]);
+                    Artist artist = listener.AllArtists?.FirstOrDefault(a => a.Name == values[4]) ?? new Artist(values[4], values[5]);
                     song.Artist = artist;
                     listener.AddArtist(artist);
 

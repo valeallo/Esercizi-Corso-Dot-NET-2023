@@ -38,7 +38,7 @@ namespace SpotifyClone.Models
         }
 
         public string Name { get { return _name; } }
-        public string ArtistName { get { return _artist.Alias; } }
+        public string ArtistName { get { return _artist.Name; } }
         //commented release date to have better match with csv
         //public string ReleaseDate { get { return _realeaseDate; } }
         public Audiotrack[] Songs { get { return _songs; } }

@@ -107,7 +107,7 @@ namespace SpotifyClone.Models
 
             for (int i = 0; i < AllArtists.Length; i++)
             {
-                artistNames[i] = AllArtists[i].Alias;
+                artistNames[i] = AllArtists[i].Name;
             }
 
             return artistNames;

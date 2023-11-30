@@ -25,7 +25,7 @@ namespace SpotifyClone.Models
         public Artist Artist { get { return _artist; } set { _artist = value; } }
         //public string ReleaseDate { get { return _album.ReleaseDate; } }
 
-        public override string TrackDetails { get { return Name + "  -  " + _artist.Alias; } }
+        public override string TrackDetails { get { return Name + "  -  " + _artist.Name +  "  -  " + _artist.Genre; } }
 
     }
 }

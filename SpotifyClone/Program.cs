@@ -64,9 +64,10 @@ namespace SpotifyClone
             Radio Zeta = new Radio("Zeta", FavoriteRadios);
             Radio Radio105 = new Radio("Radio105", FavoriteRadios);
 
-            MovieCollection AllMovies = new MovieCollection("Allmovies", listener);
-            Movie caricaDei101 = new Movie("la carica dei 101", AllMovies);
-            Movie armageddon = new Movie ("Armageddon", AllMovies);
+            Director director = new Director("Michael Bay");
+            MovieCollection AllMovies = new MovieCollection("Allmovies");
+            Movie caricaDei101 = new Movie("la carica dei 101", AllMovies, director);
+            Movie armageddon = new Movie ("Armageddon", AllMovies, director);
 
             
             return listener;
