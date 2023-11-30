@@ -18,7 +18,7 @@ namespace Singleton
 
             for (int i = 0; i < ipAddresses.Length; i++)
             {
-                ipAddresses[i] = $"{rnd.Next(0, 256)}.{rnd.Next(0, 256)}.{rnd.Next(0, 256)}.{rnd.Next(0, 256)}";
+                ipAddresses[i] = GetRandomIPAddress();
             }
 
         }

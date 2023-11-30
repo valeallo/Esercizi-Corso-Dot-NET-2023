@@ -10,13 +10,16 @@ namespace SpotifyClone.Models
     {
         string _alias;
         Album[] _albums;
+        string _genre;
 
-        public Artist(string name, string Alias) : base(name)
+        public Artist(string name, string Alias, string Genre) : base(name)
         {
             _alias = Alias;
+            _genre = Genre;
         }
 
         public string Alias { get { return _alias; } }
+        public string Genre { get { return _genre; } }
 
 
         public void AddAlbum(Album album)
