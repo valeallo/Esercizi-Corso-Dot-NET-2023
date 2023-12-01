@@ -15,7 +15,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifyClone", "SpotifyClon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystemExercise", "FileSystemExercise\FileSystemExercise.csproj", "{4337E2A5-0E5B-4B2E-ABA6-623BD5BB0AC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Singleton", "Singleton\Singleton.csproj", "{D07BE673-73CA-413C-A57A-5A8BC51BD397}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Singleton", "Singleton\Singleton.csproj", "{D07BE673-73CA-413C-A57A-5A8BC51BD397}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpotifyCloneRefactoring", "SpotifyCloneRefactoring", "{4575768F-FF8F-4CF8-86B4-510E98143487}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{C5360AAD-14E6-4642-890A-D82A9CA19CD7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5F4407CA-58D2-4869-9172-E668AD0E7A6C} = {5F4407CA-58D2-4869-9172-E668AD0E7A6C}
+		{78B84BF5-E446-48A7-80B9-0B3BEBFCFB07} = {78B84BF5-E446-48A7-80B9-0B3BEBFCFB07}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLayer", "ServiceLayer\ServiceLayer.csproj", "{78B84BF5-E446-48A7-80B9-0B3BEBFCFB07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{5F4407CA-58D2-4869-9172-E668AD0E7A6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,9 +63,26 @@ Global
 		{D07BE673-73CA-413C-A57A-5A8BC51BD397}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D07BE673-73CA-413C-A57A-5A8BC51BD397}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D07BE673-73CA-413C-A57A-5A8BC51BD397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5360AAD-14E6-4642-890A-D82A9CA19CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5360AAD-14E6-4642-890A-D82A9CA19CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5360AAD-14E6-4642-890A-D82A9CA19CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5360AAD-14E6-4642-890A-D82A9CA19CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B84BF5-E446-48A7-80B9-0B3BEBFCFB07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B84BF5-E446-48A7-80B9-0B3BEBFCFB07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B84BF5-E446-48A7-80B9-0B3BEBFCFB07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B84BF5-E446-48A7-80B9-0B3BEBFCFB07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F4407CA-58D2-4869-9172-E668AD0E7A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4407CA-58D2-4869-9172-E668AD0E7A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4407CA-58D2-4869-9172-E668AD0E7A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4407CA-58D2-4869-9172-E668AD0E7A6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C5360AAD-14E6-4642-890A-D82A9CA19CD7} = {4575768F-FF8F-4CF8-86B4-510E98143487}
+		{78B84BF5-E446-48A7-80B9-0B3BEBFCFB07} = {4575768F-FF8F-4CF8-86B4-510E98143487}
+		{5F4407CA-58D2-4869-9172-E668AD0E7A6C} = {4575768F-FF8F-4CF8-86B4-510E98143487}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF9128AD-1D18-4717-AAB4-EDE4407D43C2}
