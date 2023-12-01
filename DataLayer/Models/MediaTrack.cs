@@ -13,6 +13,6 @@ namespace DataLayer.Models
         public string Name { get; set; }
         public string Id { get; set; }
         public int ListenCount { get; set; }
-        public PlaylistBase[] Playlists { get; set; }
+        public string[] Playlists { get; set; }
     }
 }

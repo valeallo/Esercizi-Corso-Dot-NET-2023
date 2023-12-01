@@ -10,8 +10,8 @@ namespace DataLayer.Models
     {
 
         public TimeSpan Duration { get; set; }
-        public Album Album { get; set; }
-        public Artist Artist { get; set; }
+        public string Album { get; set; }
+        public string Artist { get; set; }
 
     }
 }

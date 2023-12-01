@@ -6,17 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Enums
 {
-    public enum County
+    public enum SubscriptionType
     {
-        IT,
-        DE,
-        UK,
-        FR,
-        ES,
-        PT,
-        PL,
-        DK,
-        SE,
-        CH
+        Free,
+        Premium,
+        Gold
     }
 }

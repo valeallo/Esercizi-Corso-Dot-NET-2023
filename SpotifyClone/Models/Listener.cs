@@ -12,15 +12,18 @@ namespace SpotifyClone.Models
 {
     internal class Listener : User
     {
-        Playlist[] _playlists;
+        public List<Song> AllSongs { get; private set; }
         public Album[] AllAlbums { get; set; }
         public Artist[] AllArtists { get; set; }
-
         public RadioCollection RadioCollection { get; set; }
         public MovieCollection MovieCollection { get; set; }
+
+
+
+        Playlist[] _playlists;
         public TimeSpan TotalListeningTime { get; private set; }
         public SubscriptionType Subscription { get; set; }
-        public List<Song> AllSongs { get; private set; }
+
 
         public string Timezone { get; set; }
 
