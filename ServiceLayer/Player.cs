@@ -12,7 +12,7 @@ using ServiceLayer;
 
 namespace SpotifyClone.Controllers
 {
-    internal class Player<T>
+    public class Player
     {
         public string currentSong { get; set; }
         public PlaylistBase playlist { get; set; }
@@ -23,15 +23,15 @@ namespace SpotifyClone.Controllers
 
 
         public ListenerDTO _listener;
-        public PlayerService _playerService;
+        PlayerService _playerService;
         public bool isPlaying = false;
-        public List<T> currentPlaylistCollection { get; set; }
+    
 
 
-        public Player(PlayerService playerService, ListenerDTO listener)
+        public Player(PlayerService playerService)
         {
-            
-
+            _playerService = playerService;
+          
         }
 
 

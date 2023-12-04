@@ -6,20 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using DataLayer.DbContext;
 using DataLayer.Dto;
+using SpotifyClone.Controllers;
 
 namespace ServiceLayer
 {
-    internal class PlayerService
+    public class PlayerService
     {
 
         static SpotifyContext DbContext;
         static PlayerService instance;
+        static Player player;
 
         PlayerService()
         {
             string path = Directory.GetCurrentDirectory();
             string storage = Path.Combine(path, "storage");
             DbContext = new SpotifyContext(storage);
+            
         }
 
         public static PlayerService GetInstance()
