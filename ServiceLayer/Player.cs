@@ -45,12 +45,14 @@ namespace SpotifyClone.Controllers
         {
             isPlaying = true;
             int songNumber = num - 1;
-            if (_playerService.CanListen())
-            {
-                Random rnd = new Random();
-                songNumber = rnd.Next(0, currentArrayToDisplay.Count);
 
-            }
+            //TODO restore this logic
+            //if (_playerService.CanListen())
+            //{
+            //    Random rnd = new Random();
+            //    songNumber = rnd.Next(0, currentArrayToDisplay.Count);
+
+            //}
             currentlyPlaying = songNumber + 1;
             currentSong = currentArrayToDisplay[songNumber];
             string selectedSongTitle = currentSong.Split(" - ")[0];

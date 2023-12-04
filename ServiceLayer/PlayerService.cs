@@ -55,7 +55,6 @@ namespace ServiceLayer
         {
             return DbContext.ListenerDTOs;
         }
-
         public List<string> GetNamesFromDTOs<T>(List<T> dtos) where T : class
         {
             var names = new List<string>();
@@ -75,7 +74,6 @@ namespace ServiceLayer
 
             return names;
         }
-
         public ArtistDTO GetArtistByName(string artistName)
         {
             return DbContext.ArtistDTOs.FirstOrDefault(artist => artist.Name.Equals(artistName, StringComparison.OrdinalIgnoreCase));
