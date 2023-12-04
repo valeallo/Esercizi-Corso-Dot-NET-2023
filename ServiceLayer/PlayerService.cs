@@ -19,9 +19,10 @@ namespace ServiceLayer
 
         PlayerService()
         {
-            string path = Directory.GetCurrentDirectory();
-            string storage = Path.Combine(path, "storage");
-            DbContext = new SpotifyContext(storage);
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            Console.WriteLine(baseDirectory);
+            string dataDirectory = Path.Combine(baseDirectory, "data");
+            DbContext = new SpotifyContext(dataDirectory);
             player = new Player(this);
             
         }

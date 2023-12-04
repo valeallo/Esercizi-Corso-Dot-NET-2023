@@ -45,7 +45,7 @@ namespace SpotifyClone.Controllers
         {
             isPlaying = true;
             int songNumber = num - 1;
-            if (!_listener.CanListen())
+            if (_playerService.CanListen())
             {
                 Random rnd = new Random();
                 songNumber = rnd.Next(0, currentArrayToDisplay.Count);
