@@ -14,9 +14,13 @@ namespace SpotifyClone
     internal class UIClass
     {
         MusicPlayer musicPlayer;
+        PlayerService playerService;
+
+
         public UIClass() {
 
-            musicPlayer = new MusicPlayer(this);
+            playerService = PlayerService.GetInstance();
+            musicPlayer = new MusicPlayer(this, playerService.player);
  
         }
 
@@ -94,13 +98,15 @@ namespace SpotifyClone
 
 
             Display display;
-
             private UIClass _uiClass;
+            Player player;
       
 
-            public MusicPlayer(UIClass uiClass, Player<T> player)
+            public MusicPlayer(UIClass uiClass, Player Player)
             {
-                
+                _uiClass = uiClass;
+                player = Player;
+                display = new Display(Player);
             }
 
 
@@ -123,7 +129,7 @@ namespace SpotifyClone
                     display.PrintController();
              
 
-                    display.ClearDisplayArea(displayStartLine, player.currentArrayToDisplay.Length);
+                    display.ClearDisplayArea(displayStartLine, player.currentArrayToDisplay.Count);
                     Console.ForegroundColor = myColor;
             
                     display.PrintDisplay(player.currentArrayToDisplay, displayStartLine);
@@ -136,16 +142,16 @@ namespace SpotifyClone
                     {
                         int number = selection - '0';
                
-                        if ((selectedMenu == "songs" || selectedMenu == "radio") && number <= player.currentArrayToDisplay.Length)
+                        if ((selectedMenu == "songs" || selectedMenu == "radio") && number <= player.currentArrayToDisplay.Count)
                         {
                             player.PlayPause(number);
                         }
-                        else if (selectedMenu == "artist" && number <= player.currentArrayToDisplay.Length)
+                        else if (selectedMenu == "artist" && number <= player.currentArrayToDisplay.Count)
                         {
                             selectedMenu = "album";
                             player.UpdateDisplayForMenuOption(selectedMenu, number);
                         }
-                        else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= player.currentPlaylistCollection.Length)
+                        else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= player.currentArrayToDisplay.Count)
                         {
                             selectedMenu = "songs";
                             player.UpdateDisplayForMenuOption(selectedMenu, number);
@@ -288,18 +294,18 @@ namespace SpotifyClone
 
 
             
-            public void PrintDisplay(string[] array, int startingLine)
+            public void PrintDisplay(List<string> array, int startingLine)
             {
 
                 Console.SetCursorPosition(0, startingLine);
 
-                if (array == null || array.Length == 0)
+                if (array == null || array.Count == 0)
                 {
                     Console.WriteLine("No items to display.");
                     return;
                 }
 
-                for (int i = 0; i < array.Length; i++)
+                for (int i = 0; i < array.Count; i++)
                 {
                     if (array[i].Length > 0)
                     {

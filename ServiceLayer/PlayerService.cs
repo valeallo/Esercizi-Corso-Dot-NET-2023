@@ -15,13 +15,14 @@ namespace ServiceLayer
 
         static SpotifyContext DbContext;
         static PlayerService instance;
-        static Player player;
+        public Player player { get; }
 
         PlayerService()
         {
             string path = Directory.GetCurrentDirectory();
             string storage = Path.Combine(path, "storage");
             DbContext = new SpotifyContext(storage);
+            player = new Player(this);
             
         }
 
