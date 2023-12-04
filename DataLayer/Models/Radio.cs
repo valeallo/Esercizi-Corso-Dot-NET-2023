@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-    internal class Radio : MediaTrack
+    public class Radio : MediaTrack
     {
         public double RadioFrequency { get; set; }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-    internal abstract class PlaylistBase
+    public abstract class PlaylistBase
     {
         public MediaTrack[] TrackList { get; set; }
 

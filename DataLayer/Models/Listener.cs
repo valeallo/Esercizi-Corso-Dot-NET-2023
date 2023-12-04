@@ -7,7 +7,7 @@ using DataLayer.Enums;
 
 namespace DataLayer.Models
 {
-    internal class Listener : User
+    public class Listener : User
     {
 
         Playlist[] _playlists;

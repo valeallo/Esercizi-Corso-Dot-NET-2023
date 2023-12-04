@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace DataLayer.DbContext
 {
-    internal class SpotifyContext : DbContext
+    public class SpotifyContext : DbContext
     {
         public List<Song> Songs { get; set; }
         public List<Radio> Radios { get; set; }
@@ -57,6 +57,7 @@ namespace DataLayer.DbContext
                     album.TrackList = album.TrackList.Concat(new[] { song }).ToArray();
                 }
             }
+
         }
 
 

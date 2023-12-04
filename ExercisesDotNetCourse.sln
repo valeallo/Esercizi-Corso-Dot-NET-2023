@@ -19,15 +19,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Singleton", "Singleton\Sing
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpotifyCloneRefactoring", "SpotifyCloneRefactoring", "{4575768F-FF8F-4CF8-86B4-510E98143487}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{C5360AAD-14E6-4642-890A-D82A9CA19CD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Presentation\Presentation.csproj", "{C5360AAD-14E6-4642-890A-D82A9CA19CD7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5F4407CA-58D2-4869-9172-E668AD0E7A6C} = {5F4407CA-58D2-4869-9172-E668AD0E7A6C}
 		{78B84BF5-E446-48A7-80B9-0B3BEBFCFB07} = {78B84BF5-E446-48A7-80B9-0B3BEBFCFB07}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLayer", "ServiceLayer\ServiceLayer.csproj", "{78B84BF5-E446-48A7-80B9-0B3BEBFCFB07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceLayer", "ServiceLayer\ServiceLayer.csproj", "{78B84BF5-E446-48A7-80B9-0B3BEBFCFB07}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5F4407CA-58D2-4869-9172-E668AD0E7A6C} = {5F4407CA-58D2-4869-9172-E668AD0E7A6C}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{5F4407CA-58D2-4869-9172-E668AD0E7A6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{5F4407CA-58D2-4869-9172-E668AD0E7A6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
