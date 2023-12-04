@@ -30,13 +30,26 @@ namespace DataLayer.DbContext
 
         public SpotifyContext(string config) : base(config)
         {
+            Console.WriteLine("Loading data from JSON files from", config);
 
-            Artists = LoadFromJsonFile<Artist>(config + "Artists.json");
-            Albums = LoadFromJsonFile<Album>(config + "Albums.json");
-            Songs = LoadFromJsonFile<Song>(config + "Songs.json");
-            Radios = LoadFromJsonFile<Radio>(config + "Radios.json");
-            Playlists = LoadFromJsonFile<Playlist>((config + "Playlists.json"));
-            listeners = LoadFromJsonFile<Listener>(config + "Users.json");
+            Artists = LoadFromJsonFile<Artist>(Path.Combine(config, "Artists.json"));
+            Console.WriteLine($"Loaded {Artists.Count} artists.");
+
+            Albums = LoadFromJsonFile<Album>(Path.Combine(config, "Albums.json"));
+            Console.WriteLine($"Loaded {Albums.Count} albums.");
+
+            Songs = LoadFromJsonFile<Song>(Path.Combine(config, "Songs.json"));
+            Console.WriteLine($"Loaded {Songs.Count} songs.");
+
+            Radios = LoadFromJsonFile<Radio>(Path.Combine(config, "Radios.json"));
+            Console.WriteLine($"Loaded {Radios.Count} radios.");
+
+            Playlists = LoadFromJsonFile<Playlist>(Path.Combine(config, "Playlists.json"));
+            Console.WriteLine($"Loaded {Playlists.Count} playlists.");
+
+            listeners = LoadFromJsonFile<Listener>(Path.Combine(config, "Users.json"));
+            Console.WriteLine($"Loaded {listeners.Count} listeners.");
+
             MapSongsData();
             CreateDTOs();
         }
