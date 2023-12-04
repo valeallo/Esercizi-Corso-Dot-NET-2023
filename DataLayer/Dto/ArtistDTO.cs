@@ -8,20 +8,20 @@ using DataLayer.Models;
 namespace DataLayer.Dto
 {
 
-    public class ArtistViewModelDTO
+    public class ArtistDTO
     {
         public string Name { get; set; }
         public string Genre { get; set; }
         public List<string> AlbumNames { get; set; } 
 
-        internal ArtistViewModelDTO(Artist artist)
+        internal ArtistDTO(Artist artist)
         {
             Name = artist.Name;
             Genre = artist.genre;
             AlbumNames = artist.albums?.Select(album => album.Name).ToList() ?? new List<string>();
         }
 
-        public ArtistViewModelDTO()
+        public ArtistDTO()
         {
             AlbumNames = new List<string>();
         }

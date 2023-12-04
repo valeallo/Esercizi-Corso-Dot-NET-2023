@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 namespace DataLayer.Dto
 {
 
-    public class PlaylistViewDTO
+    public class PlaylistDTO
     {
         public string Name { get; set; }
         public List<string> SongNames { get; set; }
 
-        public PlaylistViewDTO(Playlist playlist)
+        public PlaylistDTO(Playlist playlist)
         {
             Name = playlist.Name;
             SongNames = playlist.TrackList?.Select(track => track.Name).ToList() ?? new List<string>();
         }
 
-        public PlaylistViewDTO()
+        public PlaylistDTO()
         {
             SongNames = new List<string>();
         }

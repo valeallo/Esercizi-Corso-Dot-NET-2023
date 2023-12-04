@@ -14,5 +14,6 @@ namespace DataLayer.Models
         public string Id { get; set; }
         public int ListenCount { get; set; }
         public string[] Playlists { get; set; }
+
     }
 }

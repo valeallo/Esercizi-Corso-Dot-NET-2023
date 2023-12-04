@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Dto
 {
-    public class SongViewModelDTO
+    public class SongDTO
     {
 
      
@@ -19,7 +19,7 @@ namespace DataLayer.Dto
             public string[] Playlists { get; set; }
 
 
-        public SongViewModelDTO(Song song)
+        public SongDTO(Song song)
             {
                 Name = song.Name;
                 Duration = song.Duration;
@@ -29,9 +29,10 @@ namespace DataLayer.Dto
                 Playlists = song.Playlists;
             }
 
-        public SongViewModelDTO()
+        public SongDTO()
         {
         }
+
         
 
     }

@@ -4,27 +4,33 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using SpotifyClone.Interfaces;
-using SpotifyClone.Models;
+using DataLayer.DbContext;
+using DataLayer.Dto;
+using DataLayer.Models;
+using ServiceLayer;
+
 
 namespace SpotifyClone.Controllers
 {
-    internal class Player
+    internal class Player<T>
     {
         public string currentSong { get; set; }
-        public IPlaylist playlist { get; set; }
+        public PlaylistBase playlist { get; set; }
         public Artist[] currentArtistsList {  get; set; }
-        public IPlaylist[] currentPlaylistCollection { get; set; }
 
         public int currentlyPlaying = 0;
+        public List<string> currentArrayToDisplay = new List<string> { "please select a category" };
 
-        public string[] currentArrayToDisplay = new string[] { "please select a category" };
-        private Listener _listener;
+
+        public ListenerDTO _listener;
+        public PlayerService _playerService;
         public bool isPlaying = false;
+        public List<T> currentPlaylistCollection { get; set; }
 
-        public Player(Listener listener)
+
+        public Player(PlayerService playerService, ListenerDTO listener)
         {
-            _listener = listener;
+            
 
         }
 
@@ -42,19 +48,19 @@ namespace SpotifyClone.Controllers
             if (!_listener.CanListen())
             {
                 Random rnd = new Random();
-                songNumber = rnd.Next(0, currentArrayToDisplay.Length);
+                songNumber = rnd.Next(0, currentArrayToDisplay.Count);
 
             }
             currentlyPlaying = songNumber + 1;
             currentSong = currentArrayToDisplay[songNumber];
             string selectedSongTitle = currentSong.Split(" - ")[0];
-            Audiotrack current = _listener.AllSongs.FirstOrDefault(song => song.Name == selectedSongTitle);
-            current?.IncrementListenCount();
+            SongDTO current = _playerService.GetAllSongs().FirstOrDefault(song => song.Name == selectedSongTitle);
+            //current?.IncrementListenCount();
 
-            if (current is Song song)
-            {
-                _listener.UpdateListeningLog(song.Duration);
-            }
+            //if (current is Song song)
+            //{
+            //    _listener.UpdateListeningLog(song.Duration);
+            //}
 
         }
 
@@ -67,7 +73,7 @@ namespace SpotifyClone.Controllers
         }
         public void Next()
         {
-            if (currentlyPlaying >= currentArrayToDisplay.Length)
+            if (currentlyPlaying >= currentArrayToDisplay.Count)
             {
                 PlayPause(1);
             }
@@ -83,7 +89,7 @@ namespace SpotifyClone.Controllers
         {
             if (currentlyPlaying == 1)
             {
-                currentlyPlaying = currentArrayToDisplay.Length;
+                currentlyPlaying = currentArrayToDisplay.Count;
                 PlayPause(currentlyPlaying);
             }
             else
@@ -96,21 +102,7 @@ namespace SpotifyClone.Controllers
 
 
 
-        public string[] GetSongNames()
-        {
-            if (playlist.Songs == null || playlist.Songs.Length == 0)
-            {
-                return new string[0];
-            }
-
-            string[] songNames = new string[playlist.Songs.Length];
-
-            for (int i = 0; i < songNames.Length; i++)
-            {
-                songNames[i] = playlist.Songs[i].GetTrackDetails();
-            }
-            return songNames;
-        }
+ 
 
 
 
@@ -120,26 +112,21 @@ namespace SpotifyClone.Controllers
             switch (selectedMenu)
             {
                 case "album":
-                    currentPlaylistCollection = _listener.AllAlbums;
-                    currentArrayToDisplay = _listener.GetDistinctAlbumNames(); 
+                    currentArrayToDisplay = _playerService.GetNamesFromDTOs(_playerService.GetAllAlbums());
                     break;
                 case "artist":
-                    currentPlaylistCollection = null;
-                    currentArrayToDisplay = _listener.GetDistinctArtistNames();
+                    currentArrayToDisplay = _playerService.GetNamesFromDTOs(_playerService.GetAllArtists());
                     break;
                 case "playlist":
-                    currentPlaylistCollection = _listener.Playlists;
-                    currentArrayToDisplay = _listener.GetAlbumArray(_listener.Playlists); ;
+                    //currentArrayToDisplay = _playerService.GetNamesFromDTOs(_playerService.GetAllPlaylists());
                     break;
                 case "radio":
-                    currentPlaylistCollection = null;
-                    playlist = _listener.RadioCollection;
-                    currentArrayToDisplay = GetSongNames();
+                    currentArrayToDisplay = _playerService.GetNamesFromDTOs(_playerService.GetAllRadios());
                     break;
                 case "movies":
-                    currentPlaylistCollection = null;
-                    playlist = _listener.MovieCollection;
-                    currentArrayToDisplay = GetSongNames();
+   
+                    //playlist = _listener.MovieCollection;
+                    //currentArrayToDisplay = GetSongNames();
                     break;
             }
         }
@@ -152,11 +139,11 @@ namespace SpotifyClone.Controllers
             {
                 case "album":
                     string artist = currentArrayToDisplay[num - 1];
-                    currentArrayToDisplay = _listener.GetAlbumsByArtist(artist); 
+                    currentArrayToDisplay = _playerService.GetArtistByName(artist).AlbumNames;
                     break;
-                case "songs":
-                    playlist = currentPlaylistCollection[num - 1];
-                    currentArrayToDisplay = GetSongNames();
+                case "songs": 
+                    string album = currentArrayToDisplay[num - 1];
+                    currentArrayToDisplay = _playerService.GetAlbumByName(album).SongNames;
                     break;
             }
            
