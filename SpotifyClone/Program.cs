@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using SpotifyClone.Controllers;
 using SpotifyClone.Models;
@@ -17,10 +18,13 @@ namespace SpotifyClone
             string allRadiosJsonPath = Path.Combine(path, "storage", "Radios.json");
             string allArtistsJsonPath = Path.Combine(path, "storage", "Artists.json");
             string allPlaylitsJsonPath = Path.Combine(path, "storage", "Playlists.json");
+            string users = Path.Combine(path, "storage", "Users.json");
+            List<Listener> listeners = new List<Listener>();
 
             Listener listener = SetupApplication();
             CsvLoader.LoadAlbumsFromCsv(storageDirectory, listener);
             UserDataManager.SaveToJsonFile(listener.AllSongs, allSongsJsonPath);
+            listeners.Add(listener);
 
 
             UIClass ui = new UIClass(listener);
@@ -30,6 +34,7 @@ namespace SpotifyClone
             UserDataManager.SaveToJsonFile(listener.RadioCollection, allRadiosJsonPath);
             UserDataManager.SaveToJsonFile(listener.AllArtists, allArtistsJsonPath);
             UserDataManager.SaveToJsonFile(listener.Playlists, allPlaylitsJsonPath);
+            UserDataManager.SaveToJsonFile(listeners, users);
         }
 
         static Listener SetupApplication()
