@@ -1,9 +1,14 @@
-﻿using System;
+﻿using DataLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Xml;
+using Newtonsoft.Json;
+
+
 
 namespace DataLayer.DbContext
 {
@@ -148,6 +153,40 @@ namespace DataLayer.DbContext
             }
             File.AppendAllLines(_config, list);
         }
+
+
+        public static string SerializeObjects<T>(List<T> objects)
+        {
+            return JsonConvert.SerializeObject(objects, Newtonsoft.Json.Formatting.Indented);
+        }
+
+
+        public static List<T> DeserializeObjects<T>(string json)
+        {
+            return JsonConvert.DeserializeObject<List<T>>(json);
+        }
+
+
+        public static void SaveToJsonFile<T>(T data, string filePath)
+        {
+            var settings = new JsonSerializerSettings
+            {
+                Formatting = Newtonsoft.Json.Formatting.Indented,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            string jsonString = JsonConvert.SerializeObject(data, settings);
+            File.WriteAllText(filePath, jsonString);
+        }
+
+
+        public static List<T> LoadFromJsonFile<T>(string filePath)
+        {
+            if (!File.Exists(filePath)) return new List<T>(); 
+            string jsonString = File.ReadAllText(filePath);
+            return JsonConvert.DeserializeObject<List<T>>(jsonString); 
+        }
+
         #endregion
 
 

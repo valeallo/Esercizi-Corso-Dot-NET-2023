@@ -1,0 +1,32 @@
+[
+  {
+    "Genre": "Rock",
+    "Name": "Queen",
+    "Id": 912300
+  },
+  {
+    "Genre": "Pop",
+    "Name": "Madonna",
+    "Id": 916290
+  },
+  {
+    "Genre": "Pop",
+    "Name": "Michael Jackson",
+    "Id": 315282
+  },
+  {
+    "Genre": "Rock",
+    "Name": "Nirvana",
+    "Id": 623120
+  },
+  {
+    "Genre": "Rock",
+    "Name": "ACDC",
+    "Id": 762210
+  },
+  {
+    "Genre": "Pop",
+    "Name": "",
+    "Id": 725204
+  }
+]

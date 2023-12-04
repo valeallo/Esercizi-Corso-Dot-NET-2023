@@ -1,0 +1,21 @@
+{
+  "Name": "FavoriteRadios",
+  "Songs": [
+    {
+      "Name": "Zeta",
+      "Id": "13a449a4-1600-4d37-b6e8-e477bad72622",
+      "ListenCount": 0,
+      "Playlists": [
+        "FavoriteRadios"
+      ]
+    },
+    {
+      "Name": "Radio105",
+      "Id": "dd98633c-3ebf-4893-acb5-faa34a1599bd",
+      "ListenCount": 0,
+      "Playlists": [
+        "FavoriteRadios"
+      ]
+    }
+  ]
+}
