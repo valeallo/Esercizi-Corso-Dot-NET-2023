@@ -142,7 +142,7 @@ namespace SpotifyClone
                     {
                         int number = selection - '0';
                
-                        if ((selectedMenu == "songs" || selectedMenu == "radio") && number <= player.currentArrayToDisplay.Count)
+                        if ((selectedMenu == "songs" || selectedMenu == "radio" || selectedMenu == "songs-playlist") && number <= player.currentArrayToDisplay.Count)
                         {
                             player.PlayPause(number);
                         }
@@ -151,11 +151,17 @@ namespace SpotifyClone
                             selectedMenu = "album";
                             player.UpdateDisplayForMenuOption(selectedMenu, number);
                         }
-                        else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= player.currentArrayToDisplay.Count)
+                        else if ((selectedMenu == "album") && number <= player.currentArrayToDisplay.Count)
                         {
                             selectedMenu = "songs";
                             player.UpdateDisplayForMenuOption(selectedMenu, number);
-                        } else
+                        }
+                        else if ((selectedMenu == "playlist") && number <= player.currentArrayToDisplay.Count)
+                        {
+                            selectedMenu = "songs-playlist";
+                            player.UpdateDisplayForMenuOption(selectedMenu, number);
+                        }
+                        else
                         {
                             Console.WriteLine("Invalid selection. Please try again.");
                             Console.ReadKey();

@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Models
+namespace ServiceLayer
 {
-    public class Playlist : PlaylistBase
+    internal class UserService
     {
-
-        public  Song[] Songs { get; set; }
-
     }
 }

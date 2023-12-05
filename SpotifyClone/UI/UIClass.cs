@@ -154,11 +154,17 @@ namespace SpotifyClone
                             selectedMenu = "album";
                             player.UpdateDisplayForMenuOption(selectedMenu, number);
                         }
-                        else if ((selectedMenu == "album" || selectedMenu == "playlist") && number <= player.currentPlaylistCollection.Length)
+                        else if ((selectedMenu == "album") && number <= player.currentPlaylistCollection.Length)
                         {
                             selectedMenu = "songs";
                             player.UpdateDisplayForMenuOption(selectedMenu, number);
-                        } else
+                        }
+                        else if ((selectedMenu == "playlist") && number <= player.currentPlaylistCollection.Length)
+                        {
+                            selectedMenu = "songs-playlist";
+                            player.UpdateDisplayForMenuOption(selectedMenu, number);
+                        }
+                        else
                         {
                             Console.WriteLine("Invalid selection. Please try again.");
                             Console.ReadKey();

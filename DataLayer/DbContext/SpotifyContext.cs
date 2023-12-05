@@ -27,6 +27,7 @@ namespace DataLayer.DbContext
         public List<ArtistDTO> ArtistDTOs { get; set; }
         public List<RadioDTO> RadioDTOs { get; set; }
         public List<ListenerDTO> ListenerDTOs { get; set; }
+        public List<PlaylistDTO> PlaylistDTOs { get; set; }
 
         public SpotifyContext(string config) : base(config)
         {
@@ -75,10 +76,10 @@ namespace DataLayer.DbContext
 
                 if (album != null)
                 {
-                    if (album.TrackList == null)
-                        album.TrackList = new MediaTrack[] { };
+                    if (album.Songs == null)
+                        album.Songs = new Song[] { };
 
-                    album.TrackList = album.TrackList.Concat(new[] { song }).ToArray();
+                    album.Songs = album.Songs.Concat(new[] { song }).ToArray();
                 }
             }
 
@@ -94,6 +95,7 @@ namespace DataLayer.DbContext
             ArtistDTOs = Artists.Select(artist => new ArtistDTO(artist)).ToList();
             RadioDTOs = Radios.Select(radio => new RadioDTO(radio)).ToList();
             ListenerDTOs = listeners.Select(listener => new ListenerDTO(listener)).ToList();
+            PlaylistDTOs = Playlists.Select(playlist => new PlaylistDTO(playlist)).ToList();
         }
 
 

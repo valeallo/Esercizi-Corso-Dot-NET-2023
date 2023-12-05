@@ -55,6 +55,10 @@ namespace ServiceLayer
         {
             return DbContext.ListenerDTOs;
         }
+        public List<PlaylistDTO> GetAllPlaylists()
+        {
+            return DbContext.PlaylistDTOs;
+        }
         public List<string> GetNamesFromDTOs<T>(List<T> dtos) where T : class
         {
             var names = new List<string>();
@@ -83,7 +87,17 @@ namespace ServiceLayer
             return DbContext.AlbumDTOs.FirstOrDefault(album => album.Name.Equals(albumName, StringComparison.OrdinalIgnoreCase));
         }
 
+        public PlaylistDTO GetPlaylistByName(string albumName)
+        {
+            return DbContext.PlaylistDTOs.FirstOrDefault(artist => artist.Name.Equals(albumName, StringComparison.OrdinalIgnoreCase));
+        }
 
 
     }
+
+
+
+
+
 }
+

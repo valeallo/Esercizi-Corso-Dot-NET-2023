@@ -17,7 +17,7 @@ namespace DataLayer.Dto
             public AlbumDTO(Album album)
             {
                 Name = album.Name;
-                SongNames = album.TrackList?.Select(track => track.Name).ToList() ?? new List<string>();
+                SongNames = album.Songs?.Select(track => track.Name).ToList() ?? new List<string>();
                 Artist = album.ArtistName;    
             }
 

@@ -8,7 +8,7 @@ namespace DataLayer.Models
 {
     public abstract class PlaylistBase
     {
-        public MediaTrack[] TrackList { get; set; }
+        
 
         public string Name { get; set; }
     }

@@ -16,7 +16,7 @@ namespace DataLayer.Dto
         public PlaylistDTO(Playlist playlist)
         {
             Name = playlist.Name;
-            SongNames = playlist.TrackList?.Select(track => track.Name).ToList() ?? new List<string>();
+            SongNames = playlist.Songs?.Select(track => track.Name).ToList() ?? new List<string>();
         }
 
         public PlaylistDTO()

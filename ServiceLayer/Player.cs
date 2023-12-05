@@ -57,12 +57,13 @@ namespace SpotifyClone.Controllers
             currentSong = currentArrayToDisplay[songNumber];
             string selectedSongTitle = currentSong.Split(" - ")[0];
             SongDTO current = _playerService.GetAllSongs().FirstOrDefault(song => song.Name == selectedSongTitle);
-            //current?.IncrementListenCount();
+            //TODO current?.IncrementListenCount();
 
-            //if (current is Song song)
-            //{
-            //    _listener.UpdateListeningLog(song.Duration);
-            //}
+            if (current is SongDTO song)
+            {
+                //TODO
+               // _listener.UpdateListeningLog(song.Duration);
+            }
 
         }
 
@@ -120,7 +121,7 @@ namespace SpotifyClone.Controllers
                     currentArrayToDisplay = _playerService.GetNamesFromDTOs(_playerService.GetAllArtists());
                     break;
                 case "playlist":
-                    //currentArrayToDisplay = _playerService.GetNamesFromDTOs(_playerService.GetAllPlaylists());
+                    currentArrayToDisplay = _playerService.GetNamesFromDTOs(_playerService.GetAllPlaylists());
                     break;
                 case "radio":
                     currentArrayToDisplay = _playerService.GetNamesFromDTOs(_playerService.GetAllRadios());
@@ -146,6 +147,10 @@ namespace SpotifyClone.Controllers
                 case "songs": 
                     string album = currentArrayToDisplay[num - 1];
                     currentArrayToDisplay = _playerService.GetAlbumByName(album).SongNames;
+                    break;
+                case "songs-playlist":
+                    string playlist = currentArrayToDisplay[num - 1];
+                    currentArrayToDisplay = _playerService.GetPlaylistByName(playlist).SongNames;
                     break;
             }
            
