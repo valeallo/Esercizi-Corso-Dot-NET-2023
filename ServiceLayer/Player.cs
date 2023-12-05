@@ -24,14 +24,15 @@ namespace SpotifyClone.Controllers
 
         public ListenerDTO _listener;
         PlayerService _playerService;
+        UserService _userService;
         public bool isPlaying = false;
     
 
 
-        public Player(PlayerService playerService)
+        public Player(PlayerService playerService,UserService userservice)
         {
             _playerService = playerService;
-          
+            _userService = userservice;
         }
 
 
@@ -46,13 +47,13 @@ namespace SpotifyClone.Controllers
             isPlaying = true;
             int songNumber = num - 1;
 
-            //TODO restore this logic
-            //if (_playerService.CanListen())
-            //{
-            //    Random rnd = new Random();
-            //    songNumber = rnd.Next(0, currentArrayToDisplay.Count);
+      
+            if (_userService.CanListen())
+            {
+                Random rnd = new Random();
+                songNumber = rnd.Next(0, currentArrayToDisplay.Count);
 
-            //}
+            }
             currentlyPlaying = songNumber + 1;
             currentSong = currentArrayToDisplay[songNumber];
             string selectedSongTitle = currentSong.Split(" - ")[0];

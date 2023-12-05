@@ -17,7 +17,7 @@ namespace DataLayer.DbContext
         public List<Radio> Radios { get; set; }
         public List<Album> Albums { get; set; }
         public List<Artist> Artists { get; set; }
-        public List<Listener> listeners { get; set; }
+        internal List<Listener> listeners { get; set; }
         public List<Playlist> Playlists { get; set; }
 
 
@@ -31,26 +31,13 @@ namespace DataLayer.DbContext
 
         public SpotifyContext(string config) : base(config)
         {
-            Console.WriteLine("Loading data from JSON files from", config);
 
             Artists = LoadFromJsonFile<Artist>(Path.Combine(config, "Artists.json"));
-            Console.WriteLine($"Loaded {Artists.Count} artists.");
-
             Albums = LoadFromJsonFile<Album>(Path.Combine(config, "Albums.json"));
-            Console.WriteLine($"Loaded {Albums.Count} albums.");
-
             Songs = LoadFromJsonFile<Song>(Path.Combine(config, "Songs.json"));
-            Console.WriteLine($"Loaded {Songs.Count} songs.");
-
             Radios = LoadFromJsonFile<Radio>(Path.Combine(config, "Radios.json"));
-            Console.WriteLine($"Loaded {Radios.Count} radios.");
-
             Playlists = LoadFromJsonFile<Playlist>(Path.Combine(config, "Playlists.json"));
-            Console.WriteLine($"Loaded {Playlists.Count} playlists.");
-
             listeners = LoadFromJsonFile<Listener>(Path.Combine(config, "Users.json"));
-            Console.WriteLine($"Loaded {listeners.Count} listeners.");
-
             MapSongsData();
             CreateDTOs();
         }
@@ -96,6 +83,23 @@ namespace DataLayer.DbContext
             RadioDTOs = Radios.Select(radio => new RadioDTO(radio)).ToList();
             ListenerDTOs = listeners.Select(listener => new ListenerDTO(listener)).ToList();
             PlaylistDTOs = Playlists.Select(playlist => new PlaylistDTO(playlist)).ToList();
+        }
+
+
+
+
+
+
+
+        public void UpdateListener(ListenerDTO updatedListenerDTO)
+        {
+            var listener = listeners.FirstOrDefault(l => l.Name == updatedListenerDTO.Name);
+            if (listener != null)
+            {
+                listener.Name = updatedListenerDTO.Name;
+                listener.TotalListeningTime = updatedListenerDTO.TotalListeningTime;
+                listener.Subscription = updatedListenerDTO.Subscription;
+            }
         }
 
 

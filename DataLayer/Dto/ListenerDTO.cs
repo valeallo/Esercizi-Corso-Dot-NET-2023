@@ -12,13 +12,12 @@ namespace DataLayer.Dto
     {
 
         public string Name { get; set; }
-        public TimeSpan TotalListeningTime { get; private set; }
+        public TimeSpan TotalListeningTime { get;  set; }
         public SubscriptionType Subscription { get; set; }
-        private const int MaxListeningTimeFree = 100;
-        private const int MaxListeningTimePremium = 1000;
+  
 
 
-        public ListenerDTO(Listener listener)
+        internal ListenerDTO(Listener listener)
         {
             Name = listener.Name;
             TotalListeningTime = listener.TotalListeningTime;
@@ -28,19 +27,6 @@ namespace DataLayer.Dto
         public ListenerDTO() { }
 
 
-        public bool CanListen()
-        {
-            switch (Subscription)
-            {
-                case SubscriptionType.Free:
-                    return TotalListeningTime.TotalHours < MaxListeningTimeFree;
-                case SubscriptionType.Premium:
-                    return TotalListeningTime.TotalHours < MaxListeningTimePremium;
-                case SubscriptionType.Gold:
-                    return true;
-                default:
-                    return false;
-            }
-        }
+   
     }
 }

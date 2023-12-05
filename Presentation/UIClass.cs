@@ -20,7 +20,7 @@ namespace SpotifyClone
         public UIClass() {
 
             playerService = PlayerService.GetInstance();
-            musicPlayer = new MusicPlayer(this, playerService.player);
+            musicPlayer = new MusicPlayer(this, playerService.player, playerService.userService);
  
         }
 
@@ -100,13 +100,15 @@ namespace SpotifyClone
             Display display;
             private UIClass _uiClass;
             Player player;
+            UserService userService;
       
 
-            public MusicPlayer(UIClass uiClass, Player Player)
+            public MusicPlayer(UIClass uiClass, Player Player, UserService UserService)
             {
                 _uiClass = uiClass;
                 player = Player;
-                display = new Display(Player);
+                userService = UserService;
+                display = new Display(Player, userService);
             }
 
 
@@ -246,11 +248,13 @@ namespace SpotifyClone
 
             public ConsoleColor currentSongColor = ConsoleColor.Green;
             private Player _player;
+            private UserService _userService;
 
 
-            public Display(Player player)
+            public Display(Player player, UserService userService)
             {
                 _player = player;
+                _userService = userService;
             }
 
 
@@ -281,8 +285,7 @@ namespace SpotifyClone
                 //CurrentDateTime();
                 Divider();
                 Console.Write($"                     (M)Music            (P)Profile              ");
-                //TO DO rimettere totalListeningTime
-                //Console.Write($"Listening Time: {_listener.TotalListeningTime}\' ");
+                Console.Write($"Listening Time: {_userService.TotalListeningTime}\' ");
                 Divider();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.Write(space + "(A)Albums" + space);

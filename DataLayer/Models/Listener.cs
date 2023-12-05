@@ -7,12 +7,12 @@ using DataLayer.Enums;
 
 namespace DataLayer.Models
 {
-    public class Listener : User
+     class Listener : User
     {
 
         Playlist[] _playlists;
-        public TimeSpan TotalListeningTime { get; private set; }
-        public SubscriptionType Subscription { get; set; }
+        internal TimeSpan TotalListeningTime { get; set; }
+        internal SubscriptionType Subscription { get; set; }
 
     }
 }

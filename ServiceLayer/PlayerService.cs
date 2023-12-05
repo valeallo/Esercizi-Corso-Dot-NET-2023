@@ -16,6 +16,7 @@ namespace ServiceLayer
         static SpotifyContext DbContext;
         static PlayerService instance;
         public Player player { get; }
+        public UserService userService { get;}
 
         PlayerService()
         {
@@ -23,7 +24,8 @@ namespace ServiceLayer
             Console.WriteLine(baseDirectory);
             string dataDirectory = Path.Combine(baseDirectory, "data");
             DbContext = new SpotifyContext(dataDirectory);
-            player = new Player(this);
+            userService = new UserService(this); 
+            player = new Player(this, userService);
             
         }
 
