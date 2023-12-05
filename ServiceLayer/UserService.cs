@@ -46,5 +46,22 @@ namespace ServiceLayer
 
 
 
+        public int MaxListeningTime
+        {
+            get
+            {
+                if (Subscription == SubscriptionType.Gold)
+                {
+                    return int.MaxValue; 
+                }
+                else
+                {
+                    return SubscriptionSettings.MaxListeningTimes[Subscription];
+                }
+            }
+        }
+
+
+
     }
 }

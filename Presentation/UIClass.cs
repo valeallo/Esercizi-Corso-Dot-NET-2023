@@ -285,7 +285,7 @@ namespace SpotifyClone
                 //CurrentDateTime();
                 Divider();
                 Console.Write($"                     (M)Music            (P)Profile              ");
-                Console.Write($"Listening Time: {_userService.TotalListeningTime}\' ");
+                Console.Write($"Listening Time: {_userService.TotalListeningTime.TotalHours} / {_userService.MaxListeningTime} hours");
                 Divider();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.Write(space + "(A)Albums" + space);
