@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using SpotifyClone.Controllers;
 using SpotifyClone.Models;
@@ -12,15 +13,28 @@ namespace SpotifyClone
         {
             string path = myProjectDirectory();
             string storageDirectory = Path.Combine(path, "storage", "songs.csv");
-            string allSongsJsonPath = Path.Combine(path, "storage", "allSongs.json");
+            string allSongsJsonPath = Path.Combine(path, "storage", "Songs.json");
+            string allAlbumsJsonPath = Path.Combine(path, "storage", "Albums.json");
+            string allRadiosJsonPath = Path.Combine(path, "storage", "Radios.json");
+            string allArtistsJsonPath = Path.Combine(path, "storage", "Artists.json");
+            string allPlaylitsJsonPath = Path.Combine(path, "storage", "Playlists.json");
+            string users = Path.Combine(path, "storage", "Users.json");
+            List<Listener> listeners = new List<Listener>();
+
             Listener listener = SetupApplication();
             CsvLoader.LoadAlbumsFromCsv(storageDirectory, listener);
             UserDataManager.SaveToJsonFile(listener.AllSongs, allSongsJsonPath);
+            listeners.Add(listener);
 
 
             UIClass ui = new UIClass(listener);
             ui.AskForTimeZone();
-             UserDataManager.SaveToJsonFile(listener.AllSongs, allSongsJsonPath); ;
+            UserDataManager.SaveToJsonFile(listener.AllSongs, allSongsJsonPath);
+            UserDataManager.SaveToJsonFile(listener.AllAlbums, allAlbumsJsonPath);
+            UserDataManager.SaveToJsonFile(listener.RadioCollection, allRadiosJsonPath);
+            UserDataManager.SaveToJsonFile(listener.AllArtists, allArtistsJsonPath);
+            UserDataManager.SaveToJsonFile(listener.Playlists, allPlaylitsJsonPath);
+            UserDataManager.SaveToJsonFile(listeners, users);
         }
 
         static Listener SetupApplication()

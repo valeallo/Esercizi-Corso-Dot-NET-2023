@@ -24,6 +24,7 @@ namespace SpotifyClone.Models
 
         public void AddSong(Song song)
         {
+            song.AddPlaylistToSong(_playlistName);
             if (_songs == null)
             {
                 _songs = new Song[] { song };

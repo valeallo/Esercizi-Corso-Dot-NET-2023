@@ -12,15 +12,18 @@ namespace SpotifyClone.Models
 {
     internal class Listener : User
     {
-        Playlist[] _playlists;
+        public List<Song> AllSongs { get; private set; }
         public Album[] AllAlbums { get; set; }
         public Artist[] AllArtists { get; set; }
-
         public RadioCollection RadioCollection { get; set; }
         public MovieCollection MovieCollection { get; set; }
+
+
+
+        Playlist[] _playlists;
         public TimeSpan TotalListeningTime { get; private set; }
         public SubscriptionType Subscription { get; set; }
-        public List<Song> AllSongs { get; private set; }
+
 
         public string Timezone { get; set; }
 
@@ -200,5 +203,35 @@ namespace SpotifyClone.Models
         }
 
 
+
+        public string[] GetDistinctAlbumNames()
+        {
+            return AllSongs
+                .Where(song => song.Album != null)
+                .Select(song => song.Album + " - " + song.Artist) 
+                .Distinct()
+                .ToArray();
+  
+        }
+
+        public string[] GetDistinctArtistNames()
+        {
+            return AllSongs
+                .Where(song => song.Artist != null)
+                .Select(song => song.Artist)
+                .Distinct()
+                .ToArray();
+
+        }
+
+
+        public string[] GetAlbumsByArtist(string artistName)
+        {
+            return AllSongs
+                .Where(song => song.Artist != null && song.Artist.Equals(artistName, StringComparison.OrdinalIgnoreCase)) 
+                .Select(song => song.Album)
+                .Distinct()
+                .ToArray(); 
+        }
     }
 }

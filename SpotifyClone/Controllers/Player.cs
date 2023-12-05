@@ -45,10 +45,11 @@ namespace SpotifyClone.Controllers
                 songNumber = rnd.Next(0, currentArrayToDisplay.Length);
 
             }
-            currentSong = currentArrayToDisplay[songNumber];
-            Audiotrack current = playlist.Songs[songNumber];
             currentlyPlaying = songNumber + 1;
-            current.IncrementListenCount();
+            currentSong = currentArrayToDisplay[songNumber];
+            string selectedSongTitle = currentSong.Split(" - ")[0];
+            Audiotrack current = _listener.AllSongs.FirstOrDefault(song => song.Name == selectedSongTitle);
+            current?.IncrementListenCount();
 
             if (current is Song song)
             {
@@ -120,13 +121,11 @@ namespace SpotifyClone.Controllers
             {
                 case "album":
                     currentPlaylistCollection = _listener.AllAlbums;
-                    currentArrayToDisplay = _listener.GetAlbumArray(_listener.AllAlbums); ;
+                    currentArrayToDisplay = _listener.GetDistinctAlbumNames(); 
                     break;
                 case "artist":
-                    selectedMenu = "artist";
                     currentPlaylistCollection = null;
-                    currentArtistsList = _listener.AllArtists;
-                    currentArrayToDisplay = _listener.GetArtistsArray();
+                    currentArrayToDisplay = _listener.GetDistinctArtistNames();
                     break;
                 case "playlist":
                     currentPlaylistCollection = _listener.Playlists;
@@ -152,9 +151,8 @@ namespace SpotifyClone.Controllers
             switch (selectedMenu)
             {
                 case "album":
-                    Artist SelectedArtist = currentArtistsList[num - 1];
-                    currentPlaylistCollection = SelectedArtist.GetAllAlbums();
-                    currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames(); ;
+                    string artist = currentArrayToDisplay[num - 1];
+                    currentArrayToDisplay = _listener.GetAlbumsByArtist(artist); 
                     break;
                 case "songs":
                     playlist = currentPlaylistCollection[num - 1];

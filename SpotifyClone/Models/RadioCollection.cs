@@ -22,6 +22,7 @@ namespace SpotifyClone.Models
 
         public void AddRadio(Radio radio)
         {
+            radio.AddPlaylistToSong(_name);
             if (_radios == null)
             {
                 _radios = new Radio[] { radio };

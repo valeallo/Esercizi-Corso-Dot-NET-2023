@@ -5,9 +5,8 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceLayer;
 using SpotifyClone.Controllers;
-using SpotifyClone.Interfaces;
-using SpotifyClone.Models;
 
 namespace SpotifyClone
 {
@@ -15,38 +14,52 @@ namespace SpotifyClone
     internal class UIClass
     {
         MusicPlayer musicPlayer;
-        MoviePlayer moviePlayer;
-        Listener _listener;
-        public UIClass(Listener listener) {
+        PlayerService playerService;
 
-            musicPlayer = new MusicPlayer(this, listener);
-            _listener = listener;
-            moviePlayer = new MoviePlayer(this, listener);
 
+        public UIClass() {
+
+            playerService = PlayerService.GetInstance();
+            musicPlayer = new MusicPlayer(this, playerService.player, playerService.userService);
+ 
         }
 
 
-        public void AskForTimeZone()
+        
+
+    public void AskForTimeZone()
+    {
+        bool loginSuccess = false;
+
+        while (!loginSuccess)
         {
-            Console.WriteLine("Please enter a nation code (e.g., 'de', 'it', 'fr', 'en-US'): ");
-            string inputTimeZoneId = Console.ReadLine();
+            Console.WriteLine("Enter your username: ");
+            string inputUsername = Console.ReadLine();
 
             try
             {
-                string currentTime = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss", new CultureInfo(inputTimeZoneId));
-                Console.WriteLine($"You selected this timezone: {inputTimeZoneId}");
-                _listener.Timezone = inputTimeZoneId;
-                Start();
-            }
-            catch (TimeZoneNotFoundException)
-            {
-                Console.WriteLine($"The entered nation code '{inputTimeZoneId}' was not recognized.");
+                loginSuccess = playerService.userService.Login(inputUsername);
+                if (loginSuccess)
+                {
+                    Start();
+                }
+                else
+                {
+                    Console.WriteLine("Login failed. Please try again.");
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
+                Console.WriteLine("Please try again.");
             }
         }
+
+
+    }
+
+
+        
 
         public void Start()
         {
@@ -70,7 +83,8 @@ namespace SpotifyClone
                         musicPlayer.ShowMusicMenu();
                         break;
                     case 'V':
-                        moviePlayer.ShowMovieMenu();
+                        //TODO reactivate movie menu
+                        //moviePlayer.ShowMovieMenu();
                         break;
                     case 'Q':
                         isRunning = false;
@@ -95,21 +109,19 @@ namespace SpotifyClone
         class MusicPlayer
         {
 
-            Listener listener;
-            Player player;
+
             Display display;
-
-
-
             private UIClass _uiClass;
+            Player player;
+            UserService userService;
       
 
-            public MusicPlayer(UIClass uiClass, Listener Listener)
+            public MusicPlayer(UIClass uiClass, Player Player, UserService UserService)
             {
                 _uiClass = uiClass;
-                listener = Listener;
-                player = new Player(listener);
-                display = new Display(Listener, player);
+                player = Player;
+                userService = UserService;
+                display = new Display(Player, userService);
             }
 
 
@@ -132,7 +144,7 @@ namespace SpotifyClone
                     display.PrintController();
              
 
-                    display.ClearDisplayArea(displayStartLine, player.currentArrayToDisplay.Length);
+                    display.ClearDisplayArea(displayStartLine, player.currentArrayToDisplay.Count);
                     Console.ForegroundColor = myColor;
             
                     display.PrintDisplay(player.currentArrayToDisplay, displayStartLine);
@@ -145,21 +157,21 @@ namespace SpotifyClone
                     {
                         int number = selection - '0';
                
-                        if ((selectedMenu == "songs" || selectedMenu == "radio") && number <= player.currentArrayToDisplay.Length)
+                        if ((selectedMenu == "songs" || selectedMenu == "radio" || selectedMenu == "songs-playlist") && number <= player.currentArrayToDisplay.Count)
                         {
                             player.PlayPause(number);
                         }
-                        else if (selectedMenu == "artist" && number <= player.currentArrayToDisplay.Length)
+                        else if (selectedMenu == "artist" && number <= player.currentArrayToDisplay.Count)
                         {
                             selectedMenu = "album";
                             player.UpdateDisplayForMenuOption(selectedMenu, number);
                         }
-                        else if ((selectedMenu == "album") && number <= player.currentPlaylistCollection.Length)
+                        else if ((selectedMenu == "album") && number <= player.currentArrayToDisplay.Count)
                         {
                             selectedMenu = "songs";
                             player.UpdateDisplayForMenuOption(selectedMenu, number);
                         }
-                        else if ((selectedMenu == "playlist") && number <= player.currentPlaylistCollection.Length)
+                        else if ((selectedMenu == "playlist") && number <= player.currentArrayToDisplay.Count)
                         {
                             selectedMenu = "songs-playlist";
                             player.UpdateDisplayForMenuOption(selectedMenu, number);
@@ -241,150 +253,37 @@ namespace SpotifyClone
         }
 
 
-        class MoviePlayer 
-        {
-            Listener listener;
-            Player player;
-            Display display;
-            private UIClass _uiClass;
-
-            public MoviePlayer(UIClass uiClass, Listener Listener)
-            {
-                _uiClass = uiClass;
-                listener = Listener;
-                player = new Player(listener);
-                display = new Display(Listener, player);
-            }
-
-
-            public void ShowMovieMenu()
-            {
-                bool inMenu = true;
-                int displayStartLine = 14;
-                ConsoleColor myColor = ConsoleColor.Magenta;
-                string selectedMenu = "movies";
-                player.UpdateDisplayForMenuOption(selectedMenu);
-
-
-
-                while (inMenu)
-                {
-                    display.CurrentDateTime();
-                    Console.Clear();
-                    display.PrintCurrentSong();
-                    display.PrintController();
-
-
-                    display.ClearDisplayArea(displayStartLine, player.currentArrayToDisplay.Length);
-                    Console.ForegroundColor = myColor;
-
-                    display.PrintDisplay(player.currentArrayToDisplay, displayStartLine);
-
-                    char selection = char.ToUpper(Console.ReadKey().KeyChar);
-
-
-                    Console.WriteLine();
-                    if (char.IsDigit(selection))
-                    {
-                        int number = selection - '0';
-
-                        if ((selectedMenu == "movies") && number <= player.currentArrayToDisplay.Length)
-                        {
-
-                            player.PlayPause(number);
-
-                        }
-                        //else if (selectedMenu == "artist" && number <= currentArtistsList.Length)
-                        //{
-                        //    Artist SelectedArtist = currentArtistsList[number - 1];
-                        //    Console.WriteLine(SelectedArtist.Name);
-                        //    selectedMenu = "album";
-                        //    currentPlaylistCollection = SelectedArtist.GetAllAlbums();
-                        //    player.currentArrayToDisplay = SelectedArtist.GetAllAlbumsNames();
-
-                        //}
-                    }
-                    else
-                    {
-
-                        switch (selection)
-                        {
-                            //case 'S':
-                            //    myColor = ConsoleColor.Red;
-                            //    selectedMenu = "artist";
-                            //    currentPlaylistCollection = null;
-                            //    currentArtistsList = listener.AllArtists;
-                            //    player.currentArrayToDisplay = listener.GetArtistsArray();
-                            //    break; 
-                            case 'Z':
-                                if (player.currentlyPlaying >= 1)
-                                {
-                                    player.Previous();
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Invalid selection. Please try again.");
-                                    Console.ReadKey();
-                                }
-                                break;
-                            case 'X':
-                                player.PlayPause();
-                                display.currentSongColor = player.isPlaying ? ConsoleColor.Green : ConsoleColor.Yellow;
-                                break;
-                            case 'C':
-                                if (player.currentlyPlaying >= 1)
-                                {
-                                    player.Next();
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Invalid selection. Please try again.");
-                                    Console.ReadKey();
-                                }
-                                break;
-                            case 'V':
-                                player.Stop();
-                                break;
-                            case 'Q':
-                                inMenu = false;
-                                break;
-                            default:
-                                Console.WriteLine("Invalid selection. Please try again.");
-                                Console.ReadKey();
-                                break;
-                        }
-                    }
-                }
-            }
-
-
-        }
+     
 
 
         class Display
         {
 
             public ConsoleColor currentSongColor = ConsoleColor.Green;
-            private Listener _listener;
             private Player _player;
+            private UserService _userService;
 
 
-            public Display(Listener listener, Player player)
+            public Display(Player player, UserService userService)
             {
-                _listener = listener;
                 _player = player;
+                _userService = userService;
             }
 
 
-            public void CurrentDateTime()
-            {
-                string currentTime = DateTime.Now.ToString("dddd, dd MMMM yyyy", new CultureInfo(_listener.Timezone));
-                Console.BackgroundColor = ConsoleColor.Cyan;
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.WriteLine("           " + currentTime + "       ");
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.White;
-            }
+
+            //TODO rimettere timezone
+
+            //public void CurrentDateTime()
+            //{
+                
+            //    string currentTime = DateTime.Now.ToString("dddd, dd MMMM yyyy", new CultureInfo(_listener.Timezone));
+            //    Console.BackgroundColor = ConsoleColor.Cyan;
+            //    Console.ForegroundColor = ConsoleColor.Black;
+            //    Console.WriteLine("           " + currentTime + "       ");
+            //    Console.BackgroundColor = ConsoleColor.Black;
+            //    Console.ForegroundColor = ConsoleColor.White;
+            //}
 
             public void Divider()
             {
@@ -396,10 +295,10 @@ namespace SpotifyClone
                 string space = "    ";
                 Console.ForegroundColor = ConsoleColor.White;
                 Divider();
-                CurrentDateTime();
+                //CurrentDateTime();
                 Divider();
                 Console.Write($"                     (M)Music            (P)Profile              ");
-                Console.Write($"Listening Time: {_listener.TotalListeningTime}\' ");
+                Console.Write($"Listening Time: {_userService.TotalListeningTime.TotalHours} / {_userService.MaxListeningTime} hours");
                 Divider();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.Write(space + "(A)Albums" + space);
@@ -416,41 +315,19 @@ namespace SpotifyClone
             }
 
 
-            public void PrintMovieNavbar()
-            {
-                string space = "    ";
-                Console.ForegroundColor = ConsoleColor.White;
-                Divider();
-                CurrentDateTime();
-                Divider();
-                Console.Write($"                     (M)Music            (P)Profile              ");
-                Console.Write($"Listening Time: {_listener.TotalListeningTime}\' ");
-                Divider();
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Write(space + "(A)Albums" + space);
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write(space + "(S)Artists" + space);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write(space + "(D)Playlists" + space);
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(space + "(F)Radio" + space);
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write(space + "Search" + space);
-                Console.ForegroundColor = ConsoleColor.White;
-                Divider();
-            }
-            public void PrintDisplay(string[] array, int startingLine)
+            
+            public void PrintDisplay(List<string> array, int startingLine)
             {
 
                 Console.SetCursorPosition(0, startingLine);
 
-                if (array == null || array.Length == 0)
+                if (array == null || array.Count == 0)
                 {
                     Console.WriteLine("No items to display.");
                     return;
                 }
 
-                for (int i = 0; i < array.Length; i++)
+                for (int i = 0; i < array.Count; i++)
                 {
                     if (array[i].Length > 0)
                     {
