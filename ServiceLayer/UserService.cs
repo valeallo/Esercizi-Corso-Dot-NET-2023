@@ -15,18 +15,28 @@ namespace ServiceLayer
         public UserService(PlayerService PlayerService)
         {
             playerService = PlayerService;
-            _user = PlayerService.GetAllListeners()[0];
+            
         }
 
         public ListenerDTO User { get {return _user;} }
         public SubscriptionType Subscription { get { return _user.Subscription;  } }
         public TimeSpan TotalListeningTime {  get { return _user.TotalListeningTime; } }
-        public void Login(string listenerName)
+        public bool Login(string listenerName)
         {
             List<ListenerDTO> allListeners = playerService.GetAllListeners();
             ListenerDTO listener = allListeners.FirstOrDefault(l => l.Name.Equals(listenerName, StringComparison.OrdinalIgnoreCase));
-            Console.WriteLine(listener);
-            _user = listener;
+
+            if (listener != null)
+            {
+                Console.WriteLine(listener);
+                _user = listener;
+                return true; 
+            }
+            else
+            {
+                Console.WriteLine($"Listener '{listenerName}' not found.");
+                return false; 
+            }
         }
 
         public bool CanListen()

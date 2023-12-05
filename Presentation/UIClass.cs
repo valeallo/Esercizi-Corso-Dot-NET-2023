@@ -25,28 +25,41 @@ namespace SpotifyClone
         }
 
 
-        public void AskForTimeZone()
+        
+
+    public void AskForTimeZone()
+    {
+        bool loginSuccess = false;
+
+        while (!loginSuccess)
         {
-            Console.WriteLine("Please enter a nation code (e.g., 'de', 'it', 'fr', 'en-US'): ");
-            string inputTimeZoneId = Console.ReadLine();
+            Console.WriteLine("Enter your username: ");
+            string inputUsername = Console.ReadLine();
 
             try
             {
-                string currentTime = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss", new CultureInfo(inputTimeZoneId));
-                Console.WriteLine($"You selected this timezone: {inputTimeZoneId}");
-                //TODO inserire timezone in listener
-                //_listener.Timezone = inputTimeZoneId;
-                Start();
-            }
-            catch (TimeZoneNotFoundException)
-            {
-                Console.WriteLine($"The entered nation code '{inputTimeZoneId}' was not recognized.");
+                loginSuccess = playerService.userService.Login(inputUsername);
+                if (loginSuccess)
+                {
+                    Start();
+                }
+                else
+                {
+                    Console.WriteLine("Login failed. Please try again.");
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
+                Console.WriteLine("Please try again.");
             }
         }
+
+
+    }
+
+
+        
 
         public void Start()
         {
