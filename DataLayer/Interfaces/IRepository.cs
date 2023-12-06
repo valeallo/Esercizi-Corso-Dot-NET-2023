@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Interfaces
 {
-    interface IRepository
+    interface IRepository<T, Rs>
     {
+        public List<Rs> GetAll();
+        public Rs GetById(int id);
+        public bool DeleteById(int id);
+        public bool Update(T media);
     }
 }
