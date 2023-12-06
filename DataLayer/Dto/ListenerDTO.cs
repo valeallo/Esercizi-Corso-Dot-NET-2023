@@ -1,4 +1,5 @@
 ﻿using DataLayer.Enums;
+using DataLayer.Interfaces;
 using DataLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Dto
 {
-    public class ListenerDTO
+    public class ListenerDTO : MediaObject
     {
 
         public string Name { get; set; }

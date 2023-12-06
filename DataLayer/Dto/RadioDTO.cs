@@ -10,7 +10,6 @@ namespace DataLayer.Dto
     public class RadioDTO
     {
 
-
             public string Name { get; set; }
 
 

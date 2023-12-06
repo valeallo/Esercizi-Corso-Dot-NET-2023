@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataLayer.Interfaces;
 using DataLayer.Models;
 
 namespace DataLayer.Dto
 {
 
-    public class ArtistDTO
+    public class ArtistDTO : MediaObject
     {
         public string Name { get; set; }
         public string Genre { get; set; }
