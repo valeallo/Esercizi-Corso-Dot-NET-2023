@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DataLayer.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,9 @@ namespace DataLayer.DbContext
 {
     internal class GenericDbContext<T, Rs> : DbContext
         where T : class, new()
-        where Rs : IRating
+        where Rs : IMediaObject
+
+
     {
         public List<Rs> Data { get; set; }
 

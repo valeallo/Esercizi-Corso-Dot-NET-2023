@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Models
+namespace DataLayer.Interfaces
 {
-     class Radio : MediaTrack
+    public interface IMediaObject
     {
-        public double RadioFrequency { get; set; }
+        public string Name { get; set; }
     }
 }

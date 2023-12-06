@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Interfaces
 {
-    internal interface MediaObject
+    interface IRepository
     {
-        public string Name { get; set; }
     }
 }

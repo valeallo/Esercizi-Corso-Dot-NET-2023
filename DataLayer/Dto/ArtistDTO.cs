@@ -9,7 +9,7 @@ using DataLayer.Models;
 namespace DataLayer.Dto
 {
 
-    public class ArtistDTO : MediaObject
+    public class ArtistDTO : IMediaObject
     {
         public string Name { get; set; }
         public string Genre { get; set; }

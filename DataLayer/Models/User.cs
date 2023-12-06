@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace DataLayer.Models
 {
-    public abstract class User
+     abstract class User
     {
 
         public string Name { get; set;  }

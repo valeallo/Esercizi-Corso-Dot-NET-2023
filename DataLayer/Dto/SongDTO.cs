@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Dto
 {
-    public class SongDTO : MediaObject
+    public class SongDTO : IMediaObject
     {
 
      
@@ -20,7 +20,7 @@ namespace DataLayer.Dto
             public string[] Playlists { get; set; }
 
 
-        public SongDTO(Song song)
+        internal SongDTO(Song song)
             {
                 Name = song.Name;
                 Duration = song.Duration;

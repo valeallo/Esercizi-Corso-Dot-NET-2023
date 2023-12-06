@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-    public class Artist : User
+    class Artist : User
     {
 
         public Album[] albums { get; set; }

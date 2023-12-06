@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace DataLayer.Models
 {
-    public abstract class MediaTrack
+     abstract class MediaTrack
     {
         public string Name { get; set; }
         public string Id { get; set; }

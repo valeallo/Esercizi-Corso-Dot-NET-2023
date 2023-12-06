@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 namespace DataLayer.Dto
 {
 
-    public class PlaylistDTO : MediaObject
+    public class PlaylistDTO : IMediaObject
     {
         public string Name { get; set; }
         public List<string> SongNames { get; set; }
 
-        public PlaylistDTO(Playlist playlist)
+        internal PlaylistDTO(Playlist playlist)
         {
             Name = playlist.Name;
             SongNames = playlist.Songs?.Select(track => track.Name).ToList() ?? new List<string>();

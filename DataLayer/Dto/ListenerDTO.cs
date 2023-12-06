@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Dto
 {
-    public class ListenerDTO : MediaObject
+    public class ListenerDTO : IMediaObject
     {
 
         public string Name { get; set; }

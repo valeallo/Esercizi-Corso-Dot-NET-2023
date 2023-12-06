@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-    public class Album : PlaylistBase
+     class Album : PlaylistBase
     {
         public string ArtistName { get; set; }
 

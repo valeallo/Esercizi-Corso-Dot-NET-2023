@@ -13,12 +13,12 @@ namespace DataLayer.DbContext
 {
     public class SpotifyContext : DbContext
     {
-        public List<Song> Songs { get; set; }
-        public List<Radio> Radios { get; set; }
-        public List<Album> Albums { get; set; }
-        public List<Artist> Artists { get; set; }
+        internal List<Song> Songs { get; set; }
+        internal List<Radio> Radios { get; set; }
+        internal List<Album> Albums { get; set; }
+        internal List<Artist> Artists { get; set; }
         internal List<Listener> listeners { get; set; }
-        public List<Playlist> Playlists { get; set; }
+        internal List<Playlist> Playlists { get; set; }
 
 
 

@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 namespace DataLayer.Dto
 {
    
-        public class AlbumDTO: MediaObject
+        public class AlbumDTO: IMediaObject
         {
             public string Name { get; set; }
             public string Artist { get; set; }
-            public List<string> SongNames { get; set; } 
+            public List<string> SongNames { get; set; }
 
-            public AlbumDTO(Album album)
+            internal AlbumDTO(Album album)
             {
                 Name = album.Name;
                 SongNames = album.Songs?.Select(track => track.Name).ToList() ?? new List<string>();
