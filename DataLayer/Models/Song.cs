@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-     class Song : MediaTrack
+    public class Song : MediaTrack
     {
 
         public TimeSpan Duration { get; set; }

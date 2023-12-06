@@ -13,6 +13,8 @@ namespace DataLayer.Dto
     {
         public string Name { get; set; }
         public string Genre { get; set; }
+
+        public string Id { get; set; }
         public List<string> AlbumNames { get; set; } 
 
         internal ArtistDTO(Artist artist)
@@ -20,6 +22,7 @@ namespace DataLayer.Dto
             Name = artist.Name;
             Genre = artist.genre;
             AlbumNames = artist.albums?.Select(album => album.Name).ToList() ?? new List<string>();
+            Id = artist.Id;
         }
 
         public ArtistDTO()

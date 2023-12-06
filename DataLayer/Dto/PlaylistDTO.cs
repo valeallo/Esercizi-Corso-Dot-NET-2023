@@ -14,10 +14,12 @@ namespace DataLayer.Dto
         public string Name { get; set; }
         public List<string> SongNames { get; set; }
 
+        public string Id { get; set; }
         internal PlaylistDTO(Playlist playlist)
         {
             Name = playlist.Name;
             SongNames = playlist.Songs?.Select(track => track.Name).ToList() ?? new List<string>();
+            Id = playlist.Id;
         }
 
         public PlaylistDTO()

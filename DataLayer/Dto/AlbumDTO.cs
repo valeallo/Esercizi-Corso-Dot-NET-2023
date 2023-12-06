@@ -12,6 +12,7 @@ namespace DataLayer.Dto
         public class AlbumDTO: IMediaObject
         {
             public string Name { get; set; }
+            public string Id { get; set; }
             public string Artist { get; set; }
             public List<string> SongNames { get; set; }
 
@@ -19,7 +20,8 @@ namespace DataLayer.Dto
             {
                 Name = album.Name;
                 SongNames = album.Songs?.Select(track => track.Name).ToList() ?? new List<string>();
-                Artist = album.ArtistName;    
+                Artist = album.ArtistName; 
+                Id = album.Id;
             }
 
             public AlbumDTO()

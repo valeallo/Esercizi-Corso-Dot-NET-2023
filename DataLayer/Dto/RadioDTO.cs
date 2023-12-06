@@ -13,10 +13,11 @@ namespace DataLayer.Dto
 
             public string Name { get; set; }
 
-
+            public string Id { get; set; }
             internal RadioDTO(Radio radio)
             {
                 Name = radio.Name;
+                Id = radio.Id;
             }
 
             public RadioDTO()

@@ -12,5 +12,7 @@ namespace DataLayer.Interfaces
         public Rs GetById(string id);
         public bool DeleteById(string id);
         public bool Update(Rq request);
+
+        public Rs GetByName(string name);
     }
 }

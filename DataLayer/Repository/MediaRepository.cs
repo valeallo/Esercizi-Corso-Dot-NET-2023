@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer.DbContext;
+using System.IO;
 
 
 namespace DataLayer.Repository
@@ -18,9 +19,12 @@ namespace DataLayer.Repository
         {
             private readonly GenericDbContext<T, Rs> _context;
 
-            public MediaRepository(GenericDbContext<T, Rs> context)
+            public MediaRepository()
             {
-                _context = context;
+                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string dataDirectory = Path.Combine(baseDirectory, "data");
+                _context = new GenericDbContext<T, Rs>(dataDirectory);
+ 
             }
 
             public List<Rs> GetAll()
@@ -57,7 +61,13 @@ namespace DataLayer.Repository
                 }
                 return false;
             }
-        }
+
+
+            public Rs GetByName(string name)
+            {
+                return _context.Data.FirstOrDefault(item => item.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            }
+    }
     
 
 }

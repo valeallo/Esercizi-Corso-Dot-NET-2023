@@ -29,31 +29,32 @@ namespace SpotifyClone
 
     public void AskForTimeZone()
     {
-        bool loginSuccess = false;
+            Start();
+        //    bool loginSuccess = false;
 
-        while (!loginSuccess)
-        {
-            Console.WriteLine("Enter your username: ");
-            string inputUsername = Console.ReadLine();
+        //while (!loginSuccess)
+        //{
+        //    Console.WriteLine("Enter your username: ");
+        //    string inputUsername = Console.ReadLine();
 
-            try
-            {
-                loginSuccess = playerService.userService.Login(inputUsername);
-                if (loginSuccess)
-                {
-                    Start();
-                }
-                else
-                {
-                    Console.WriteLine("Login failed. Please try again.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
-                Console.WriteLine("Please try again.");
-            }
-        }
+        //    try
+        //    {
+        //        loginSuccess = playerService.userService.Login(inputUsername);
+        //        if (loginSuccess)
+        //        {
+        //            Start();
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Login failed. Please try again.");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"An error occurred: {ex.Message}");
+        //        Console.WriteLine("Please try again.");
+        //    }
+        //}
 
 
     }
@@ -298,7 +299,7 @@ namespace SpotifyClone
                 //CurrentDateTime();
                 Divider();
                 Console.Write($"                     (M)Music            (P)Profile              ");
-                Console.Write($"Listening Time: {_userService.TotalListeningTime.TotalHours} / {_userService.MaxListeningTime} hours");
+                //Console.Write($"Listening Time: {_userService.TotalListeningTime.TotalHours} / {_userService.MaxListeningTime} hours");
                 Divider();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.Write(space + "(A)Albums" + space);

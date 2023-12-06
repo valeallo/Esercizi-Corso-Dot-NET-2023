@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,10 +18,11 @@ namespace DataLayer.DbContext
     {
         public List<Rs> Data { get; set; }
 
-        public GenericDbContext(string path) : base(path)
+        public GenericDbContext(string basePath) : base(basePath)
         {
-            var dataFromJson = LoadFromJsonFile<T>(Path.Combine(path, typeof(T).Name + ".json"));
-            Data = dataFromJson.Select(o => Activator.CreateInstance(typeof(Rs), o)).Cast<Rs>().ToList();
+            string filePath = Path.Combine(basePath, typeof(T).Name + ".json");
+            var dataFromJson = LoadFromJsonFile<T>(filePath);
+            Data = dataFromJson.Select(item => TransformToDto(item)).ToList();
         }
 
         private List<T> LoadFromJsonFile<T>(string filePath)
@@ -29,5 +31,23 @@ namespace DataLayer.DbContext
             string jsonString = File.ReadAllText(filePath);
             return JsonConvert.DeserializeObject<List<T>>(jsonString);
         }
+
+        private Rs TransformToDto(T item)
+        {
+          
+            var constructorInfo = typeof(Rs).GetConstructor(
+                BindingFlags.Instance | BindingFlags.NonPublic,
+                null,
+                new Type[] { typeof(T) },
+                null);
+
+            if (constructorInfo == null)
+            {
+                throw new InvalidOperationException($"No matching constructor found for {typeof(Rs).Name} that takes a {typeof(T).Name} as a parameter.");
+            }
+
+            return (Rs)constructorInfo.Invoke(new object[] { item });
+        }
     }
-}
+    }
+

@@ -19,6 +19,8 @@ namespace DataLayer.Dto
             public int ListenCount { get; set; }
             public string[] Playlists { get; set; }
 
+            public string Id { get; set; }
+
 
         internal SongDTO(Song song)
             {
@@ -28,6 +30,7 @@ namespace DataLayer.Dto
                 Artist = song.Artist;
                 ListenCount = song.ListenCount;
                 Playlists = song.Playlists;
+                Id = song.Id;
             }
 
         public SongDTO()
