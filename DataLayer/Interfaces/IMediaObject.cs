@@ -9,5 +9,6 @@ namespace DataLayer.Interfaces
     public interface IMediaObject
     {
         public string Name { get; set; }
+        public string Id { get; set; }
     }
 }

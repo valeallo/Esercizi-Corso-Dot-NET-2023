@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.DbContext
 {
-    internal class GenericDbContext<T, Rs> : DbContext
+    public class GenericDbContext<T, Rs> : DbContext
         where T : class, new()
         where Rs : IMediaObject
 
