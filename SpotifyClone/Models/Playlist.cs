@@ -12,19 +12,25 @@ namespace SpotifyClone.Models
     {
         string _playlistName;
         Song[] _songs;
+        string _id;
 
         public Playlist(string playlistName)
         {
             _playlistName = playlistName;
             _songs = new Song[0];
+            _id = Guid.NewGuid().ToString();
         }
 
         public string Name { get { return _playlistName; } }
-        public Audiotrack[] Songs { get { return _songs; } }
+        public string Id { get { return _id; } }
+        public string[] Songs
+        {
+            get { return _songs.Select(song => song.Id).ToArray(); }
+        }
 
         public void AddSong(Song song)
         {
-            song.AddPlaylistToSong(_playlistName);
+            song.AddPlaylistToSong(_id);
             if (_songs == null)
             {
                 _songs = new Song[] { song };
@@ -42,6 +48,7 @@ namespace SpotifyClone.Models
         }
 
 
+ 
 
     }
 }

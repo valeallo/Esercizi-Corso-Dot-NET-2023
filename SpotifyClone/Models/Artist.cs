@@ -18,6 +18,10 @@ namespace SpotifyClone.Models
         }
 
         public string Genre { get { return _genre; } }
+        //public string[] Albums
+        //{
+        //    get { return _albums.Select(song => song.Id).ToArray(); }
+        //}
 
 
         public void AddAlbum(Album album)

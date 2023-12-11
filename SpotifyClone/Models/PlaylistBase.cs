@@ -10,15 +10,19 @@ namespace SpotifyClone.Models
     {
         protected Audiotrack[] _tracks;
         string _name;
+        Guid _id;
 
         protected PlaylistBase(string Name)
         {
-            _name = Name; 
+            _name = Name;
+            _id = Guid.NewGuid();
+
         }
 
         public Audiotrack[] Songs => _tracks.ToArray();
 
         public string Name {  get { return _name; } }
+        public string Id { get { return _id.ToString(); } }
 
         public void AddTrack(Audiotrack audiotrack)
         {

@@ -2,31 +2,31 @@
   {
     "Genre": "Rock",
     "Name": "Queen",
-    "Id": 160862
+    "Id": "99d3bc62-6f14-4998-9f44-39521ffc3b80"
   },
   {
     "Genre": "Pop",
     "Name": "Madonna",
-    "Id": 273904
+    "Id": "3e60fbcb-c453-4960-98f7-a718e21def88"
   },
   {
     "Genre": "Pop",
     "Name": "Michael Jackson",
-    "Id": 520482
+    "Id": "3f4f2193-a134-4055-86f3-80cb087c5012"
   },
   {
     "Genre": "Rock",
     "Name": "Nirvana",
-    "Id": 462122
+    "Id": "758f7199-4bf9-4cd4-9197-0d27bb2ea5af"
   },
   {
     "Genre": "Rock",
     "Name": "ACDC",
-    "Id": 581759
+    "Id": "e162f0f7-ef79-494e-804d-92e9fbcbbb62"
   },
   {
     "Genre": "Pop",
     "Name": "",
-    "Id": 399594
+    "Id": "f632ff1c-4c21-4ca0-bfc8-9cae1eaf7196"
   }
 ]

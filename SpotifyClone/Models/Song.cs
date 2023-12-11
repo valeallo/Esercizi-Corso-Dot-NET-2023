@@ -21,8 +21,8 @@ namespace SpotifyClone.Models
         }
 
         public TimeSpan Duration { get { return _duration; } }
-        public string Album {get { return _album?.Name; } }
-        public string Artist { get { return _artist?.Name; } }
+        public string Album {get { return _album?.Id; } }
+        public string Artist { get { return _artist?.Id; } }
 
         //public string ReleaseDate { get { return _album.ReleaseDate; } }
 

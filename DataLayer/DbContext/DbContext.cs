@@ -44,10 +44,29 @@ namespace DataLayer.DbContext
 
         }
         #region Services 
-        protected List<T> ReadFromDb<T>(string config) where T : class, new()
+        protected List<T> ReadFromCsv<T>(string filePath) where T : class, new()
         {
-            List<string> lines = File.ReadAllLines(config).ToList();
-            return CreateObject<T>(lines);
+            var lines = File.ReadAllLines(filePath).ToList();
+            var headers = lines[0].Split(',');
+            lines.RemoveAt(0); 
+
+            var result = new List<T>();
+            foreach (var line in lines)
+            {
+                var values = line.Split(',');
+                var item = new T();
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    var property = item.GetType().GetProperty(headers[i]);
+                    if (property != null && i < values.Length)
+                    {
+                        var convertedValue = Convert.ChangeType(values[i], property.PropertyType);
+                        property.SetValue(item, convertedValue);
+                    }
+                }
+                result.Add(item);
+            }
+            return result;
         }
         public static List<T> CreateObject<T>(List<string> lines) where T : class, new()
         {

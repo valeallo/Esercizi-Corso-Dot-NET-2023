@@ -12,10 +12,12 @@ namespace SpotifyClone.Models
     {
         string _name;
         Song[] _songs;
+
         //string _realeaseDate;
         int _numberOfSongs;
         Artist _artist;
         string _genre;
+        string _id;
         public Album(string Name, Song[] songs, Artist artist, Listener listener)
         {
             _name = Name;
@@ -28,6 +30,8 @@ namespace SpotifyClone.Models
             listener.AddAlbum(this);
             listener.AddArtist(artist);
             artist.AddAlbum(this);
+            _id = Guid.NewGuid().ToString();
+
 
 
             foreach (var song in _songs)
@@ -39,12 +43,23 @@ namespace SpotifyClone.Models
         }
 
         public string Name { get { return _name; } }
-        public string ArtistName { get { return _artist.Name; } }
+        public string Artist { get { return _artist.Id; } }
         //commented release date to have better match with csv
         //public string ReleaseDate { get { return _realeaseDate; } }
-        public Audiotrack[] Songs { get { return _songs; } }
+        
+        public string Id { get { return _id; } }
 
         public string Genre { get { return _genre; } }
+
+        public string[] Songs
+        {
+            get { return _songs.Select(song => song.Id).ToArray(); }
+        }
+
+
+
+
+
 
 
 

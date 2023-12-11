@@ -10,13 +10,13 @@ namespace SpotifyClone.Models
     abstract class Audiotrack
     {
         string _name;
-        Guid _id;
+        string _id;
         int _listenCount;
         List<string> _playlists;
 
         public Audiotrack(string Name)
         {
-            _id = Guid.NewGuid();
+            _id = Guid.NewGuid().ToString();
             _name = Name;
             _listenCount = 0;
             _playlists = new List<string>();
@@ -40,6 +40,10 @@ namespace SpotifyClone.Models
         {
             _listenCount++;
         }
+
+
+
+     
 
     }
 }

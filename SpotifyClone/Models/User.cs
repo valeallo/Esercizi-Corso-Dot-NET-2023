@@ -8,24 +8,19 @@ namespace SpotifyClone
 {
     internal abstract class User
     {
-        int _id;
+        string _id;
         string _name;
 
         public User(string name)
         {
-            _id = GenerateId();
+            _id = Guid.NewGuid().ToString();
             _name = name;
         }
 
 
-        private static int GenerateId()
-        {
-            Random random = new Random();
-            return random.Next(100000, 1000000);
-        }
 
 
         public string Name { get {return _name; } }
-        public int Id { get { return _id;} }
+        public string Id { get { return _id; } }
     }
 }

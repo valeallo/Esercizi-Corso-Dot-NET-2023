@@ -9,7 +9,7 @@ namespace SpotifyClone.Interfaces
 {
     internal interface IPlaylist
     {
-        public Audiotrack[] Songs { get; }
+
 
         public string Name { get; }
 

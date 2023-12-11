@@ -96,21 +96,21 @@ namespace SpotifyClone.Controllers
 
 
 
-        public string[] GetSongNames()
-        {
-            if (playlist.Songs == null || playlist.Songs.Length == 0)
-            {
-                return new string[0];
-            }
+        //public string[] GetSongNames()
+        //{
+        //    if (playlist.Songs == null || playlist.Songs.Length == 0)
+        //    {
+        //        return new string[0];
+        //    }
 
-            string[] songNames = new string[playlist.Songs.Length];
+        //    string[] songNames = new string[playlist.Songs.Length];
 
-            for (int i = 0; i < songNames.Length; i++)
-            {
-                songNames[i] = playlist.Songs[i].GetTrackDetails();
-            }
-            return songNames;
-        }
+        //    for (int i = 0; i < songNames.Length; i++)
+        //    {
+        //        songNames[i] = playlist.Songs[i].GetTrackDetails();
+        //    }
+        //    return songNames;
+        //}
 
 
 
@@ -134,12 +134,12 @@ namespace SpotifyClone.Controllers
                 case "radio":
                     currentPlaylistCollection = null;
                     playlist = _listener.RadioCollection;
-                    currentArrayToDisplay = GetSongNames();
+                    //currentArrayToDisplay = GetSongNames();
                     break;
                 case "movies":
                     currentPlaylistCollection = null;
                     playlist = _listener.MovieCollection;
-                    currentArrayToDisplay = GetSongNames();
+                    //currentArrayToDisplay = GetSongNames();
                     break;
             }
         }
@@ -156,7 +156,7 @@ namespace SpotifyClone.Controllers
                     break;
                 case "songs":
                     playlist = currentPlaylistCollection[num - 1];
-                    currentArrayToDisplay = GetSongNames();
+                    //currentArrayToDisplay = GetSongNames();
                     break;
             }
            
