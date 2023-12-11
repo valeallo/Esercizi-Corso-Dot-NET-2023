@@ -1,0 +1,2 @@
+AllSongs,AllAlbums,AllArtists,RadioCollection,MovieCollection,TotalListeningTime,Subscription,Timezone,Playlists,Name,Id
+System.Collections.Generic.List`1[SpotifyClone.Models.Song],SpotifyClone.Models.Album[],SpotifyClone.Models.Artist[],SpotifyClone.Models.RadioCollection,,21.07:18:32,Free,it,SpotifyClone.Models.Playlist[],ListenerName,a87b0883-4141-4482-80b8-7805355230bf

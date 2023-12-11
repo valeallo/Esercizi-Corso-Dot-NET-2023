@@ -3,19 +3,13 @@
   "Songs": [
     {
       "Name": "Zeta",
-      "Id": "1cdab76f-c5e8-4483-ab06-235620e1c149",
-      "ListenCount": 0,
-      "Playlists": [
-        "FavoriteRadios"
-      ]
+      "Id": "08584656-b759-4d9c-a865-467ef1b35d9d",
+      "ListenCount": 0
     },
     {
       "Name": "Radio105",
-      "Id": "e480e257-0e1b-429c-b211-32f698f60528",
-      "ListenCount": 0,
-      "Playlists": [
-        "FavoriteRadios"
-      ]
+      "Id": "fde75b30-e722-4ced-ab76-39406030855f",
+      "ListenCount": 0
     }
   ]
 }

@@ -8,6 +8,6 @@ namespace DataLayer.Models
 {
     public class Radio : MediaTrack
     {
-        public double RadioFrequency { get; set; }
+        
     }
 }

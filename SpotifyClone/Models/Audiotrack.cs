@@ -25,7 +25,7 @@ namespace SpotifyClone.Models
         public string Id { get { return _id.ToString(); } }
         public abstract string GetTrackDetails();
         public int ListenCount { get { return _listenCount; } set { _listenCount = value; } }
-        public IEnumerable<string> Playlists { get { return _playlists.AsReadOnly(); } }
+        //public IEnumerable<string> Playlists { get { return _playlists.AsReadOnly(); } }
 
 
         public void AddPlaylistToSong(string playlistName)

@@ -12,7 +12,7 @@ namespace DataLayer.DbContext
 {
     public class GenericDbContext<T, Rs> : DbContext
         where T : class, new()
-        where Rs : IMediaObject
+        where Rs : class, new()
 
 
     {

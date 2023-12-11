@@ -12,13 +12,23 @@ namespace SpotifyClone
         static void Main(string[] args)
         {
             string path = myProjectDirectory();
-            string storageDirectory = Path.Combine(path, "storage", "songs.csv");
+            string storageDirectory = Path.Combine(path, "storage", "oldsongs.csv");
             string allSongsJsonPath = Path.Combine(path, "storage", "Songs.json");
             string allAlbumsJsonPath = Path.Combine(path, "storage", "Albums.json");
             string allRadiosJsonPath = Path.Combine(path, "storage", "Radios.json");
             string allArtistsJsonPath = Path.Combine(path, "storage", "Artists.json");
             string allPlaylitsJsonPath = Path.Combine(path, "storage", "Playlists.json");
             string users = Path.Combine(path, "storage", "Users.json");
+
+            string allSongsCsvPath = Path.Combine(path, "storage", "Songs.csv");
+            string allAlbumsCsvPath = Path.Combine(path, "storage", "Albums.csv");
+            string allRadiosCsvPath = Path.Combine(path, "storage", "Radios.csv");
+            string allArtistsCsvPath = Path.Combine(path, "storage", "Artists.csv");
+            string allPlaylistsCsvPath = Path.Combine(path, "storage", "Playlists.csv");
+            string usersCsvPath = Path.Combine(path, "storage", "Users.csv");
+
+
+
             List<Listener> listeners = new List<Listener>();
 
             Listener listener = SetupApplication();
@@ -27,8 +37,23 @@ namespace SpotifyClone
             listeners.Add(listener);
 
 
+          
+
+
             UIClass ui = new UIClass(listener);
             ui.AskForTimeZone();
+            UserDataManager.SaveToCsvFile(listener.AllSongs, allSongsCsvPath);
+            UserDataManager.SaveToCsvFile(listener.AllAlbums, allAlbumsCsvPath);
+            UserDataManager.SaveToCsvFile(listener.AllArtists, allArtistsCsvPath);
+            UserDataManager.SaveToCsvFile(listener.Playlists, allPlaylistsCsvPath);
+            UserDataManager.SaveToCsvFile(listeners, usersCsvPath);
+
+
+
+
+
+
+
             UserDataManager.SaveToJsonFile(listener.AllSongs, allSongsJsonPath);
             UserDataManager.SaveToJsonFile(listener.AllAlbums, allAlbumsJsonPath);
             UserDataManager.SaveToJsonFile(listener.RadioCollection, allRadiosJsonPath);

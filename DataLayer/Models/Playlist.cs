@@ -9,7 +9,7 @@ namespace DataLayer.Models
     public  class Playlist : PlaylistBase
     {
 
-        public  Song[] Songs { get; set; }
+        public string Songs { get; set; }
 
     }
 }

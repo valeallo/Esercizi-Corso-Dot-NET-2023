@@ -46,5 +46,40 @@ namespace SpotifyClone.Controllers
         }
 
 
+        public static string SerializeToCsv<T>(IEnumerable<T> data)
+        {
+            var sb = new StringBuilder();
+            var properties = typeof(T).GetProperties();
+
+            // Writing the header
+            sb.AppendLine(string.Join(",", properties.Select(p => p.Name)));
+
+            // Writing the data
+            foreach (var item in data)
+            {
+                var values = properties.Select(p =>
+                {
+                    var value = p.GetValue(item, null);
+                    if (value is IEnumerable<string> stringEnumerable)
+                    {
+                        return string.Join(";", stringEnumerable); // Serialize string arrays as semicolon-separated strings
+                    }
+                    return value?.ToString().Replace(",", ";") ?? "";
+                });
+                sb.AppendLine(string.Join(",", values));
+            }
+
+            return sb.ToString();
+        }
+
+
+
+        public static void SaveToCsvFile<T>(IEnumerable<T> data, string filePath)
+        {
+            string csvString = SerializeToCsv(data);
+            File.WriteAllText(filePath, csvString);
+        }
+
+
     }
 }

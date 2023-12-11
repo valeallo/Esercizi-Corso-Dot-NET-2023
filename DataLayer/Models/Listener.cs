@@ -10,7 +10,7 @@ namespace DataLayer.Models
     public class Listener : User
     {
 
-        Playlist[] _playlists;
+        string _playlists;
         internal TimeSpan TotalListeningTime { get; set; }
         internal SubscriptionType Subscription { get; set; }
 
