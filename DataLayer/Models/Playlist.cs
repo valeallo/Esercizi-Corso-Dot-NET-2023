@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-    public  class Playlist : PlaylistBase
+    public  class Playlist 
     {
+
+        public string Name { get; set; }
+        public string Id { get; set; }
 
         public string Songs { get; set; }
 

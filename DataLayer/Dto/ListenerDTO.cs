@@ -18,7 +18,7 @@ namespace DataLayer.Dto
   
         public string Id { get; set; }
 
-        internal ListenerDTO(Listener listener)
+        internal ListenerDTO(User listener)
         {
             Name = listener.Name;
             TotalListeningTime = listener.TotalListeningTime;

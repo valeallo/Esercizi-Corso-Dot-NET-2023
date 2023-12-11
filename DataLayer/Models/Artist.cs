@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-    public class Artist : User
+    public class Artist 
     {
-
+        public string Genre { get; set; }
+        public string Name { get; set; }
+        public string Id { get; set; }
         public string albums { get; set; }
-        public string genre { get; set; }
+    
     }
 }

@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-    public class Album : PlaylistBase
+    public class Album 
     {
-        public string ArtistName { get; set; }
 
+        public string Name { get; set; }
+        public string Artist { get; set; }
+        public string Id { get; set; }
+        public string Genre { get; set; }
         public  string Songs { get; set; }
 
-        public string Genre { get; set; } 
-        public string ReleaseDate {  get; set; }
     }
 }

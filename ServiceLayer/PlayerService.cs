@@ -28,7 +28,7 @@ namespace ServiceLayer
         private MediaRepository<Radio, RadioDTO, RadioDTO> radioRepository;
 
         //TODO replace with user repository
-        private MediaRepository<Listener, ListenerDTO, ListenerDTO> listenerRepository;
+        private MediaRepository<User, ListenerDTO, ListenerDTO> listenerRepository;
 
         PlayerService()
         {
@@ -41,7 +41,7 @@ namespace ServiceLayer
 
 
             //TODO replace with user repository
-            listenerRepository = new MediaRepository<Listener, ListenerDTO, ListenerDTO>();
+            listenerRepository = new MediaRepository<User, ListenerDTO, ListenerDTO>();
 
 
             userService = new UserService(this); 

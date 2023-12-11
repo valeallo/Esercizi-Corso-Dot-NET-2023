@@ -17,7 +17,7 @@ namespace DataLayer.DbContext
         internal List<Radio> Radios { get; set; }
         internal List<Album> Albums { get; set; }
         internal List<Artist> Artists { get; set; }
-        internal List<Listener> listeners { get; set; }
+        internal List<User> listeners { get; set; }
         internal List<Playlist> Playlists { get; set; }
 
 
@@ -50,7 +50,7 @@ namespace DataLayer.DbContext
                 Playlists = LoadFromJsonFile<Playlist>(Path.Combine(config, "Playlists.json"));
                 Console.WriteLine($"Loaded {Playlists.Count} playlists.");
 
-                listeners = LoadFromJsonFile<Listener>(Path.Combine(config, "Users.json"));
+                listeners = LoadFromJsonFile<User>(Path.Combine(config, "Users.json"));
                 Console.WriteLine($"Loaded {listeners.Count} listeners.");
 
                 MapSongsData();

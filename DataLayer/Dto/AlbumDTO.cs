@@ -12,8 +12,11 @@ namespace DataLayer.Dto
         public class AlbumDTO: IMediaObject
         {
             public string Name { get; set; }
-            public string Id { get; set; }
+  
             public string Artist { get; set; }
+            public string Id { get; set; }
+
+            public string Genre { get; set; }
             public List<string> SongNames { get; set; }
 
             internal AlbumDTO(Album album)
