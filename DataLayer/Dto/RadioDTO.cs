@@ -1,4 +1,5 @@
-﻿using DataLayer.Models;
+﻿using DataLayer.Interfaces;
+using DataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Dto
 {
-    public class RadioDTO
+    public class RadioDTO: IMediaObject
     {
-
 
             public string Name { get; set; }
 
-
-            public RadioDTO(Radio radio)
+            public string Id { get; set; }
+            internal RadioDTO(Radio radio)
             {
                 Name = radio.Name;
+                Id = radio.Id;
             }
 
             public RadioDTO()

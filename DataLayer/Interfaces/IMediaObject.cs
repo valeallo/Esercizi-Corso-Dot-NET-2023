@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Models
+namespace DataLayer.Interfaces
 {
-    public abstract class PlaylistBase
+    public interface IMediaObject
     {
-        
-
         public string Name { get; set; }
         public string Id { get; set; }
     }

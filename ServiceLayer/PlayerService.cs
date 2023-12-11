@@ -6,24 +6,44 @@ using System.Text;
 using System.Threading.Tasks;
 using DataLayer.DbContext;
 using DataLayer.Dto;
+using DataLayer.Repository;
 using SpotifyClone.Controllers;
+using DataLayer.Models;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ServiceLayer
 {
     public class PlayerService
     {
 
-        static SpotifyContext DbContext;
+
         static PlayerService instance;
         public Player player { get; }
         public UserService userService { get;}
 
+        private MediaRepository<Song, SongDTO, SongDTO> songRepository;
+        private MediaRepository<Album, AlbumDTO, AlbumDTO> albumRepository;
+        private MediaRepository<Artist, ArtistDTO, ArtistDTO> artistRepository;
+        private MediaRepository<Playlist, PlaylistDTO, PlaylistDTO> playlistRepository;
+        private MediaRepository<Radio, RadioDTO, RadioDTO> radioRepository;
+
+        //TODO replace with user repository
+        private MediaRepository<Listener, ListenerDTO, ListenerDTO> listenerRepository;
+
         PlayerService()
         {
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            Console.WriteLine(baseDirectory);
-            string dataDirectory = Path.Combine(baseDirectory, "data");
-            DbContext = new SpotifyContext(dataDirectory);
+
+            songRepository = new MediaRepository<Song, SongDTO, SongDTO>();
+            albumRepository = new MediaRepository<Album, AlbumDTO, AlbumDTO>();
+            artistRepository = new MediaRepository<Artist, ArtistDTO, ArtistDTO>();
+            playlistRepository = new MediaRepository<Playlist, PlaylistDTO, PlaylistDTO>();
+            radioRepository = new MediaRepository<Radio, RadioDTO, RadioDTO>();
+
+
+            //TODO replace with user repository
+            listenerRepository = new MediaRepository<Listener, ListenerDTO, ListenerDTO>();
+
+
             userService = new UserService(this); 
             player = new Player(this, userService);
             
@@ -39,27 +59,27 @@ namespace ServiceLayer
         }
         public List<SongDTO> GetAllSongs()
         {
-            return DbContext.SongDTOs;
+            return songRepository.GetAll();
         }
         public List<RadioDTO> GetAllRadios()
         {
-            return DbContext.RadioDTOs;
+           return radioRepository.GetAll();
         }
         public List<AlbumDTO> GetAllAlbums()
         {
-            return DbContext.AlbumDTOs;
+            return albumRepository.GetAll();
         }
         public List<ArtistDTO> GetAllArtists()
         {
-            return DbContext.ArtistDTOs;
+            return artistRepository.GetAll();
         }
         public List<ListenerDTO> GetAllListeners()
         {
-            return DbContext.ListenerDTOs;
+            return listenerRepository.GetAll();
         }
         public List<PlaylistDTO> GetAllPlaylists()
         {
-            return DbContext.PlaylistDTOs;
+            return playlistRepository.GetAll();
         }
         public List<string> GetNamesFromDTOs<T>(List<T> dtos) where T : class
         {
@@ -82,16 +102,16 @@ namespace ServiceLayer
         }
         public ArtistDTO GetArtistByName(string artistName)
         {
-            return DbContext.ArtistDTOs.FirstOrDefault(artist => artist.Name.Equals(artistName, StringComparison.OrdinalIgnoreCase));
+            return artistRepository.GetByName(artistName);
         }
         public AlbumDTO GetAlbumByName(string albumName)
         {
-            return DbContext.AlbumDTOs.FirstOrDefault(album => album.Name.Equals(albumName, StringComparison.OrdinalIgnoreCase));
+            return albumRepository.GetByName(albumName);
         }
 
         public PlaylistDTO GetPlaylistByName(string albumName)
         {
-            return DbContext.PlaylistDTOs.FirstOrDefault(artist => artist.Name.Equals(albumName, StringComparison.OrdinalIgnoreCase));
+            return playlistRepository.GetByName(albumName);
         }
 
 

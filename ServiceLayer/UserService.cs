@@ -15,7 +15,9 @@ namespace ServiceLayer
         public UserService(PlayerService PlayerService)
         {
             playerService = PlayerService;
-            
+            List<ListenerDTO> allListeners = playerService.GetAllListeners();
+            _user = allListeners.FirstOrDefault();
+
         }
 
         public ListenerDTO User { get {return _user;} }

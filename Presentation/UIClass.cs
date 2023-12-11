@@ -29,34 +29,35 @@ namespace SpotifyClone
 
     public void AskForTimeZone()
     {
-        bool loginSuccess = false;
+   
+            bool loginSuccess = false;
 
-        while (!loginSuccess)
-        {
-            Console.WriteLine("Enter your username: ");
-            string inputUsername = Console.ReadLine();
-
-            try
+            while (!loginSuccess)
             {
-                loginSuccess = playerService.userService.Login(inputUsername);
-                if (loginSuccess)
+                Console.WriteLine("Enter your username: ");
+                string inputUsername = Console.ReadLine();
+
+                try
                 {
-                    Start();
+                    loginSuccess = playerService.userService.Login(inputUsername);
+                    if (loginSuccess)
+                    {
+                        Start();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Login failed. Please try again.");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Console.WriteLine("Login failed. Please try again.");
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                    Console.WriteLine("Please try again.");
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
-                Console.WriteLine("Please try again.");
-            }
+
+
         }
-
-
-    }
 
 
         

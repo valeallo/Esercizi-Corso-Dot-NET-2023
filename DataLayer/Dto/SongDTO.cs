@@ -1,4 +1,5 @@
-﻿using DataLayer.Models;
+﻿using DataLayer.Interfaces;
+using DataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Dto
 {
-    public class SongDTO
+    public class SongDTO : IMediaObject
     {
 
      
@@ -18,8 +19,10 @@ namespace DataLayer.Dto
             public int ListenCount { get; set; }
             public string[] Playlists { get; set; }
 
+            public string Id { get; set; }
 
-        public SongDTO(Song song)
+
+        internal SongDTO(Song song)
             {
                 Name = song.Name;
                 Duration = song.Duration;
@@ -27,6 +30,7 @@ namespace DataLayer.Dto
                 Artist = song.Artist;
                 ListenCount = song.ListenCount;
                 Playlists = song.Playlists;
+                Id = song.Id;
             }
 
         public SongDTO()

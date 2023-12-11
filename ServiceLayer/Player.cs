@@ -15,8 +15,7 @@ namespace SpotifyClone.Controllers
     public class Player
     {
         public string currentSong { get; set; }
-        public PlaylistBase playlist { get; set; }
-        public Artist[] currentArtistsList {  get; set; }
+
 
         public int currentlyPlaying = 0;
         public List<string> currentArrayToDisplay = new List<string> { "please select a category" };
@@ -48,7 +47,7 @@ namespace SpotifyClone.Controllers
             int songNumber = num - 1;
 
       
-            if (_userService.CanListen())
+            if (!_userService.CanListen())
             {
                 Random rnd = new Random();
                 songNumber = rnd.Next(0, currentArrayToDisplay.Count);

@@ -13,12 +13,12 @@ namespace DataLayer.DbContext
 {
     public class SpotifyContext : DbContext
     {
-        public List<Song> Songs { get; set; }
-        public List<Radio> Radios { get; set; }
-        public List<Album> Albums { get; set; }
-        public List<Artist> Artists { get; set; }
+        internal List<Song> Songs { get; set; }
+        internal List<Radio> Radios { get; set; }
+        internal List<Album> Albums { get; set; }
+        internal List<Artist> Artists { get; set; }
         internal List<Listener> listeners { get; set; }
-        public List<Playlist> Playlists { get; set; }
+        internal List<Playlist> Playlists { get; set; }
 
 
 
@@ -31,28 +31,43 @@ namespace DataLayer.DbContext
 
         public SpotifyContext(string config) : base(config)
         {
-            Console.WriteLine("Loading data from JSON files from", config);
+            try
+            {
+                Console.WriteLine("Loading data from JSON files from", config);
 
-            Artists = LoadFromJsonFile<Artist>(Path.Combine(config, "Artists.json"));
-            Console.WriteLine($"Loaded {Artists.Count} artists.");
+                Artists = LoadFromJsonFile<Artist>(Path.Combine(config, "Artists.json"));
+                Console.WriteLine($"Loaded {Artists.Count} artists.");
 
-            Albums = LoadFromJsonFile<Album>(Path.Combine(config, "Albums.json"));
-            Console.WriteLine($"Loaded {Albums.Count} albums.");
+                Albums = LoadFromJsonFile<Album>(Path.Combine(config, "Albums.json"));
+                Console.WriteLine($"Loaded {Albums.Count} albums.");
 
-            Songs = LoadFromJsonFile<Song>(Path.Combine(config, "Songs.json"));
-            Console.WriteLine($"Loaded {Songs.Count} songs.");
+                Songs = LoadFromJsonFile<Song>(Path.Combine(config, "Songs.json"));
+                Console.WriteLine($"Loaded {Songs.Count} songs.");
 
-            Radios = LoadFromJsonFile<Radio>(Path.Combine(config, "Radios.json"));
-            Console.WriteLine($"Loaded {Radios.Count} radios.");
+                Radios = LoadFromJsonFile<Radio>(Path.Combine(config, "Radios.json"));
+                Console.WriteLine($"Loaded {Radios.Count} radios.");
 
-            Playlists = LoadFromJsonFile<Playlist>(Path.Combine(config, "Playlists.json"));
-            Console.WriteLine($"Loaded {Playlists.Count} playlists.");
+                Playlists = LoadFromJsonFile<Playlist>(Path.Combine(config, "Playlists.json"));
+                Console.WriteLine($"Loaded {Playlists.Count} playlists.");
 
-            listeners = LoadFromJsonFile<Listener>(Path.Combine(config, "Users.json"));
-            Console.WriteLine($"Loaded {listeners.Count} listeners.");
+                listeners = LoadFromJsonFile<Listener>(Path.Combine(config, "Users.json"));
+                Console.WriteLine($"Loaded {listeners.Count} listeners.");
 
-            MapSongsData();
-            CreateDTOs();
+                MapSongsData();
+                CreateDTOs();
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine($"File not found: {ex.FileName}");
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine($"JSON parsing error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+            }
         }
 
         private void MapSongsData()
