@@ -27,7 +27,6 @@ namespace EmailSenderServiceLayer
         CustomerService()
         {
 
-          
             customerRepository = new GenericRepository<Customer, CustomerDto, CustomerDto>();
             
         }
@@ -44,9 +43,25 @@ namespace EmailSenderServiceLayer
         {
             return customerRepository.GetAll();
         }
-       
-     
-  
+
+
+        public bool AddCustomer(CustomerDto customerDto)
+        {
+            try
+            {
+                
+                customerRepository.Create(customerDto);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return false;
+            }
+        }
+
+
+
 
 
     }

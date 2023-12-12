@@ -77,7 +77,7 @@ namespace EmailSenderDataLayer.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error creating item: {ex.Message}");
+                Console.WriteLine($"REpository error message creating item: {ex.Message}");
 
                 return false;
             }

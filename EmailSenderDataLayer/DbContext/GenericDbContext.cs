@@ -20,17 +20,43 @@ namespace EmailSenderDataLayer.DbContext
 
         public GenericDbContext(string path) : base(path)
         {
-            var dataFromCsv = ReadDataFromCsv<T>(path + typeof(T).Name.ToString() + ".csv");
-            _path = path;
-            _dataFromCsv = dataFromCsv;
 
-            Data = dataFromCsv.Select(o => Activator.CreateInstance(typeof(TResponse), o)).Cast<TResponse>().ToList();
+            _path  = Path.Combine(path, typeof(T).Name.ToString() + ".csv");
+
+            Console.WriteLine(_path);
+
+            if (File.Exists(_path))
+            {
+
+                var dataFromCsv = ReadDataFromCsv<T>(_path);
+                _dataFromCsv = dataFromCsv ?? new List<T>();
+
+                
+
+                Data = _dataFromCsv
+                                    .Where(o => o != null)
+                                    .Select(o => {
+                                        var ctor = typeof(TResponse).GetConstructor(new Type[] { typeof(T) });
+                                        if (ctor != null)
+                                        {
+                                            return (TResponse)ctor.Invoke(new object[] { o });
+                                        }
+                                        return default(TResponse);
+                                    })
+                                    .Where(o => o != null) 
+                                    .ToList();
+            }
+            else
+            {
+                _dataFromCsv = new List<T>();
+                Data = new List<TResponse>();
+            }
         }
 
 
         public void SaveChanges()
         {
-            SaveDataToCsv(_dataFromCsv, _path);
+            WriteDataToCsv(_dataFromCsv, _path);
         }
 
         public void Add(IDto dto)

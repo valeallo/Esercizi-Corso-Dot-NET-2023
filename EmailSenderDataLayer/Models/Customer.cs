@@ -8,10 +8,10 @@ namespace EmailSenderDataLayer.Models
 {
      public class Customer
     {
-        internal string Id { get; set; }
-        internal string Name { get; set; }
-        internal string Email { get; set; }
-        internal string Password { get; set; }
-        internal int NumberOfPurchases { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public int NumberOfPurchases { get; set; }
     }
 }

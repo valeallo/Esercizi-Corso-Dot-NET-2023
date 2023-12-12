@@ -73,65 +73,73 @@ namespace EmailSenderDataLayer.DbContext
 
             return CreateObject<T>(File.ReadAllLines(path).ToList());
         }
-        private static List<T> CreateObject<T>(List<string> file)
-            where T : class, new()
+
+
+
+
+
+
+        public static List<T> CreateObject<T>(List<string> lines) where T : class, new()
         {
             List<T> list = new List<T>();
-            string[] headers = file.ElementAt(0).Split(',');
-            file.RemoveAt(0);
 
-            bool isDataset = true;
-            T entry = new T();
-            PropertyInfo[] prop = entry.GetType().GetProperties();
-
-            if (isDataset)
+            if (lines.Count == 0)
             {
-                for (int i = 0; i < prop.Length; i++)
+                Console.WriteLine("CSV file is empty.");
+                return list;
+            }
+
+            string[] headers = lines[0].Split(',').Select(h => h.Trim()).ToArray();
+            bool isValid = true;
+
+            foreach (string header in headers)
+            {
+                PropertyInfo property = typeof(T).GetProperty(header);
+
+                if (property == null)
                 {
-                    if (prop.ElementAt(i).Name == headers[i])
-                        continue;
-                    else isDataset = false;
+                    Console.WriteLine($"Property '{header}' does not exist in the {typeof(T).Name} class.");
+                    isValid = false;
+                    break;
                 }
             }
-            if (isDataset)
+
+            if (!isValid)
             {
-                foreach (var line in file)
+                Console.WriteLine("Properties in the file do not match the object's properties.");
+                return list;
+            }
+
+            for (int i = 1; i < lines.Count; i++)
+            {
+                string[] columns = lines[i].Split(',');
+
+                if (columns.Length != headers.Length)
                 {
-                    entry = new T();
-
-                    int j = 0;
-                    string[] columns = line.Split(',');
-
-                    foreach (var col in columns)
-                    {
-                        if (col == null || col == string.Empty)
-                        {
-                            j++;
-                            continue;
-                        }
-                        try
-                        {
-                            var CurrentProp = entry.GetType().GetProperty(headers[j]).PropertyType;
-                            if (CurrentProp.IsEnum)
-                            {
-                                object enumValue = Enum.Parse(CurrentProp, col);
-                                entry.GetType().GetProperty(headers[j]).SetValue(entry, enumValue);
-                            }
-                            else
-                                entry.GetType()
-                                    .GetProperty(headers[j])
-                                    .SetValue(entry, Convert.ChangeType(col, entry.GetType().GetProperty(headers[j])
-                                    .PropertyType));
-                        }
-                        catch (Exception ex)
-                        {
-                            
-                        }
-                        j++;
-                    }
-
-                    list.Add(entry);
+                    Console.WriteLine($"Line {i + 1} has an incorrect number of columns.");
+                    continue;
                 }
+
+                T entry = new T();
+
+                for (int j = 0; j < headers.Length; j++)
+                {
+                    string columnName = headers[j];
+                    string columnValue = columns[j];
+
+                    PropertyInfo property = typeof(T).GetProperty(columnName);
+
+                    if (property != null && property.CanWrite)
+                    {
+                        object convertedValue = (string.IsNullOrEmpty(columnValue) || string.IsNullOrWhiteSpace(columnValue))
+                            ? null
+                            : Convert.ChangeType(columnValue, Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType);
+
+                        property.SetValue(entry, convertedValue);
+                    }
+                }
+
+                list.Add(entry);
             }
 
             return list;
@@ -139,11 +147,8 @@ namespace EmailSenderDataLayer.DbContext
 
 
 
-        protected virtual void SaveDataToCsv<T>(List<T> data, string path)
-        where T : class, new()
-            {
-   
-                WriteDataToCsv(data, path);
-            }
+
+
+
     }
 }
