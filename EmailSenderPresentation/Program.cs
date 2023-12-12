@@ -14,16 +14,13 @@ namespace EmailSenderPresentation
             // Create a CustomerDto instance
             CustomerDto customerDto = new CustomerDto
             {
-                Id = "123555",
-                Name = "Teststststst",
-                Email = "johnn.doe@exammmmple.com",
+                Id = "9999999",
+                Name = "maggiaaa",
+                Email = "maggiaaa.lala@exammmmple.com",
                 Password = "securepassword", 
                 NumberOfPurchases = 5
             };
 
-
-            var customerRepository = new GenericRepository<Customer, CustomerDto, CustomerDto>();
-            TestRepositoryMethods(customerRepository);
 
 
 
