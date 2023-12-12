@@ -18,12 +18,12 @@ namespace FileSystemExercise
 
             #region Tabular
 
-            List<Customer> users = new List<Customer>();
-            users.Add(new Customer("Alessio trotta", 50));
-            users.Add(new Customer("Chiara Francini", 40));
-            users.Add(new Customer("Sara Fedeli", 40));
-            users.Add(new Customer("Giulia Ferragni", 30));
-            users.Add(new Customer("Mario Spelta", 30));
+            List<CustomerFilesystem> users = new List<CustomerFilesystem>();
+            users.Add(new CustomerFilesystem("Alessio trotta", 50));
+            users.Add(new CustomerFilesystem("Chiara Francini", 40));
+            users.Add(new CustomerFilesystem("Sara Fedeli", 40));
+            users.Add(new CustomerFilesystem("Giulia Ferragni", 30));
+            users.Add(new CustomerFilesystem("Mario Spelta", 30));
 
 
             List<Account> accounts = new List<Account>();
@@ -185,7 +185,7 @@ namespace FileSystemExercise
         {
             File.Delete(Path.Combine(SrcPath, Filename));
         }
-        static void WriteAsTabular(string path, string Filename, List<Customer> data)
+        static void WriteAsTabular(string path, string Filename, List<CustomerFilesystem> data)
         {
 
             StringBuilder sb = new StringBuilder();
@@ -257,11 +257,11 @@ namespace FileSystemExercise
         }
 
     }
-    public class Customer
+    public class CustomerFilesystem
     {
         string _name;
         int _age;
-        public Customer(string name, int age)
+        public CustomerFilesystem(string name, int age)
         {
             _name = name;
             _age = age;

@@ -12,14 +12,14 @@ using System.IO;
 namespace EmailSenderDataLayer.Repository
 {
    
-        public class UserRepository<T, Rs, Rq> : IRepository<T, Rs, Rq>
+        public class GenericRepository<T, Rs, Rq> : IRepository<T, Rs, Rq>
             where T : class, new()
-            where Rs : class, IMediaObject, new()
-            where Rq : class, IMediaObject, new()
+            where Rs : IDto, new()
+            where Rq : IDto, new()
         {
             private readonly GenericDbContext<T, Rs> _context;
 
-            public UserRepository()
+            public GenericRepository()
             {
                 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 string dataDirectory = Path.Combine(baseDirectory, "data");
@@ -43,9 +43,8 @@ namespace EmailSenderDataLayer.Repository
                 if (item != null)
                 {
                     _context.Data.Remove(item);
-
-                    //TODO change the data source
-                    return true; 
+                    _context.SaveChanges(); 
+                    return true;
                 }
                 return false;
             }
@@ -55,18 +54,46 @@ namespace EmailSenderDataLayer.Repository
                 var item = GetById(request.Id);
                 if (item != null)
                 {
-                    //TODO implement changing data source
-
-                    return true; 
+                    // TODO: Map request to item properties
+                    // Example: item.Name = request.Name;
+                    _context.SaveChanges(); 
+                    return true;
                 }
                 return false;
             }
 
-
-            public Rs GetByName(string name)
+        public bool Create(Rq request)
+        {
+            try
             {
-                return _context.Data.FirstOrDefault(item => item.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+                if (request == null)
+                {
+                    return false;
+                }
+
+                _context.Add(request);
+
+                return true;
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating item: {ex.Message}");
+
+                return false;
+            }
+        }
+
+        
+
+
+
+
+
+
+        //public Rs GetByName(string name)
+        //{
+        //    return _context.Data.FirstOrDefault(item => item.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        //}
     }
     
 

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmailSenderDataLayer.Models
+namespace EmailSenderDataLayer.Interfaces
 {
-    internal class User
+    public interface IDto
     {
+        string Id { get; }
     }
 }

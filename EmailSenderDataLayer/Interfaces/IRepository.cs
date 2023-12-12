@@ -13,6 +13,7 @@ namespace EmailSenderDataLayer.Interfaces
         public bool DeleteById(string id);
         public bool Update(Rq request);
 
-        public Rs GetByName(string name);
+        public bool Create(Rq request);
+        //public Rs GetByName(string name);
     }
 }

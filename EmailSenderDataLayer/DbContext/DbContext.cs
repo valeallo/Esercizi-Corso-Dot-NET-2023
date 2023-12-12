@@ -34,128 +34,116 @@ namespace EmailSenderDataLayer.DbContext
 
     public abstract class DbContext
     {
-        string _config; // Solitamente la configurazione per accedere al DstaSrc
+        string _config;
         protected DbContext(string config)
         {
             _config = config;
         }
+
         public DbContext()
         {
 
         }
-        #region Services 
-        protected List<T> ReadFromDb<T>(string config) where T : class, new()
+
+
+
+        protected virtual void WriteDataToCsv<T>(List<T> data, string path)
+            where T : class
         {
-            List<string> lines = File.ReadAllLines(config).ToList();
-            return CreateObject<T>(lines);
+            var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var sb = new StringBuilder();
+
+            sb.AppendLine(string.Join(",", properties.Select(p => p.Name)));
+
+            foreach (var item in data)
+            {
+                var line = string.Join(",", properties.Select(p => p.GetValue(item, null)));
+                sb.AppendLine(line);
+            }
+
+            File.WriteAllText(path, sb.ToString());
         }
-        public static List<T> CreateObject<T>(List<string> lines) where T : class, new()
+        protected virtual List<T> ReadDataFromCsv<T>(string path)
+            where T : class, new()
+        {
+            if (!File.Exists(path))
+            {
+                return null;
+            }
+
+            return CreateObject<T>(File.ReadAllLines(path).ToList());
+        }
+        private static List<T> CreateObject<T>(List<string> file)
+            where T : class, new()
         {
             List<T> list = new List<T>();
-            string[] headers = lines.ElementAt(0).Split(',');
-            lines.RemoveAt(0); // Rimuovo la prima riga (nome colonne) del mio datasource
-            bool corretto = false;
-            bool p = true;
-            T entry = new T(); // Creo istanza per poter estrarre le properties
-            PropertyInfo[] prop = entry
-                            .GetType() // Prendo il tipo
-                                    .GetProperties(); // Prendo le sue properties 
+            string[] headers = file.ElementAt(0).Split(',');
+            file.RemoveAt(0);
 
-            if (true)
+            bool isDataset = true;
+            T entry = new T();
+            PropertyInfo[] prop = entry.GetType().GetProperties();
+
+            if (isDataset)
             {
-                for (int i = 0; i < headers.Length; i++) // Ciclo le properties dell'oggetto  T
+                for (int i = 0; i < prop.Length; i++)
                 {
-                    PropertyInfo prp = entry.GetType().GetProperty(headers[i]);
-                    if (prp is not null) // ciclo le colonne e le properties insieme
-                    {
-                        corretto = true;
-                    }
-                    else p = false; // S eha fallito almeno una volta, setto a false
+                    if (prop.ElementAt(i).Name == headers[i])
+                        continue;
+                    else isDataset = false;
                 }
             }
-            if (corretto && p)
+            if (isDataset)
             {
-                for (int i = 0; i < lines.Count; i++)
+                foreach (var line in file)
                 {
-                    int j = 0;
-                    string[] columns = lines[i].Split(',');
                     entry = new T();
 
-                    foreach (var item in headers)
+                    int j = 0;
+                    string[] columns = line.Split(',');
+
+                    foreach (var col in columns)
                     {
-
-
-                        var e = entry.GetType().GetProperty(headers[j]);
-                        if (e != null)
+                        if (col == null || col == string.Empty)
                         {
-                            Type targetType = Nullable.GetUnderlyingType(e.PropertyType) ?? e.PropertyType;
-
-                            //var t = Convert.ChangeType(col, entry.GetType().GetProperty(headers[j].Trim()).PropertyType);
-                            //e.SetValue(entry, t);
-
-
-                            // Custom conversion for nullable types  
-                            var isNull = columns[j] == null ? true : false;
-                            var isEmpty = string.IsNullOrEmpty(columns[j]) ? true : false;
-                            var data = columns[j];
-
-                            object convertedValue = (columns[j] == null || columns[j].Trim().Equals(string.Empty)) ? null : Convert.ChangeType(columns[j], targetType);
-                            e.SetValue(entry, convertedValue);
-
-
-
-
-
-
+                            j++;
+                            continue;
+                        }
+                        try
+                        {
+                            var CurrentProp = entry.GetType().GetProperty(headers[j]).PropertyType;
+                            if (CurrentProp.IsEnum)
+                            {
+                                object enumValue = Enum.Parse(CurrentProp, col);
+                                entry.GetType().GetProperty(headers[j]).SetValue(entry, enumValue);
+                            }
+                            else
+                                entry.GetType()
+                                    .GetProperty(headers[j])
+                                    .SetValue(entry, Convert.ChangeType(col, entry.GetType().GetProperty(headers[j])
+                                    .PropertyType));
+                        }
+                        catch (Exception ex)
+                        {
+                            
                         }
                         j++;
                     }
+
                     list.Add(entry);
-
                 }
-
             }
-            else Console.WriteLine("le proprietà nel file non corrispondono a proprietà oggetto");
 
             return list;
         }
-        public void WriteData<T>(IEnumerable<T> data)
-        {
 
-            List<string> list = new List<string>();
-            StringBuilder sb = new StringBuilder();
-            var cols = data.GetEnumerator().GetType().GetProperties();
 
-            if (File.Exists(_config))
+
+        protected virtual void SaveDataToCsv<T>(List<T> data, string path)
+        where T : class, new()
             {
-                File.Delete(_config);
+   
+                WriteDataToCsv(data, path);
             }
-            foreach (var col in cols)// cicla tutte le Entity della classe in oggetto
-            {
-                sb.Append(col.Name);
-                sb.Append(',');
-            }
-
-            list.Add(sb.ToString().Substring(0, sb.Length - 1));
-            foreach (var row in data)
-            {
-
-                sb = new StringBuilder();
-                foreach (var col in cols)// cicla tutte le Entity della classe in oggetto
-                {
-
-                    sb.Append(col.GetValue(row));
-                    sb.Append(',');
-
-
-                }
-                list.Add(sb.ToString().Substring(0, sb.Length - 1));
-            }
-            File.AppendAllLines(_config, list);
-        }
-
-        #endregion
-
-
     }
 }
