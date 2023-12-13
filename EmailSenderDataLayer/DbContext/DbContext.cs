@@ -6,7 +6,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml;
-
+using EmailSenderDataLayer.Dto;
+using EmailSenderDataLayer.Repository;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 
 
@@ -34,18 +38,17 @@ namespace EmailSenderDataLayer.DbContext
 
     public abstract class DbContext
     {
-        string _config;
-        protected DbContext(string config)
-        {
-            _config = config;
-        }
+
+
+
+        
 
         public DbContext()
         {
 
         }
 
-
+   
 
         protected virtual void WriteDataToCsv<T>(List<T> data, string path)
             where T : class
@@ -73,10 +76,6 @@ namespace EmailSenderDataLayer.DbContext
 
             return CreateObject<T>(File.ReadAllLines(path).ToList());
         }
-
-
-
-
 
 
         public static List<T> CreateObject<T>(List<string> lines) where T : class, new()

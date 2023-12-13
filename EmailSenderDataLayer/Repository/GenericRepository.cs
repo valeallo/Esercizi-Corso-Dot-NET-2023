@@ -7,7 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using EmailSenderDataLayer.DbContext;
 using System.IO;
-
+using Microsoft.Extensions.Options;
+using EmailSenderDataLayer.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace EmailSenderDataLayer.Repository
 {
@@ -19,13 +21,11 @@ namespace EmailSenderDataLayer.Repository
         {
             private readonly GenericDbContext<T, Rs> _context;
 
-            public GenericRepository()
-            {
-                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string dataDirectory = Path.Combine(baseDirectory, "data");
-                _context = new GenericDbContext<T, Rs>(dataDirectory);
- 
-            }
+            public GenericRepository(GenericDbContext<T, Rs> context)
+                {
+
+                    _context = context;
+                }
 
             public List<Rs> GetAll()
             {
@@ -95,6 +95,8 @@ namespace EmailSenderDataLayer.Repository
         //    return _context.Data.FirstOrDefault(item => item.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         //}
     }
-    
 
+    public class TResponse
+    {
+    }
 }

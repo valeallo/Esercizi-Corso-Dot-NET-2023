@@ -1,4 +1,7 @@
 ﻿using EmailSenderDataLayer.Interfaces;
+using EmailSenderDataLayer.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,44 +10,58 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace EmailSenderDataLayer.DbContext
 {
 
-    internal class GenericDbContext<T, TResponse> : DbContext
+    public class GenericDbContext<T, TResponse> : DbContext
        where T : class, new()
        where TResponse : IDto, new()
     {
         public List<TResponse> Data { get; set; }
         private List<T> _dataFromCsv {  get; set; }
-        private string _path; 
+        public string _path;
+        public string _config;
+        public readonly MyServiceSettings _configuration;
 
-        public GenericDbContext(string path) : base(path)
+
+        public GenericDbContext(IOptions<MyServiceSettings> myserviceSetting) : base()
         {
 
-            _path  = Path.Combine(path, typeof(T).Name.ToString() + ".csv");
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-            Console.WriteLine(_path);
+            _configuration = myserviceSetting.Value;
+            _config = Path.Combine(baseDirectory, _configuration.FilePath);
+            Console.WriteLine("base", baseDirectory);
+            Console.WriteLine("Pathhhhh", _config);
+
+            if (_configuration == null)
+            {
+                Console.WriteLine("Configuration is null.");
+            }
+            else if (string.IsNullOrEmpty(_configuration.FilePath))
+            {
+                Console.WriteLine("File path is not set in configuration.");
+            }
+            else
+            {
+                _config = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _configuration.FilePath);
+                Console.WriteLine("this is the path:", _config);
+            }
+
+
+            _path = Path.Combine(_config, typeof(T).Name.ToString() + ".csv");
+
+
+            Console.WriteLine("nuovo path::",_path);
 
             if (File.Exists(_path))
             {
 
                 var dataFromCsv = ReadDataFromCsv<T>(_path);
                 _dataFromCsv = dataFromCsv ?? new List<T>();
-
-                
-
-                Data = _dataFromCsv
-                                    .Where(o => o != null)
-                                    .Select(o => {
-                                        var ctor = typeof(TResponse).GetConstructor(new Type[] { typeof(T) });
-                                        if (ctor != null)
-                                        {
-                                            return (TResponse)ctor.Invoke(new object[] { o });
-                                        }
-                                        return default(TResponse);
-                                    })
-                                    .Where(o => o != null) 
-                                    .ToList();
+                Data = ConvertToDto(_dataFromCsv);
+                                    
             }
             else
             {
@@ -54,6 +71,9 @@ namespace EmailSenderDataLayer.DbContext
         }
 
 
+
+
+        public string GetFilePath() { return "Ciao sono il nuovo log" + _configuration.FilePath; }
         public void SaveChanges()
         {
             WriteDataToCsv(_dataFromCsv, _path);
@@ -85,6 +105,23 @@ namespace EmailSenderDataLayer.DbContext
 
             return entity;
         }
+
+
+        private List<TResponse> ConvertToDto (List<T> list)
+        {
+           return list.Where(o => o != null)
+                                    .Select(o => {
+                                        var ctor = typeof(TResponse).GetConstructor(new Type[] { typeof(T) });
+                                        if (ctor != null)
+                                        {
+                                            return (TResponse)ctor.Invoke(new object[] { o });
+                                        }
+                                        return default(TResponse);
+                                    })
+                                    .Where(o => o != null)
+                                    .ToList();
+        }
+             
 
 
     }

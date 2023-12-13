@@ -9,6 +9,9 @@ using EmailSenderDataLayer.Repository;
 using EmailSenderDataLayer.Dto;
 using System.Reflection.Metadata.Ecma335;
 using EmailSenderDataLayer.Models;
+using Microsoft.Extensions.Configuration;
+using System.IO.Pipes;
+using Microsoft.Extensions.Options;
 
 namespace EmailSenderServiceLayer
 {
@@ -18,30 +21,36 @@ namespace EmailSenderServiceLayer
 
         static CustomerService instance;
 
-        private readonly GenericRepository<Customer, CustomerDto, CustomerDto> customerRepository;
+        private readonly GenericRepository<Customer, CustomerDto, CustomerDto> _customerRepository;
 
 
-        
+     
 
-
-        CustomerService()
+        public CustomerService(GenericRepository<Customer, CustomerDto, CustomerDto> customerRepository)
         {
+            _customerRepository = customerRepository;
 
-            customerRepository = new GenericRepository<Customer, CustomerDto, CustomerDto>();
-            
         }
 
-        public static CustomerService GetInstance()
-        {
-            if (instance is null)
-            {
-                instance = new CustomerService();
-            }
-            return instance;
-        }
+        //public static CustomerService GetInstance()
+        //{
+        //    if (instance is null)
+        //    {
+        //        instance = new CustomerService();
+        //    }
+        //    return instance;
+        //}
         public List<CustomerDto> GetAllCostumers()
         {
-            return customerRepository.GetAll();
+            var customers = _customerRepository.GetAll();
+            Console.WriteLine("lunghessa", customers.Count);
+            try  { 
+            Console.WriteLine("Nome Cliente", customers[0].Name);
+            } catch (Exception ex)
+            {
+                Console.WriteLine("nome client errroree", ex.Message);
+            }
+            return _customerRepository.GetAll();
         }
 
 
@@ -50,7 +59,7 @@ namespace EmailSenderServiceLayer
             try
             {
                 
-                customerRepository.Create(customerDto);
+                _customerRepository.Create(customerDto);
                 return true;
             }
             catch (Exception ex)
