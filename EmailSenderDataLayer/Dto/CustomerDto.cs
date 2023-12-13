@@ -8,7 +8,7 @@ using EmailSenderDataLayer.Models;
 
 namespace EmailSenderDataLayer.Dto
 {
-    public class CustomerDto : IDto
+    public class CustomerDto : IDto<Customer>
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -28,5 +28,21 @@ namespace EmailSenderDataLayer.Dto
         public CustomerDto()
         {
         }
+
+
+        public void initializeFromEntity(Customer customer)
+        {
+            if (customer == null)
+            {
+                throw new ArgumentNullException(nameof(customer));
+            }
+
+            Id = customer.Id;
+            Name = customer.Name;
+            Email = customer.Email;
+            Password = customer.Password;
+            NumberOfPurchases = customer.NumberOfPurchases;
+        }
+
     }
 }

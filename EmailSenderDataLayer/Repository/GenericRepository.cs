@@ -16,8 +16,8 @@ namespace EmailSenderDataLayer.Repository
    
         public class GenericRepository<T, Rs, Rq> : IRepository<T, Rs, Rq>
             where T : class, new()
-            where Rs : IDto, new()
-            where Rq : IDto, new()
+            where Rs : IDto<T>, new()
+            where Rq : IDto<T>, new()
         {
             private readonly GenericDbContext<T, Rs> _context;
 

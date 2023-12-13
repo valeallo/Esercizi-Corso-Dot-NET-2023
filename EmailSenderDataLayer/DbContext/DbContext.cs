@@ -73,8 +73,9 @@ namespace EmailSenderDataLayer.DbContext
             {
                 return null;
             }
-
-            return CreateObject<T>(File.ReadAllLines(path).ToList());
+            var list = CreateObject<T>(File.ReadAllLines(path).ToList());
+            Console.WriteLine(list.Count);
+            return list;
         }
 
 

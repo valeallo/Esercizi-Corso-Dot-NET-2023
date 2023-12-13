@@ -43,7 +43,6 @@ namespace EmailSenderServiceLayer
         public List<CustomerDto> GetAllCostumers()
         {
             var customers = _customerRepository.GetAll();
-            Console.WriteLine($"lunghessa{customers.Count}");
             try  { 
             Console.WriteLine($"Nome Cliente{customers[0].Name}");
             } catch (Exception ex)
