@@ -10,6 +10,7 @@ using System.IO;
 using Microsoft.Extensions.Options;
 using EmailSenderDataLayer.DbContext;
 
+
 namespace EmailSenderPresentation
 {
     internal class Program
@@ -50,12 +51,7 @@ namespace EmailSenderPresentation
             serviceCollection.Configure<MyServiceSettings>(configuration.GetSection("MyServiceSettings"));
             serviceCollection.Configure<EmailSetting>(configuration.GetSection("EmailSettings"));
             serviceCollection.AddTransient<GenericDbContext<Customer, CustomerDto>>();
-
-
-
-
             serviceCollection.AddTransient<GenericRepository<Customer, CustomerDto, CustomerDto>>();
-            serviceCollection.AddTransient<CustomerService>();
             serviceCollection.AddTransient<ClasseFarloccaPerStampare>();
 
 
@@ -63,17 +59,15 @@ namespace EmailSenderPresentation
 
    
             var myService = serviceProvider.GetService<ClasseFarloccaPerStampare>();
-         
-         
+            var myRepository = serviceProvider.GetService<GenericRepository<Customer, CustomerDto, CustomerDto>>();
 
 
+            var costumerService = new CustomerService(myRepository);
             var dbContext = serviceProvider.GetService<GenericDbContext<Customer, CustomerDto>>();
 
 
+            costumerService.GetAllCostumers();
 
-            var path = dbContext.GetFilePath();
-
-            Console.WriteLine("pathgggg",path);
 
 
             myService.DoSomething();

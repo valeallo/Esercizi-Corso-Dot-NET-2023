@@ -19,10 +19,10 @@ namespace EmailSenderDataLayer.DbContext
        where TResponse : IDto, new()
     {
         public List<TResponse> Data { get; set; }
-        private List<T> _dataFromCsv {  get; set; }
-        public string _path;
-        public string _config;
-        public readonly MyServiceSettings _configuration;
+        public List<T> _dataFromCsv {  get; set; }
+        private string _path;
+        private string _config;
+        private readonly MyServiceSettings _configuration;
 
 
         public GenericDbContext(IOptions<MyServiceSettings> myserviceSetting) : base()
@@ -32,28 +32,9 @@ namespace EmailSenderDataLayer.DbContext
 
             _configuration = myserviceSetting.Value;
             _config = Path.Combine(baseDirectory, _configuration.FilePath);
-            Console.WriteLine("base", baseDirectory);
-            Console.WriteLine("Pathhhhh", _config);
-
-            if (_configuration == null)
-            {
-                Console.WriteLine("Configuration is null.");
-            }
-            else if (string.IsNullOrEmpty(_configuration.FilePath))
-            {
-                Console.WriteLine("File path is not set in configuration.");
-            }
-            else
-            {
-                _config = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _configuration.FilePath);
-                Console.WriteLine("this is the path:", _config);
-            }
-
-
             _path = Path.Combine(_config, typeof(T).Name.ToString() + ".csv");
 
 
-            Console.WriteLine("nuovo path::",_path);
 
             if (File.Exists(_path))
             {
@@ -73,7 +54,6 @@ namespace EmailSenderDataLayer.DbContext
 
 
 
-        public string GetFilePath() { return "Ciao sono il nuovo log" + _configuration.FilePath; }
         public void SaveChanges()
         {
             WriteDataToCsv(_dataFromCsv, _path);
