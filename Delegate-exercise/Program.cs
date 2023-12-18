@@ -5,21 +5,34 @@ namespace Delegate_exercise
 
    internal class Program
         {
-
-    
-
-
-
         static void Main(string[] args)
         {
-
 
             //primo esercizio : 
             SumDelegate sumDel =  Sum;
             PrintSumDelegate execSumDel = new PrintSumDelegate(StringifyResult);
             string result = execSumDel(sumDel);
             PrintResultInConsole(result);
- 
+
+            //secondo esercizio : 
+            int x = 10;
+
+            Func<int, int, int> multiplicateNumbers = (a, b) => a * b;
+            Predicate<int> isGreaterThanX = product => product > x;
+
+            Action<string> printMessage = message => Console.WriteLine(message);
+
+            int resultMult = multiplicateNumbers(5, 5);
+
+            if (isGreaterThanX(resultMult))
+            {
+                printMessage("The product is greater than X.");
+            }
+            else
+            {
+                printMessage("The product is not greater than X.");
+            }
+
         }
 
         //primo esercizio : 
