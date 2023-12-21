@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  realestateapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "RealEstateConnectionString=Server=sqlserver;Database=RealEstate; User id = sa ; password = Password.123;Trusted_Connection=False"
+    ports:
+      - "80"
