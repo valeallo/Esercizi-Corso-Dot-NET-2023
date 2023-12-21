@@ -24,15 +24,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceLayer", "ServiceLaye
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{5F4407CA-58D2-4869-9172-E668AD0E7A6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSenderPresentation", "EmailSenderPresentation\EmailSenderPresentation.csproj", "{3BD4D84A-4338-4A4E-8F1C-F4B23C733998}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSenderPresentation", "EmailSenderPresentation\EmailSenderPresentation.csproj", "{3BD4D84A-4338-4A4E-8F1C-F4B23C733998}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSenderDataLayer", "EmailSenderDataLayer\EmailSenderDataLayer.csproj", "{88EB0674-D763-4E48-BA75-EBE0277C622B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSenderDataLayer", "EmailSenderDataLayer\EmailSenderDataLayer.csproj", "{88EB0674-D763-4E48-BA75-EBE0277C622B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSenderServiceLayer", "emailSenderServiceLayer\EmailSenderServiceLayer.csproj", "{473F396E-FA47-4E80-B655-B46161607AA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSenderServiceLayer", "emailSenderServiceLayer\EmailSenderServiceLayer.csproj", "{473F396E-FA47-4E80-B655-B46161607AA3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EmailSender", "EmailSender", "{17CBF030-836D-4458-8927-1ADB24197948}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EurozoneExercises", "EurozoneExercises", "{069396C3-3F5E-4DA7-87CB-1A70F582B306}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate-exercise", "Delegate-exercise\Delegate-exercise.csproj", "{8D9BE799-A443-4148-8868-88A38B1BDCB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,15 +78,15 @@ Global
 		{473F396E-FA47-4E80-B655-B46161607AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{473F396E-FA47-4E80-B655-B46161607AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{473F396E-FA47-4E80-B655-B46161607AA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D9BE799-A443-4148-8868-88A38B1BDCB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D9BE799-A443-4148-8868-88A38B1BDCB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D9BE799-A443-4148-8868-88A38B1BDCB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D9BE799-A443-4148-8868-88A38B1BDCB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{44B5186F-B861-4967-BAE7-47BEF120E753} = {069396C3-3F5E-4DA7-87CB-1A70F582B306}
-		{EF7F63CA-F033-4B50-BDE8-1891B65ADC7F} = {069396C3-3F5E-4DA7-87CB-1A70F582B306}
-		{71D63FB2-CA35-4E02-8B91-106C2810B3EB} = {069396C3-3F5E-4DA7-87CB-1A70F582B306}
-		{9F8B0F84-2AA3-4621-92E2-AE26C3A08A3B} = {069396C3-3F5E-4DA7-87CB-1A70F582B306}
 		{C5360AAD-14E6-4642-890A-D82A9CA19CD7} = {4575768F-FF8F-4CF8-86B4-510E98143487}
 		{78B84BF5-E446-48A7-80B9-0B3BEBFCFB07} = {4575768F-FF8F-4CF8-86B4-510E98143487}
 		{5F4407CA-58D2-4869-9172-E668AD0E7A6C} = {4575768F-FF8F-4CF8-86B4-510E98143487}
