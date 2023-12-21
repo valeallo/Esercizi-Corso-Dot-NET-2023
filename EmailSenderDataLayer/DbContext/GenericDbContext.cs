@@ -1,50 +1,63 @@
-﻿using EmailSenderDataLayer.Interfaces;
+﻿using EmailSenderDataLayer.Dto;
+using EmailSenderDataLayer.Interfaces;
+using EmailSenderDataLayer.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace EmailSenderDataLayer.DbContext
 {
 
-    internal class GenericDbContext<T, TResponse> : DbContext
+    public class GenericDbContext<T, TResponse> : DbContext
        where T : class, new()
-       where TResponse : IDto, new()
+       where TResponse : IDto<T>, new()
     {
         public List<TResponse> Data { get; set; }
-        private List<T> _dataFromCsv {  get; set; }
-        private string _path; 
+        public List<T> _dataFromCsv {  get; set; }
+        private string _path;
+        private string _config;
+        private readonly MyServiceSettings _configuration;
 
-        public GenericDbContext(string path) : base(path)
+
+        public GenericDbContext(IOptions<MyServiceSettings> myserviceSetting) : base()
         {
 
-            _path  = Path.Combine(path, typeof(T).Name.ToString() + ".csv");
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-            Console.WriteLine(_path);
+            _configuration = myserviceSetting.Value;
+            _config = Path.Combine(baseDirectory, _configuration.FilePath);
+            _path = Path.Combine(_config, typeof(T).Name.ToString() + ".csv");
 
-            if (File.Exists(_path))
+            Initialize(_path);
+        }
+
+        private void Initialize(string path)
+        {
+            if (File.Exists(path))
             {
-
-                var dataFromCsv = ReadDataFromCsv<T>(_path);
+                var dataFromCsv = ReadDataFromCsv<T>(path);
                 _dataFromCsv = dataFromCsv ?? new List<T>();
+                var count = _dataFromCsv.Count;
 
-                
+                Data = new List<TResponse>();
 
-                Data = _dataFromCsv
-                                    .Where(o => o != null)
-                                    .Select(o => {
-                                        var ctor = typeof(TResponse).GetConstructor(new Type[] { typeof(T) });
-                                        if (ctor != null)
-                                        {
-                                            return (TResponse)ctor.Invoke(new object[] { o });
-                                        }
-                                        return default(TResponse);
-                                    })
-                                    .Where(o => o != null) 
-                                    .ToList();
+                Data = _dataFromCsv.Select(entity =>
+                {
+                    var dto = new TResponse();
+                    dto.initializeFromEntity(entity);
+                    return dto;
+                }).ToList();
+
+
+                var length = Data.Count;
             }
             else
             {
@@ -59,7 +72,7 @@ namespace EmailSenderDataLayer.DbContext
             WriteDataToCsv(_dataFromCsv, _path);
         }
 
-        public void Add(IDto dto)
+        public void Add(IDto<T> dto)
         {
             T entity = ConvertDtoToEntity(dto);
 
@@ -67,7 +80,7 @@ namespace EmailSenderDataLayer.DbContext
             SaveChanges();
         }
 
-        public T ConvertDtoToEntity(IDto dto)
+        public T ConvertDtoToEntity(IDto<T> dto)
         {
             T entity = new T();
             var dtoProperties = dto.GetType().GetProperties();
@@ -85,6 +98,11 @@ namespace EmailSenderDataLayer.DbContext
 
             return entity;
         }
+
+
+        
+
+
 
 
     }

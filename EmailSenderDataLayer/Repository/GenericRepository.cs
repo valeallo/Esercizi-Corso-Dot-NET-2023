@@ -7,25 +7,25 @@ using System.Text;
 using System.Threading.Tasks;
 using EmailSenderDataLayer.DbContext;
 using System.IO;
-
+using Microsoft.Extensions.Options;
+using EmailSenderDataLayer.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace EmailSenderDataLayer.Repository
 {
    
         public class GenericRepository<T, Rs, Rq> : IRepository<T, Rs, Rq>
             where T : class, new()
-            where Rs : IDto, new()
-            where Rq : IDto, new()
+            where Rs : IDto<T>, new()
+            where Rq : IDto<T>, new()
         {
             private readonly GenericDbContext<T, Rs> _context;
 
-            public GenericRepository()
-            {
-                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string dataDirectory = Path.Combine(baseDirectory, "data");
-                _context = new GenericDbContext<T, Rs>(dataDirectory);
- 
-            }
+            public GenericRepository(GenericDbContext<T, Rs> context)
+                {
+
+                    _context = context;
+                }
 
             public List<Rs> GetAll()
             {
@@ -77,7 +77,7 @@ namespace EmailSenderDataLayer.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"REpository error message creating item: {ex.Message}");
+                Console.WriteLine($"Repository error message creating item: {ex.Message}");
 
                 return false;
             }
@@ -95,6 +95,8 @@ namespace EmailSenderDataLayer.Repository
         //    return _context.Data.FirstOrDefault(item => item.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         //}
     }
-    
 
+    public class TResponse
+    {
+    }
 }
