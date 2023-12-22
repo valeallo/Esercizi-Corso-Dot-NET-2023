@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.API", "Spotify.API\Spotify.API.csproj", "{D8AAC26B-F27A-4152-BC7C-951129BB00F2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EB966564-F735-4181-9C2D-66509737A866} = {EB966564-F735-4181-9C2D-66509737A866}
+	EndProjectSection
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{54F48E67-D055-4AD6-8AE2-C4ACE1CEF7A6}"
 EndProject

@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Serilog;
+using Common.Logger;
+using Serilog.Core;
 
 namespace Spotify.API
 {
@@ -17,17 +20,32 @@ namespace Spotify.API
         {
             var host = CreateHostBuilder(args).Build();
 
+      
+
+
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 var context = services.GetService<SpotifyContext>();
+                var logger = services.GetService<ILogger<Program>>();
+
+
+
                 using (var db = context)
                 {
                     foreach (var item in db.Users.ToList())
                     {
-                        Console.WriteLine(item.Username);
-                        //vado a leggere dalla mia tabellla del mio db
-
+                        Console.WriteLine("ciao");
+                        logger.LogError("proviamooooo");
+                        try
+                        {
+                            Console.WriteLine(item.Username);
+                            //vado a leggere dalla mia tabellla del mio db
+                        }
+                        catch (Exception ex)
+                        {
+                            logger.LogError(ex, "An error occurred while processing user {Username}", item.Username);
+                        }
                     }
                 }
 
@@ -40,6 +58,8 @@ namespace Spotify.API
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseSerilog(Common.Logger.SeriLogger.Configure)
+                
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

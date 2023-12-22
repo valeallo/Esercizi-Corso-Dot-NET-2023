@@ -14,6 +14,6 @@ namespace Spotify.API.Repository
                 _logger = logger;
                 _context = context;
             }
-        }
+       
     }
 }
