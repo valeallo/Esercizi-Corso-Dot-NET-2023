@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Serilog.Events;
 
 
+
 namespace Common.Logger
 {
     public class SeriLogger
@@ -17,11 +18,9 @@ namespace Common.Logger
                     .Enrich.WithMachineName()
                     .WriteTo.Debug()
                     .WriteTo.Console()
-                    .Enrich.WithProperty("Environment", HostingEnvironment.EnvironmentName)
-                    .Enrich.WithProperty("Application", HostingEnvironment.ApplicationName)
+                    .Enrich.WithProperty("Environment", context.HostingEnvironment.EnvironmentName)
+                    .Enrich.WithProperty("Application", context.HostingEnvironment.ApplicationName)
                     .ReadFrom.Configuration(context.Configuration);
-                
-
             };
     }
 }
