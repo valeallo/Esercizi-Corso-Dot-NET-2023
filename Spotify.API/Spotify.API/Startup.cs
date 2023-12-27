@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Spotify.API.Models;
+using Spotify.API.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace Spotify.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SpotifyContext>(o => o.UseSqlServer(Environment.GetEnvironmentVariable("SpotifyConnectionString")));
+            services.AddScoped<SongRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

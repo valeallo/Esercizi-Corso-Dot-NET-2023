@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Serilog;
 using Common.Logger;
 using Serilog.Core;
+using Spotify.API.Repository;
 
 namespace Spotify.API
 {
@@ -35,8 +36,6 @@ namespace Spotify.API
                 {
                     foreach (var item in db.Users.ToList())
                     {
-                        Console.WriteLine("ciao");
-                        logger.LogError("proviamooooo");
                         try
                         {
                             Console.WriteLine(item.Username);
